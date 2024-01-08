@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Singabus</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+        <div class="container">
+          <div id="navbarContainer"></div>
+
+        </div>
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4 class="toc-heading">Table of Contents</h4>
+  </div>
+  <div class="toc-list-wrapper">
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#req">Requirements</a></li>
+      <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+      <li class="toc-list-item"><a href="#bustiming">View bus timings</a></li>
+      <li class="toc-list-item"><a href="#search">Search</a></li>
+      <li class="toc-list-item"><a href="#features">Other features</a></li>
+    </ul>
+  </div>
+</div>
+    <a asp-controller="Category" asp-action="Transport"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+
+<section>
+  <br>
+  <img src="/images/Singabus/singabuspng.png" width="800px">
+  <h1>What is Singabus?</h1>
+  <p>Singabus is a mobile app that allows you to check bus timings and bus routes in Singapore. It is a free service for everyone.</p>
+
+      <h2 id="Inst">Installation Guide!</h2>
+      <p>**Steps to use Singabus app:**</p>
+      <ol>
+        <li>Download and install the Singabus app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+        <a href="https://play.google.com/store/apps/details?id=sg.cotton.singabus&hl=en_SG&gl=US&pli=1"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+        <a href="https://apps.apple.com/sg/app/singabus-bus-timing-mrt/id1044984870"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+        <p></p>
+      </ol>
+
+      <h2 id="bustiming">View bus timings</h2>
+      <p>Upon opening the app, select the first header to view all bus stops.</p>
+      <img src="/images/Singabus/viewallbusstop.jpg" width="300px"><br><br>
+      <p>To view bus timings, select the dropdown arrow next to the bus stop name. This would display all the available buses
+        and display the respective timings. The first timing shown would be the time taken for the next bust to arrive. The words below
+        each timing, indicates the type of bus (whether single or double). If a handicap logo is seen, it indicates that handicap area 
+        is available.
+      </p> 
+      <img src="/images/Singabus/viewbustiming.jpg" width="300px"><br><br>
+      <p>To view buses that are under your favourite list, select the second header (heart shape). Select the bus stop you wish to check
+        up on and view the available buses and timings.
+      </p> 
+      <img src="/images/Singabus/viewbuses.jpg" width="300px"><br><br>
+
+      <h2 id = "search"> Search</h2>
+      <p>To search for buses and bus stops, select the third header. A search bar would appear and you can key in any bus number/ bus stop number?
+        or bus stop name that you wish to check up on.
+      </p>
+      <img src = "/images/Singabus/search.jpg"width="300px">
+      <img src = "/images/Singabus/busroute+bus.jpg" width = "300px"><br><br>
+      <p>If you wish to search for a bus, upon selecting it, the bus route of the selected bus would be displayed. In addition, you can view all bus
+        timings that are available on that route.
+      </p>
+      <img src = "/images/Singabus/busroute.jpg"width="300px"><br><br>
+      <p>If you wish to search for a bus stop, upon selecting it, the buses that are available would be displayed, along with the timings.</p>
+      <img src = "/images/Singabus/searchingbusstop.jpg"width="300px">
+
+      <h2 id="features">Other features</h2>
+      <p>There are other features that are available for you to navigate around the app easily.</p>
+      <p>Select the header that says "Train" to view the MRT map.</p>
+      <img src="/images/Singabus/viewmrt.jpg" width="300px"><br><br>
+      <p>To save/favourite a bus stop, select your preferred bus stop. Then, click the information icon on the right. Press "Add to favourites".
+        To view bus stops that you have saved/favourite, select the second header to access them. This makes it easier for you to find bus stops
+        and save trouble without having to search for them repeatedly.
+      </p>
+      <img src="/images/Singabus/features.jpg" width="300px"><br><br>
+      <br><br><br><br><br><br><br><br><br><br>
+    </section>
+
+
+
+  <script type="module">
+      import { redirectToAuthPage } from './scripts/auth.js';
+
+      document.getElementById('auth').addEventListener('click', () => {
+      redirectToAuthPage();
+    });
+  </script>
+
+
+    </body>
+</html>
+
+

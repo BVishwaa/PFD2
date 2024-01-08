@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Gojek</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+        <div class="container">
+          <div id="navbarContainer"></div>
+
+        </div>
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4 class="toc-heading">Table of Contents</h4>
+  </div>
+  <div class="toc-list-wrapper">
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+      <li class="toc-list-item"><a href="#req">Requirements</a></li>
+      <li class="toc-list-item"><a href="#account">Signup/Login</a></li>
+      <li class="toc-list-item"><a href="#booking">Book a ride</a></li>
+
+    </ul>
+  </div>
+</div>
+    <a asp-controller="Category" asp-action="Transport"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+
+<section>
+  <br>
+  <img src="/images/Gojek/gojek.png" width="800px">
+  <h1>What is Gojek?</h1>
+  <p>Gojek is a mobile app where you can book rides to get to your desired destination. It is a free app service for everyone.</p>
+
+      <h2 id="Inst">Installation Guide!</h2>
+      <p>**Steps to use Gojek app:**</p>
+      <ol>
+        <li>Download and install the Gojek app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+        <a href="https://play.google.com/store/apps/details?id=com.gojek.app&hl=en_SG&gl=US"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+        <a href="https://apps.apple.com/us/app/gojek/id944875099"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+        <p></p>
+      </ol>
+      <h2 id = "req">Requirements</h2>
+      <p>Make sure you have your Gojek app downloaded and a handphone number to register/login to your account.</p>
+      <img src = "/images/gojek/loginsignup.jpg" width = "300px"><br><br>
+
+      <h2 id="account">Sign up/Login</h2>
+      <p>To sign up for an account, enter your handphone number. A verification code will be sent to verify your number.</p>
+      <img src="/images/gojek/hpnum.jpg" width="300px"><br><br>
+      <p>Next, enter your name for your profile.
+      </p>
+      <img src="/images/gojek/name.jpg" width="300px"><br><br>
+      <p>Enter your email.</p>
+      <img src="/images/gojek/email.jpg" width="300px"><br><br>
+      <p>Select the country you are in.
+      </p>
+      <img src="/images/gojek/selectcountry.jpg" width="300px"><br><br>
+
+      <h2 id="booking">Book a ride</h2>
+      <p>Upon opening gojek, this is the main page you would see. Click on the search bar to find the location you wish to go.</p>
+      <img src="/images/gojek/mainpage.jpg" width="300px"><br><br>
+      <p>
+        Select the search bar and key in the location you wish to go and similar matches will be displayed.
+      </p>
+      <img src="/images/gojek/search.jpg" width="300px"><br><br>
+      <img src="/images/gojek/searchlocation.jpg" width="300px"><br><br>
+      <p>A map and your adddress will then be displayed. Click next if the details of your pickup location are correct else click edit to change it.</p>
+      <img src = "/images/gojek/setpickup.jpg" width = "300px"><br><br>
+
+      <p>Different type of rides would be displayed and you can pick according to your preference. After selecting your ride, click the Order button
+        and wait for your driver to pick you up.
+      </p>
+      <img src = "/images/gojek/chooseride.jpg" width = "300px"><br><br>
+      <br><br><br><br><br><br><br><br><br><br>
+    </section>
+
+
+
+  <script type="module">
+      import { redirectToAuthPage } from './scripts/auth.js';
+
+      document.getElementById('auth').addEventListener('click', () => {
+      redirectToAuthPage();
+    });
+  </script>
+    </body>
+</html>

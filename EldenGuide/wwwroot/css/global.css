@@ -1,0 +1,51 @@
+
+#google_translate_element {
+    position: absolute;
+    top: 105px;
+    right: 15px;
+    z-index: 1000;
+  }
+
+  .navbar ul li{
+    font-family: 'Times New Roman', Times, serif;
+    display:inline-flex;
+    line-height: 16px;
+    margin: 0 5px;  
+  }
+  
+  .navbar a:hover {
+    background-color: #D0CFCF;
+    color: black;
+    border-radius: 4px;
+  }
+
+  label.logo{
+    color:white;
+    margin-left: 20px;
+    font-size: 35px;
+    line-height: 80px;
+    font-weight: 100;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .navbar {
+    overflow:hidden;  
+    background-color:#282a2c;
+  }
+  
+  .navbar ul{
+    float:right;
+  }
+  
+  .navbar a.active {
+    background-color: #f1c08b;
+    color: white;
+  }
+  
+  .navbar a {
+    float: left;
+    color:white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+  }

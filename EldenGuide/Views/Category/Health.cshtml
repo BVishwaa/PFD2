@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Eldenguide.css">
+    <script src = "~/js/script.js"></script>
+    <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <div class="container">
+        <div id="navbarContainer"></div>
+
+    </div>
+    <a asp-controller="Home" asp-action="index"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+    <section>
+        <form>
+            <table >
+                <tr><p style="font-family: Segoe UI">Health Apps</p></tr>
+                <tr>
+
+                    <a asp-controller="Guide" asp-action="Health_Hub">Health Hub</a>
+                    <a asp-controller="Guide" asp-action="Healthy_365">Healthy 365</a>
+                    <a asp-controller="Guide" asp-action="Health_Buddy">Health Buddy</a>
+
+
+
+                    <td><a href="Health Hub.html"><img src="Images/For-Logos/Health Hub Logo.png" alt="Health Hub.html" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="Healthy 365.html"><img src="Images/For-Logos/Healthy 365 logo.jpg" alt="Healthy 365.html" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="Health_Buddy.html"><img src="Images/For-Logos/Health Buddy.png" alt="Health Buddy.html" class = "btn btn-dark btn-square-md"></a></td>
+                    
+                </tr>
+
+                <tr>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Health Hub</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Healthy 365</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Health Buddy</h3></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+   
+    <script type="module">
+        import { redirectToAuthPage } from './scripts/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+
+</body>
+</html>

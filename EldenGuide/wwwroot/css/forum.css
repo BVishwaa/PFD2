@@ -1,0 +1,254 @@
+@import "./global.css";
+
+section {
+    
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    height:70vh;
+}
+
+  body{
+    margin:0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+/*side nav bar*/
+.sidenav {
+  height: 100%;
+  width: 250px;
+  z-index: 1;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/*post thread css*/
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.navContainer {
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0px 1fr;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 15px;
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+position: relative;
+font-family: Arial;
+}
+
+.custom-select select {
+display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+position: absolute;
+content: "";
+top: 14px;
+right: 10px;
+width: 0;
+height: 0;
+border: 6px solid transparent;
+border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+border-color: transparent transparent #fff transparent;
+top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+color: #ffffff;
+padding: 8px 16px;
+border: 1px solid transparent;
+border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+position: absolute;
+background-color: black;
+top: 100%;
+left: 0;
+right: 0;
+z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+background-color: rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-size: 25px;
+}
+
+.category{
+  font-size: 15px;
+  text-align: center;
+}
+
+.name{
+  font-size : 30px;
+  text-align : center;
+}
+
+body{
+  margin: 10px 60px;
+}
+
+a{
+  text-decoration: none;
+  color: #222;
+}
+
+h1,h4,ol{
+  margin: 0;
+}
+
+p{
+  margin: 5px 0;
+}
+
+
+/*main page css*/
+.main header,.header{
+  font-size:25px;
+  text-align: center;
+}
+
+.main button{
+  border-radius: 5px;
+  border: 2px;
+}
+
+/*css for search bar*/
+#myInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+/*css for comment section */
+#comments {
+    max-height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/*replit css*/
+body {
+  margin : 10px 60px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+h1,h4, ol{
+  margin: 0;
+}
+p{
+  margin: 5px 0;
+}
+textarea{
+  width: 80%;
+height: 80px;
+}
+button{
+  display:block;
+  margin: 10px 0;
+}
+.top-bar{
+  background-color: skyblue;
+  padding: 10px 40px;
+}
+
+.main{
+  background-color: #F6F6EF;
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+.comments{
+  margin: 40px 0;
+}
+.comment{
+  margin: 10px 0;
+}
+.row{
+  padding: 5px 0;
+}
+.bottom, .top-comment{
+  display: flex;
+  color:grey;
+  font-size:12px;
+}
+.timestamp{
+  padding-right : 10px;
+}
+.comment-ts{
+  padding-right: 5px;
+}
+
+.top-comment .comment-content{
+  text-align:left;
+  padding:10px;
+}
+.main .post{
+  position:relative;
+  left: 0%;
+}
+
+.button{
+  border-radius: 12px;
+}

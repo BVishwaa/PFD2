@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Eldenguide.css">
+    <script src="/js/script.js"></script>
+    <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <div id="navbarContainer"></div>
+
+    <section>
+        <form>
+            <table>
+                <tr><p style="font-size: 5rem;  margin-left: 34%;" >Our Services</p></tr>
+                <tr>
+                    <a asp-controller="Category" asp-action="Banking"><img src="Images/For-Logos/BankIcon.png"  class="btn  btn-square-md"></a>
+                    <a asp-controller="Category" asp-action="Health"><img src="Images/For-Logos/healthicon.png"  class="btn btn-square-md"></a>
+                    <a asp-controller="Category" asp-action="Telecommunications"><img src="Images/For-Logos/telecommunication.png"  class="btn btn-square-md"></a>
+                    <a asp-controller="Category" asp-action="FoodDelivery"><img src="Images/For-Logos/fooddelivery.png"  class="btn btn-square-md"></a>
+                    <a asp-controller="Category" asp-action="Transport"><img src="Images/For-Logos/transport.png"  class="btn btn-square-md"></a>
+
+                </tr>
+
+                <tr>
+                    <td class = "textDwnBtn" ><h3>Banking</h3></td>
+                    <td class = "textDwnBtn"><h3>Health</h3></td>
+                    <td class = "textDwnBtn"><h3>Messaging</h3></td>
+                    <td class = "textDwnBtn"><h3>Food Delivery</h3></td>
+                    <td class = "textDwnBtn"><h3>Transport</h3></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+    <div id="google_translate_element"></div>
+
+ 
+    <script type="module">
+        import { redirectToAuthPage } from '../../wwwroot/js/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+</body>
+</html>

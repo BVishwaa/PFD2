@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Eldenguide.css">
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <div class="container">
+        <div id="navbarContainer"></div>
+
+    </div>
+    <a asp-controller="Home" asp-action="index"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+    <section>
+        <form>
+            <table >
+                <tr><p style="font-family: Segoe UI">Food Delivery Apps</p></tr>
+                <tr>
+
+                    <a asp-controller="Guide" asp-action="GrabFood">GrabFood</a>
+                    <a asp-controller="Guide" asp-action="Food_Panda">Food Panda</a>
+                    <a asp-controller="Guide" asp-action="Deliveroo">Deliveroo</a>
+
+                    <td><a href="GrabFood.html"><img src="Images/For-Logos/Grab Logo.png" alt="Grab.html" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="Food Panda.html"><img src="Images/For-Logos/Food Panda Logo.png" alt="Food Panda.html" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="Deliveroo.html"><img src="Images/For-Logos/Deliveroo.jpg" alt="Deliveroo.html" class = "btn btn-dark btn-square-md"></a></td>
+      
+                </tr>
+
+                <tr>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Grab</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Food Panda</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">Deliveroo</h3></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+    <script>
+        // Fetch and inject the content of the navbar.html file
+        fetch('./components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbarContainer').innerHTML = html;
+            });
+    </script>
+    <script type="module">
+        import { redirectToAuthPage } from './scripts/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+</body>
+</html>

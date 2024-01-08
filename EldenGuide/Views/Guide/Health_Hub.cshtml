@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Navbar.css">
+    <link rel="stylesheet" href="~/css/bttBtn.css">
+    <script src="~/js/script.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <title>How to Use Health Hub</title>
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+    <div class="container">
+        <div id="navbarContainer"></div>
+
+    </div>
+    <div class="toc-wrapper">
+        <div class="toc-header">
+            <h4 class="toc-heading">Table of Contents</h4>
+        </div>
+        <div class="toc-list-wrapper">
+            <ul class="toc-list">
+                <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+                <li class="toc-list-item"><a href="#req">Requirements</a></li>
+                <li class="toc-list-item"><a href="#Reg">Registration</a></li>
+                <li class="toc-list-item"><a href="#Book">Booking Appointment</a></li>
+                <li class="toc-list-item"><a href="#Lab">View Lab reports</a></li>
+            </ul>
+        </div>
+    </div>
+    <a asp-controller="Category" asp-action="Health"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button>  </a>
+
+    <section>
+        <br>
+        <img src="/images/HealthHub/HealthHub top.png" width="800px">
+        <h1>What is Health Hub?</h1>
+        <p>HealthHub SG is a free national digital healthcare platform that empowers you to manage your health and well-being conveniently. Access your health records, book appointments, make payments, and more, all from the palm of your hand.</p>
+
+        <h2 id="Inst">Installation Guide!</h2>
+        <p>**Steps to use Health Hub:**</p>
+        <ol>
+            <li>Download and install the Health Hub app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+            <a href="https://play.google.com/store/apps/details?id=sg.gov.hpb.healthhub&hl=en_SG"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+            <a href="https://apps.apple.com/sg/app/healthhub-sg/id1034200875"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+            <p></p>
+        </ol>
+
+        <h2 id="req">Requirements</h2>
+        <p>Make sure you have your Health Hub app downloaded. Make sure you also have a sinngpass account to link to your Health Hub App</p>
+        <img src="/images/HealthHub/Requirement/RequirementPage.jpg" width="300px"><br><br>
+
+        <h2 id="Reg">Registration Guide!</h2>
+        <p>Press on the "Log in with Singpass" bar</p>
+        <img src="/images/HealthHub/Register/Step 1.jpg" width="300px"><br><br>
+
+        <p>Press on the icon that allows you to login to HealthHub with Singpass</p>
+        <img src="/images/HealthHub/Register/Step 2.jpg" width="300px"><br><br>
+
+        <p>Press on the approve button when asked for confirmation to link healthhub account with your Singpass(Image was confidential and not able to be screenshotted)</p>
+        <p>Input the 6 digit code that you have set for your Singpass account</p>
+        <p>You have now officially signed in with HealthHub</p>
+        <img src="/images/HealthHub/HomePage.jpg" width="300px"><br><br>
+
+        <h2 id="Book">Booking Appointment</h2>
+        <p>Press on the Appointment input in the HomePage </p>
+        <img src="/images/HealthHub/BookAppoint/Step1.jpg" width="300px"><br><br>
+
+        <p>Press on your NRIC arrow input</p>
+        <img src="/images/HealthHub/BookAppoint/Step2.jpg" width="300px"><br><br>
+
+        <p>Press on "MAKE NEW APPOINTMENT"</p>
+        <img src="/images/HealthHub/BookAppoint/Step3.jpg" width="300px"><br><br>
+
+        <p>Select the Healthcare institution you want to go to</p>
+        <img src="/images/HealthHub/BookAppoint/Step4.jpg" width="300px"><br><br>
+
+        <p>Select the date you want to go for and press on the "Next" button shown when you scroll to the bottom</p>
+        <img src="/images/HealthHub/BookAppoint/Step5.jpg" width="300px"><br><br>
+
+        <p>Press on the confirm button to confirm your Booking</p>
+        <img src="/images/HealthHub/BookAppoint/FinalStep.jpg" width="300px"><br><br>
+
+        <h2 id="Lab">View Lab reports</h2>
+        <p>Press on the Lab reports input in the HomePage</p>
+        <img src="/images/HealthHub/LabRep/Step1.jpg" width="300px"><br><br>
+
+        <p>Press on "View Details"</p>
+        <img src="/images/HealthHub/LabRep/Step2.jpg" width="300px"><br><br>
+
+        <p>You can view your reults online from the app now</p>
+        <img src="/images/HealthHub/LabRep/Step3.jpg" width="300px"><br><br>
+
+        <p>To take it a step further, you can press on "Download PDF" on the bottom of the page to store your record offline</p>
+        <img src="/images/HealthHub/LabRep/Step4.jpg" width="300px"><br><br>
+
+        <p>Your pdf file of the Lab Report is officially downloaded and you can view it offline anytime!!!</p>
+        <img src="/images/HealthHub/LabRep/Result.jpg" width="300px"><br><br>
+
+        <script type="module">
+            import { redirectToAuthPage } from './scripts/auth.js';
+
+            document.getElementById('auth').addEventListener('click', () => {
+                redirectToAuthPage();
+            });
+        </script>
+        <script src="~/js/bttbtn.js"></script>
+        <script src="~/js/script.js"></script>
+    </section>
+</body>
+
+
+
+
+

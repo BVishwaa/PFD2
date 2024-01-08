@@ -1,0 +1,79 @@
+﻿@model EldenGuide.Models.Guide
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <link rel="stylesheet" href="~/css/bttBtn.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        
+        <title>POSB Digibank</title>
+        
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </head>
+    <body>
+        <div id="google_translate_element"></div>
+
+        <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+        <div class="container">
+            <div id="navbarContainer"></div>
+        </div>
+        <div class="toc-wrapper">
+            <div class="toc-header">
+              <h4 class="toc-heading">Table of Contents</h4>
+            </div>
+            <div class="toc-list-wrapper">
+              <ul class="toc-list">
+                <li class="toc-list-item"><a href="#About">About</a></li>
+                <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+                <li class="toc-list-item"><a href="#reg">Register</a></li>
+                <li class="toc-list-item"><a href="#paynow">PayNow</a></li>
+                <li class="toc-list-item"><a href="#Update">Update Particulars</a></li>
+                <!-- <li class="toc-list-item"><a href="#">Notifications</a></li>
+                <li class="toc-list-item"><a href="#">etc</a></li> -->
+              </ul>
+            </div>
+        </div>
+        <a asp-controller="Category" asp-action="Banking"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+
+        <section>
+
+
+            @Html.Raw(Model.Content);
+            
+       
+    </section>
+    <script type="module">
+        import { redirectToAuthPage } from './scripts/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+
+
+
+     <!-- <script>
+        let mybutton = document.getElementById("bttBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } 
+            else {
+                mybutton.style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            }
+     </script> -->
+            <script src = "~/js/bttbtn.js"></script>
+            <script src = "~/js/script.js"></script>
+            
+    </body>
+</html>
+

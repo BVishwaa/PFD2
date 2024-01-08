@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles/Eldenguide.css">
+    <script src="scripts\script.js"></script>
+    <link rel="stylesheet" href="styles/About.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <div id="navbarContainer"></div>
+
+    <div id="google_translate_element"></div>
+    <style>
+
+        body {
+            height: 20vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .line {
+            width: 100vw;
+        }
+
+        .left, .right {
+            width: 50vw;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .left {
+            color: rgb(169, 169, 169);
+            transform: skew(0deg, -15deg);
+        }
+
+        .right {
+            color: rgb(68, 160, 185);
+            transform: skew(0deg, 15deg);
+        }
+
+        .left .content {
+            width: 100vw;
+            text-align: center;
+        }
+
+        .right .content {
+            width: 100vw;
+            text-align: center;
+            transform: translate(-50vw);
+        }
+
+        span {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5vw;
+            text-transform: uppercase;
+            line-height: .8;
+            transition: ease-out .6s;
+        }
+
+        .wrap {
+            margin-top: 12%;
+        }
+    </style>
+
+    <div class="wrap">
+        <div class="line">
+            <div class="left">
+                <div class="content">
+                    <span class="spanSlow">To open a portal to</span>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="right">
+                <div class="content">
+                    <span class="spanSlow">To open a portal to</span>
+                </div>
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                <div class="content">
+                    <span class="spanSlow">the digital world</span>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="right">
+                <div class="content">
+                    <span class="spanSlow">the digital world</span>
+                </div>
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                <div class="content">
+                    <span class="spanFast">for the elderly through</span>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="right">
+                <div class="content">
+                    <span class="spanFast">for the elderly through</span>
+                </div>
+            </div>
+        </div>
+        <div class="line">
+            <div class="left">
+                <div class="content">
+                    <span class="spanSlow">a plethora of interconnected features</span>
+                </div>
+            </div>
+            <!--
+            -->
+            <div class="right">
+                <div class="content">
+                    <span class="spanSlow">a plethora of interconnected features</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <a href="https://maps.app.goo.gl/6vyZQJrRSySzGCcz6"><p style="color: rgb(195, 195, 210); margin-left: 45%; text-decoration:underline;">Our Map</p></a>
+
+    <script>
+        // Fetch and inject the content of the navbar.html file
+        fetch('./components/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbarContainer').innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>

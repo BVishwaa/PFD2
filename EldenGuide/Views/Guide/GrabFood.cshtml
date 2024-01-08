@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Grab Food</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+        <div class="container">
+          <div id="navbarContainer"></div>
+
+        </div>
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4 class="toc-heading">Table of Contents</h4>
+  </div>
+  <div class="toc-list-wrapper">
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+      <li class="toc-list-item"><a href="#req">Requirements</a></li>
+      <li class="toc-list-item"><a href="#Ordering">Ordering Meals</a></li>
+      
+    </ul>
+  </div>
+</div>
+<a asp-controller="Category" asp-action="FoodDelivery"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+
+<section>
+  <br>
+  <img src="/images/Grab/GrabFood.jpg" width="800px" >
+  <h1>What is Grab Food?</h1>
+  <p>Grab Food is a feature under the Grab App where you can order food from restaurants all over singapore to deliver to your desired destination. It is a free app service for everyone.</p>
+
+  <h2 id="Inst">Installation Guide!</h2>
+  <p>**Steps to use Grab app:**</p>
+  <ol>
+    <li>Download and install the Grab app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+    <a href="https://play.google.com/store/apps/details?id=com.grabtaxi.passenger&hl=en&gl=US"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+    <a href="https://apps.apple.com/us/app/grab-taxi-ride-food-delivery/id647268330"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+    <p></p>
+  </ol>
+
+  <h2 id = "req">Requirements</h2>
+      <p>Make sure you have your Grab app downloaded. Select the Food icon to view grab Food features.</p>
+      <img src = "/images/Grab/maingrabpage.jpg" width = "300px"><br><br>
+
+  <h2 id = "Ordering">Ordering Meals</h2>
+    <p>Press on the search bar to find the restaurant you want to order food from</p>
+    <img src="/images/Grab/FoodMain.jpg" width="300px"><br><br>
+    <p>
+        Select the search bar and key in the restaurant you wish to order from and it will show up along with restaurants similar to it
+    </p>
+    <img src="/images/Grab/RestCat.jpg" width="300px"><br><br>
+    <p>Select the meal or food you wish to order</p>
+    <img src="/images/Grab/MealSelect.jpg" width="300px"><br><br>
+    <p>Customize your food according to your preference and press on "Add to Basket" once you are done</p>
+    <img src="/images/Grab/Customize meal.jpg" width="300px"><br><br>
+    <p>Set by which time you prefer to have your meal dilivered by according to your urgency and choice of spending</p>
+    <p>You can add another meal if you desire</p>
+    <p>Once everything is done you can press on "Place Order"</p>
+    <img src="/images/Grab/TimeSet.jpg" width="300px"><br><br>
+    <p>Your Order is now being processed</p>
+    <img src = "/images/Grab/OrdProcess.jpg" width="300px"><br><br>
+    <p>Your Order is officially done!!!</p>
+    <img src = "/images/Grab/OrdComplete.jpg" width="300px"><br><br>
+</section>
+
+<script type="module">
+  import { redirectToAuthPage } from './scripts/auth.js';
+
+  document.getElementById('auth').addEventListener('click', () => {
+  redirectToAuthPage();
+});
+</script>
+    </body>
+</html>

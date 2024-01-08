@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Grab Transport</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+        <div class="container">
+          <div id="navbarContainer"></div>
+
+        </div>
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4 class="toc-heading">Table of Contents</h4>
+  </div>
+  <div class="toc-list-wrapper">
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+      <li class="toc-list-item"><a href="#req">Requirements</a></li>
+      <li class="toc-list-item"><a href="#booking">Book a ride</a></li>
+      <li class="toc-list-item"><a href="#features">Other features</a></li>
+    </ul>
+  </div>
+</div>
+<a asp-controller="Category" asp-action="Transport"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a >
+
+
+<section>
+  <br>
+  <img src="/images/Grab/grab.jpg" width="800px">
+  <h1>What is Grab Transport?</h1>
+  <p>Grab Transport is a feature under the Grab App where you can book rides to get to your desired destination. It is a free app service for everyone.</p>
+
+      <h2 id="Inst">Installation Guide!</h2>
+      <p>**Steps to use Grab app:**</p>
+      <ol>
+        <li>Download and install the Grab app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+        <a href="https://play.google.com/store/apps/details?id=com.grabtaxi.passenger&hl=en&gl=US"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+        <a href="https://apps.apple.com/us/app/grab-taxi-ride-food-delivery/id647268330"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+        <p></p>
+      </ol>
+      <h2 id = "req">Requirements</h2>
+      <p>Make sure you have your Grab app downloaded. Select the transport icon to view grab transport features.</p>
+      <img src = "/images/Grab/maingrabpage.jpg" width = "300px"><br><br>
+
+      <h2 id="booking">Book a ride</h2>
+      <p>Upon opening grab transport, this is the main page you would see. Click on the search bar to find the location you wish to go.</p>
+      <img src="/images/Grab/mainpage.jpg" width="300px"><br><br>
+      <p>
+        Select the search bar and key in the location you wish to go and similar matches will be displayed.
+      </p>
+      <img src="/images/Grab/mainsearch.jpg" width="300px"><br><br>
+      <img src="/images/Grab/searchlocation.jpg" width="300px"><br><br>
+      <p>A map and your adddress will then be displayed. Click confirm if the details are correct.</p>
+      <img src = "/images/Grab/confirmlocation.jpg" width = "300px"><br><br>
+
+      <p>Different type of rides would be displayed and you can pick according to your preference. After selecting your ride, click the Book button
+        and wait for your driver to pick you up.
+      </p>
+      <img src = "/images/Grab/viewprices.jpg" width = "300px"><br><br>
+
+      <h2 id="features">Other features</h2>
+      <p>There are other features that are available for you to navigate around the app easily.</p>
+      <p>You can also access grab transport in other countries that are listed by clicking on the country logo on the top right of your screen.
+        Change the country according to where you are and you can book rides anywhere.
+      </p>
+      <img src="/images/Grab/countries.jpg" width="300px"><br><br>
+      <p>You can save locations so you don't have to repeatedly key in the same locations and can easily book rides just by tapping on the saved
+        addresses.
+      </p>
+      <img src="/images/grab/additional.jpg" width="300px"><br><br>
+      <br><br><br><br><br><br><br><br><br><br>
+    </section>
+
+
+  <script type="module">
+      import { redirectToAuthPage } from './scripts/auth.js';
+
+      document.getElementById('auth').addEventListener('click', () => {
+      redirectToAuthPage();
+    });
+  </script>
+
+    </body>
+</html>

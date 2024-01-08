@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+    <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <title>Telegram Guide</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+      <div class="container">
+        <div id="navbarContainer"></div>
+
+    </div>
+        <div class="toc-wrapper">
+            <div class="toc-header">
+              <h4 class="toc-heading">Table of Contents</h4>
+            </div>
+            <div class="toc-list-wrapper">
+              <ul class="toc-list">
+                    <li class="toc-list-item"><a href="#whatis">What is Telegram</a></li>
+                    <li class="toc-list-item"><a href="#install">Installation</a></li>
+                    <li class="toc-list-item"><a href="#VidTut">Video Tutorial</a></li>
+                    <li class="toc-list-item"><a href="#FAQ">Frequently Asked Questions</a></li>
+              </ul>
+            </div>
+        </div>
+        <a asp-controller="Category" asp-action="Telecommunications"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+        <section>
+          <br>
+          <img src="/images/telegram/telegrambanner.jpg" style="width: 700px; height: 350px;">
+            <h1 id="whatis">What is Telegram?</h1>
+            <p>Telegram is an instant messaging service that is known for their speed and security. It was launched in 2013<br> and has since become the most popular messaging apps, with over 800 million active users.</p>
+            <p>Telegram Offer the following servies such as:</p>
+            <ol>
+              <li><b>End-To-End Encryption</b>: In summary, only you and the recipient can see or read this message!</li>
+              <li><b>Linked Devices</b>: It allows you to sync from multiple devices.</li>
+              <li><b>Channels</b>: It allows you to create channels and broadcast to a large audience.</li>
+              <li><b>Personal Messaging</b>: It allows you to send or receive messages, videos, photos, or files with your friends and family.</li>
+            </ol>
+            <p>Some requirements before you start, ensure that you have the following requirements!</p>
+            <ol>
+              <li>A Smartphone</li>
+              <li><b>A Valid Phone Number</b> linked to your Smartphone. </li>
+              <li>A sufficient mobile phone storage!</li>
+              <li>Optional: Laptop & PC Requires you to set up your account previously!</li>
+            </ol>
+          <h2 id="install">Installation Guide</h2>
+          <p>Click on your preferred device to download the application!<br>Please select <b>Get it on Google Play if you're an Android User</b>, otherwise <b>select Download on the App Store for IPhone Users.</b></p>
+          <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger&pcampaignid=web_share"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+          <a href="https://apps.apple.com/us/app/telegram-messenger/id686449807"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+          <p>1.Once Installation is done, Open the application and select Start Messaging!</p>
+          <video width="360" height="540" autoplay loop muted>
+            <source src="Videos/telegram-home.MP4" type="video/mp4">
+          </video>
+          <p>2.Enter your Phone Number linked to your country code, then click continue!</p><br>
+          <img src="/images/telegram/telegram1.jpg" width="300px">
+          <p>3.Enter the SMS Verification Code sent to your smartphone device!<br> It may appear in ur messages app.</p>
+          <p>Afterwards, click next and now </p>
+          <p>You may need to insert your name. Photos are optional!</p>
+          <img src="/images/telegram/telegram2.png" width="300px" class="src">
+          <p>That's it! You've completed setting up your telegram account!</p>
+          <p>Some other information: After setting up your account, Telegram require permissions<br> such as contacts, call logs and more. You can choose to allow or to restrict any<br> permissions required.</p>
+          <h1 id="VidTut">Video Tutorial</h1>
+          <p>If video is unavailable, press the link <a href="https://www.youtube.com/watch?v=Gki-8fFqhxQ" >here!</a href></p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Gki-8fFqhxQ?si=tdhb4yQARJyz3rhV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h1 id="FAQ">Frequently Asked Questions</h1>
+          <button class="collapsible">What is Telegram For?</button>
+          <div class="content">
+            <p>Telegram is for anyone who wants quick and dependable messaging and calling.<br><br> Large groups, usernames, desktop apps, and powerful file sharing options may appeal to business users and small teams. Because Telegram groups can have up to 200,000 members, we support replies, mentions, and hashtags to help maintain order and communication efficiency in large communities. <br><br> You can empower administrators with advanced tools to help these communities thrive in peace. Anyone can join public groups, which are powerful platforms for discussions and feedback.</p>
+          </div>
+          <button class="collapsible">Where did Telegram came from?</button>
+          <div class="content">
+            <p>The development team for Telegram is based in Dubai. <br><br>
+              The majority of Telegram's developers are originally from St. Petersburg, a city known for its unprecedented number of highly skilled engineers. <br><br>Due to local IT regulations, the Telegram team was forced to leave Russia and has established bases in Berlin, London, and Singapore. We are currently content in Dubai, but are prepared to relocate if local regulations change.</p>
+          </div>
+          <button class="collapsible">Thoughts on Internet Privacy</button>
+          <div class="content">
+            <p>We believe that the two most important aspects of Internet privacy are:</p>
+            <ol><li>Protecting your private conversations from prying eyes such as officials, employers, and others.</li><li>Keeping your personal information safe from third parties such as marketers, advertisers, and so on.</li><li>Telegram's goal is to create a truly free messenger with a groundbreaking privacy policy.</li></ol>
+          </div>
+          <br><br>
+          <a href="https://telegram.org/faq#q-who-is-telegram-for">Link here to Telegram FAQs</a>
+          <br><br><br><br><br><br><br><br>
+        </section>
+
+
+      <script type="module">
+          import { redirectToAuthPage } from './scripts/auth.js';
+  
+          document.getElementById('auth').addEventListener('click', () => {
+          redirectToAuthPage();
+        });
+      </script>
+  
+        <script src = "scripts/collapsible.js"></script>
+</body>
+</html>

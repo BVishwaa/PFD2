@@ -1,0 +1,69 @@
+﻿
+@model List<EldenGuide.Models.Guide>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Eldenguide.css">
+    <script src = "~/js/script.js"></script>
+    <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="navbarContainer"></div>
+    </div>  
+    <a asp-controller="Home" asp-action="index"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+    <section>
+
+        <!--
+            access the list<Guide> using for loop
+                for each of the guide object, add in html codes as a block
+                e.g.
+                <tr><td>
+        -->
+
+
+        @foreach (Guide guide in Model)
+        {
+            <tr>
+                
+                <td>@Html.ActionLink(guide.AppName, "GuideTemplate", "Guide", new { guideId = guide.GuideId })</td>
+            </tr>
+        }
+
+        <form>
+            <table >
+                <tr><p style="font-family: Segoe UI">Banking Apps</p></tr>
+                <tr>
+                    <a asp-controller="Guide" asp-action="POSB_Digibank">POSB Digibank</a>
+                    <a asp-controller="Guide" asp-action="OCBC_Digital">OCBC Digital</a>
+                    <a asp-controller="Guide" asp-action="DBS_PayLah">DBS PayLah</a>
+                    
+
+
+                    <td><a href="POSB_Digibank.html"><img src="Images/For-Logos/POSB_DigiBank Logo.png" alt="POSB_Digibank" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="OCBC_Digital.html"><img src="Images/For-Logos/OCBCDigitalLogo.png" alt="OCBCDigital.html" class = "btn btn-dark btn-square-md"></a></td>
+                    <td><a href="DBS_PayLah.html"><img src="Images/For-Logos/DBSPaylah.png" alt="DBS_PayLah.html" class = "btn btn-dark btn-square-md"></a></td>
+                </tr>
+
+                <tr>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">POSB Digibank</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">OCBC Digital</h3></td>
+                    <td class = "textDwnBtn"><h3 style="font-family: Arial">DBS Paylah</h3></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+    <div id="google_translate_element"></div>
+
+    <script type="module">
+        import { redirectToAuthPage } from './scripts/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+</body>
+</html>

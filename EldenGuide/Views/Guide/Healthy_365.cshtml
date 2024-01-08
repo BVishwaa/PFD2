@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="~/css/Navbar.css">
+        <link rel="stylesheet" href="~/css/bttBtn.css">
+        <script src = "scripts\script.js"></script>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src = "~/js/site.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Healthy 365</title>
+    </head>
+
+    <body>
+        <div id="google_translate_element"></div>
+        <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+          <div class="container">
+            <div id="navbarContainer"></div>
+  
+          </div>
+  <div class="toc-wrapper">
+    <div class="toc-header">
+      <h4 class="toc-heading">Table of Contents</h4>
+    </div>
+    <div class="toc-list-wrapper">
+      <ul class="toc-list">
+        <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+        <li class="toc-list-item"><a href="#req">Requirements</a></li>
+        <li class="toc-list-item"><a href="#Reg">Registration</a></li>
+        <li class="toc-list-item"><a href="#Log">Counting Calories</a></li>
+        <li class="toc-list-item"><a href="#Sleep">Sleep Tracker</a></li>
+      </ul>
+    </div>
+  </div>
+  <a asp-controller="Category" asp-action="Health"><button type="button"  style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+  <section>
+    <br>
+    <img src="/images/Healthy 365/H365 slogan.jpg" width="800px" >
+    <h1>What is Healthy 365?</h1>
+    <p>Healthy 365 is a free mobile app that helps you adopt a healthier lifestyle by providing personalized health and wellness programs, tracking your daily activity and nutrition, and connecting you with a community of like-minded individuals.</p>
+
+
+    <h2 id="Inst">Installation Guide!</h2>
+    <p>**Steps to use Healthy 365:**</p>
+    <ol>
+        <li>Download and install the Healthy 365 app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+        <a href="https://play.google.com/store/apps/details?id=sg.gov.hpb.healthy365&hl=en_US"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+        <a href="https://apps.apple.com/sg/app/healthy-365/id1040202154"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+        <p></p>
+    </ol>
+
+    <h2 id = "req">Requirements</h2>
+      <p>Make sure you have your Healthy 365 app downloaded. Make sure you also have a sinngpass account to link to your Healthy 365 App</p>
+      <img src = "/images/Healthy 365/RequirementImage.png" width = "300px"><br><br>
+
+
+    <h2 id="Reg">Registration Guide!</h2>
+      <p>Press on "Retrieve Myinfo with Singpass"</p>
+      <img src = "/images/Healthy 365/SingpassRetrieval.jpg"width = "300px"><br><br>
+
+      <p>Press on the "I agree" button</p>
+      <img src = "/images/Healthy 365/IAgree.jpg"width = "300px"><br><br>
+
+      <p>Fill in your personal particulars and press on "Next"</p>
+      <img src = "/images/Healthy 365/PersonalDetails.jpg"width = "300px"><br><br>
+
+      <p>Read the agreement thoroughly and tick on the "I agree with the terms and conditions" box if you are comfortable</p>
+      <p>Then press on "Next"</p>
+      <img src = "/images/Healthy 365/Terms.jpg"width = "300px"><br><br>
+
+      <p>Input the One time password(OTP) you receive in your SMS</p>
+      <img src = "/images/Healthy 365/OTP.jpg"width = "300px"><br><br>
+
+    <h2 id = "Log">Counting Calories</h2>
+      <p>Press on "Log My Meal"</p>
+      <img src = "/images/Healthy 365/CalorieCount/Home.jpg"width = "300px"><br><br>
+
+      <p>Depending on what time you had your meal, press on the plus icons</p>
+      <img src = "/images/Healthy 365/CalorieCount/AddBreakfast.jpg"width = "300px"><br><br>
+
+      <p>Tap on the search bar</p>
+      <img src = "/images/Healthy 365/CalorieCount/AddFood.jpg"width = "300px"><br><br>
+
+      <p>Input the food you ate during the time range you chose and results for it will appear</p>
+      <img src = "/images/Healthy 365/CalorieCount/FoodInput.jpg"width = "300px"><br><br>
+
+      <p>After choosing the specific food you ate, you can press on "Save item(s)"</p>
+      <img src = "/images/Healthy 365/CalorieCount/SaveFood.jpg"width = "300px"><br><br>
+
+      <p>Repeat the steps shown here for your other meals you had for the day</p>
+      <img src = "/images/Healthy 365/CalorieCount/AftSelect.jpg"width = "300px"><br><br>
+      <img src = "/images/Healthy 365/CalorieCount/AftMeal.jpg"width = "300px"><br><br>
+      <img src = "/images/Healthy 365/CalorieCount/DinMeal.jpg"width = "300px"><br><br>
+
+      <p>After your meals for the day is all inputted, press on "View my Daily Summary"</p>
+      <img src = "/images/Healthy 365/CalorieCount/MealComplete.jpg"width = "300px"><br><br>
+
+      <p>You can now view the total calories you consumed for the day!!!</p>
+      <img src = "/images/Healthy 365/CalorieCount/ViewCal.jpg"width = "300px"><br><br>
+
+    <h2 id = "Sleep">Sleep Tracker</h2>
+    <video width="500" height="240" controls>
+      <source src="/images/Healthy 365/SleepTrack/Healthy 365_ Tips for Sleep Tracking.mp4" type="video/mp4" >        
+    </video>
+  </section>
+  </body>
+
+<script type="module">
+    import { redirectToAuthPage } from './scripts/auth.js';
+
+    document.getElementById('auth').addEventListener('click', () => {
+    redirectToAuthPage();
+  });
+</script>
+
+</html>
+  
+
+  
+      

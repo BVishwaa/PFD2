@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/Navbar.css">
+        <script src = "~/js/script.js"></script>
+        <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <title>How to Use Deliveroo!</title>
+    </head>
+    <body>
+      <div id="google_translate_element"></div>
+
+        <div class="container">
+          <div id="navbarContainer"></div>
+        </div>
+<div class="toc-wrapper">
+  <div class="toc-header">
+    <h4 class="toc-heading">Table of Contents</h4>
+  </div>
+  <div class="toc-list-wrapper">
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
+      <li class="toc-list-item"><a href="#payment">Adding Payment Method</a></li>
+      <li class="toc-list-item"><a href="#recieve">Placing Orders</a></li>
+    </ul>
+  </div>
+</div>
+    
+    <a asp-controller="Category" asp-action="FoodDelivery"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+
+
+<section>
+  <br>
+  <img src="/images/deliverooImages/deliveroo.jpg" width="800px">
+  <h1>What is Deliveroo?</h1>
+  <p>Deliveroo is a food delivery company that serves as an intermediary between customers and restaurants. Using the app, customers place (and pay for) an order, which is then conveyed to the participating restaurant.</p>
+
+  
+      <h2 id="Inst">Installation Guide</h2>
+      <ol>
+        <li>Download and install the Deliveroo app on your mobile phone.<br> Please click "Get it On Google Play" if you're an Android user, otherwise <br> click "Download on the Apple Store".</li>
+        <a href="https://play.google.com/store/apps/details?id=com.deliveroo.orderapp&hl=en_SG&gl=US"><img src="/images/For-Logos/to_google_play_store.png" width="180" height="70"></a>
+            <a href="https://apps.apple.com/us/app/deliveroo-food-delivery-app/id1001501844"><img src="/images/For-Logos/to_apple_store.png" width="180" height="60"></a>
+        <p></p>
+        <li>Launch the Deliveroo app and tap on **Get started**.</li>
+        <p>Step 1: Press Get started.</p>
+        <li>Once your reach the home page, tap the profile button on the top right of your screen.</li>
+        <img src="/images/deliverooImages/profile.jpg" width="300px">
+        <li>Sign up using your preferred method.</li>
+        <br><br>
+            <img src="/images/deliverooImages/signIn.jpg" width="300px">
+            <br>
+            <br>
+        <li>Key in SMS OTP sent to your registered mobile phone.</li><br>
+            <img src="/images/deliverooImages/otp.jpg" width="300px">
+            <br>
+            <br>
+            <br>
+        
+
+      <h2 id="payment">Adding Payment Method</h2>
+      <p>From the home screen, tap the profile button on the top right of your screen.</p>
+            <img src="/images/deliverooImages/profile.jpg" width="300px">
+            <br>
+            <br>
+      <p>Select **Payment methods**.</p>
+            <img src="/images/deliverooImages/paymentMethod.jpg" width="300px">
+            <br>
+            <br>
+      <p>Select **Add Payment method**.</p>
+            <img src="/images/deliverooImages/addPayment.jpg" width="300px">
+            <br>
+            <br>
+      <p>Select **Add Card**.</p>
+            <img src="/images/deliverooImages/addCard.jpg" width="300px">
+            <br>
+            <br>
+      <p>Fill in your card details.</p>
+
+
+      <h2 id = "recieve">Placing Orders</h2>
+      <p>Add a food item to cart by clicking on the '+' button.</p>
+            <img src="/images/deliverooImages/+.jpg" width="300px">
+            <br>
+            <br>
+      <p>Tap **View Basket**</p>
+            <img src="/images/deliverooImages/basket.jpg" width="300px">
+            <br>
+            <br>
+      <p>Select **Place delivery order** and wait for your meal to arrive!</p>
+      </ol>
+      <br>     
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+</section>
+
+   
+    <script type="module">
+        import { redirectToAuthPage } from './scripts/auth.js';
+
+        document.getElementById('auth').addEventListener('click', () => {
+        redirectToAuthPage();
+      });
+    </script>
+      <script src = "scripts/bttbtn.js"></script>
+    </section>
+    
+
+
+    
+    </body>
+</html>
+
+
+
