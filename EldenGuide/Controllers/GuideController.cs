@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EldenGuide.Models;
+using System.Data.Common;
+using Microsoft.AspNetCore.Html;
 
 namespace EldenGuide.Controllers
 {
@@ -92,81 +94,50 @@ namespace EldenGuide.Controllers
             return View(GuideTemplate);
         }
 
-        public async Task<ActionResult> POSB_Digibank()
+        
+
+        public async Task<ActionResult> StaffGuideList(string cat)
         {
+            //List<string> categories = new List<string>();
+            
+            CategoryDAL catDAL = new CategoryDAL();
+            List<Guide> output = new List<Guide>();
+            if (cat == "")
+            {
+
+            }
+            else
+            {
+                output = await catDAL.ExtractGuideIDByCat(cat);   //Extracts all the guides of the particular category parameter
+            }
+            
+
+
+            return View(output);
+        }
+
+        public async Task<ActionResult> WriteNewGuide()
+        {
+            Guide guide = new Guide();
+            return View(guide);
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> NewGuide(IFormCollection form)
+        {
+            Guide guide = new Guide();
+
+            guide.Category = form["Category"];
+            guide.AppName = form["AppName"];
+            guide.AppLogo = form["AppLogo"];
+            guide.Content = Convert.ToString(form["Content"]);
+            //var HtmlString = form["jdr"];
+            //guide.Content = HtmlString;
+
             GuideDAL guideDAL = new GuideDAL();
-            Guide POSB_Digibank = new Guide();
-            POSB_Digibank = await guideDAL.ExtractGuide();
-            return View(POSB_Digibank);
-        }
+            //guideDAL.AddGuide(guide);
 
-        public ActionResult OCBC_Digital()
-        {
-            return View();
-        }
-
-        public ActionResult DBS_PayLah()
-        {
-            return View();
-        }
-
-        public ActionResult Health_Hub()
-        {
-            return View();
-        }
-
-        public ActionResult Healthy_365()
-        {
-            return View();
-        }
-
-        public ActionResult Health_Buddy()
-        {
-            return View();
-        }
-
-        public ActionResult WhatsApp()
-        {
-            return View();
-        }
-
-        public ActionResult Telegram()
-        {
-            return View();
-        }
-
-        public ActionResult WeChat()
-        {
-            return View();
-        }
-
-        public ActionResult GrabFood()
-        {
-            return View();
-        }
-
-        public ActionResult Food_Panda()
-        {
-            return View();
-        }
-
-        public ActionResult Deliveroo()
-        {
-            return View();
-        }
-
-        public ActionResult GrabTransport()
-        {
-            return View();
-        }
-
-        public ActionResult GoJek()
-        {
-            return View();
-        }
-
-        public ActionResult Singabus()
-        {
             return View();
         }
     }

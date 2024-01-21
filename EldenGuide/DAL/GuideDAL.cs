@@ -44,7 +44,7 @@ namespace EldenGuide.DAL
                     Dictionary<string, object> documentDictionary = document.ToDictionary();
 
                     guide.AppName = documentDictionary["AppName"].ToString();
-
+                    
                     guide.Content = documentDictionary["Content"].ToString();
                 
                 }
@@ -65,12 +65,18 @@ namespace EldenGuide.DAL
                     Dictionary<string, object> documentDictionary = document.ToDictionary();
 
                     guide.AppName = documentDictionary["AppName"].ToString();
-                    
+                    //guide.Category = documentDictionary["Category"].ToString();
+
                     guide.Content = documentDictionary["Content"].ToString();
                 }
             }
             return guide;
-        }
+            }
+
+            /*public async Task<Boolean> AddGuide(Guide guide)
+            {
+                
+            }*/
 
        
     }

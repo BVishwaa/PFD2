@@ -1,0 +1,61 @@
+﻿@model List<EldenGuide.Models.Guide>
+
+@{
+    ViewData["Title"] = "StaffGuideList";
+}
+
+<html>
+    <head>
+
+
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <th>List of Applications</th>
+                <th>
+                <button class="btn btn-primary btn-xs" onclick="location.href='@Url.Action("CreateGuide", "Guide")'">
+                    Create
+                </button>
+                </th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    @foreach (Guide guide in Model)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(guide.AppName, "GuideTemplate", "Guide", new { guideId = guide.GuideId })</td>
+                        </tr>
+                    }
+                </td>
+
+                <td>
+                    @Html.ActionLink("Banking", "StaffGuideList","Guide", new { cat = "Banking" }, null)    
+                    
+                </td>
+
+                <td>
+                    @Html.ActionLink("Health", "StaffGuideList","Guide", new { cat = "Health" }, null)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Telecommunications", "StaffGuideList","Guide", new { cat = "Telecommunications" }, null)
+                </td>
+
+                <td>
+                    @Html.ActionLink("FoodDelivery", "StaffGuideList","Guide", new { cat = "FoodDelivery" }, null)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Transport", "StaffGuideList","Guide", new { cat = "Transport" }, null)
+                </td>
+
+
+            </tr>
+        
+        </table>
+    </body>
+</html>
