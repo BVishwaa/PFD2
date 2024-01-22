@@ -41,7 +41,9 @@
             </div>
             <br>
             <input type="text" style="margin-left: 1.5%; width: 80%;" id="searchInput" placeholder="Search">
-            <button onclick="window.location.href = 'createpost.html';" style="margin-left: 85%; bottom: 3%;" class="post">Create post</button>
+            <div>
+                <a asp-controller="Forum" asp-action="CreatePost">Create Post</a>
+            </div>
             <ol>
                 <div class="container"></div>
             </ol>
