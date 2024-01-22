@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "CreateGuide";
+}
+
+<html>
+    <head>
+
+    </head>
+    <body>
+
+
+        @using(Html.BeginForm())
+        {
+            Html.ActionLink("Test", "WriteNewGuide", "Guide", null, null);
+                   
+                <select name="Category" id="Category">
+                    <option value="All">Select Category: </option>
+                    <option value="Banking">Banking</option>
+                    <option value="Health">Health</option>
+                    <option value="Telecommunications">Telecommunications</option>
+                    <option value="Food Delivery">Food Delivery</option>
+                    <option value="Transport">Transport</option>
+                </select>
+
+                <input type="text" name="App Name" id="AppName" />
+
+                <label for="img">Select App Logo:</label>
+                <input type="file" id="img" name="img" accept="image/*"/>
+        
+
+        }
+    </body>
+
+</html>
+

@@ -22,6 +22,25 @@ namespace EldenGuide.DAL
             }.Build();
         }
 
+        public async Task<Guide> ExtractCatGuide()
+        {
+            // [START fs_get_all]
+            CollectionReference usersRef = db.Collection("Guides");
+            QuerySnapshot snapshot = await usersRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Guides collection
+            Guide guide = new Guide();
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                guide.GuideId = document.Id;
+                Dictionary<string, object> documentDictionary = document.ToDictionary();
+
+                guide.AppName = documentDictionary["AppName"].ToString();
+
+                guide.Content = documentDictionary["Category"].ToString();
+
+            }
+            return guide;
+        }
+
         public async Task<List<Guide>> ExtractGuideIDByCat(string category)
         {
             // [START fs_get_all]
