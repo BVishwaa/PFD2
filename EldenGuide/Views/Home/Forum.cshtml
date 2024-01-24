@@ -41,9 +41,10 @@
             </div>
             <br>
             <input type="text" style="margin-left: 1.5%; width: 80%;" id="searchInput" placeholder="Search">
-            <button onclick="window.location.href = 'createpost.html';" style="margin-left: 85%; bottom: 3%;" class="post">Create post</button>
+            <input type="button" class="btn btn-danger" text = "create" asp-action = "WriteNewThread" asp-controller ="Thread" />
+
             <ol>
-                <div class="container"></div>
+                <div asp-action = "GetThread" asp-controller="Thread"></div>
             </ol>
         </div>
     </div>
@@ -52,5 +53,6 @@
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
 </body>
 </html>
