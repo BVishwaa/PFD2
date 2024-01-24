@@ -1,13 +1,5 @@
 @import "global.css";
 
-section {
-    
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    height:70vh;
-}
-
 
 .stage {
     display: none;
@@ -46,10 +38,9 @@ section {
   background-color:grey;
 }
 
-body{
-  margin:0;
-  padding: 0;
-  
+body {
+    margin: 0;
+    padding: 0;
 }
 
 p{
@@ -122,3 +113,159 @@ p{
   color: white;
   border-radius: 4px;
 }
+
+.services {
+    display: flex;
+    justify-content: space-evenly;
+    height: 50%;
+}
+
+.service-item {
+
+    width: 30%;
+}
+
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+
+.vertical-menu {
+    width: 200px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+    .vertical-menu a {
+        background-color: #eee;
+        color: black;
+        display: block;
+        padding: 12px;
+        text-decoration: none;
+    }
+
+        .vertical-menu a:hover {
+            background-color: #ccc;
+        }
+
+        .vertical-menu a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+.applications {
+    display: flex; /* Use flexbox for horizontal arrangement */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.app-item {
+    display: block;
+
+}
+
+.button_value{
+    border:2px solid #6759ff;
+    padding: 1em 2.2em;
+    border-radius:3em;
+    background-color:transparent;
+    cursor:pointer;
+}
+.button_value.active {
+    background-color: #6759ff;
+    color:white;
+}
+
+
+.active {
+    background-color:#6759ff;
+    color:white;
+}
+
+
+.wrapper{
+    width:95%;
+    margin:0 auto;
+}
+
+#search-container{
+    margin :1em 0;
+}
+
+#search-container input{
+    background-color:transparent;
+    width:40%;
+    border-bottom: 2px solid black;
+    padding: 1em 0.3em;
+}
+
+#search-container input:focus{
+
+}
+#search-container button{
+    padding:1em 2em;
+    margin-left: 1em;
+    background-color: #6579ff;
+    color:white;
+    border-radius: 5px;
+    margin-top:0.5em;
+}
+
+#products {
+    display:grid;
+    grid-template-columns:auto auto auto;
+    grid-column-gap: 1.5em;
+    padding: 2em 0;
+}
+
+.card{
+    background-color:transparent;
+    max-width:18em;
+    margin-top:1em;
+    padding:1em;
+    border-radius:5px;
+    box-shadow: 1em 2em 2.5em rgba(1,2,68,0.08);
+    text-align:center;
+
+}
+.image-container{
+    text-align: center;
+}
+img{
+    max-width:50%;
+    object-fit:contain;
+    height:10em;
+}
+
+.container{
+    padding-top:1em;
+}
+
+.hide{
+    display:none;
+}
+
+@media screen and (max-width: 720px) {
+    img{
+        max-width:100%;
+        object-fit:contain;
+        height:10em;
+    }
+    .card{
+        max-width:10em;
+        margin-top:1em;
+    }
+    #products{
+        grid-template-columns: auto auto;
+        grid-column-gap: 1em;
+
+    }
+    .hide {
+        display: none;
+    }
+}
+
+
+
