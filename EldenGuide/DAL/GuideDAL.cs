@@ -73,10 +73,25 @@ namespace EldenGuide.DAL
             return guide;
             }
 
-            /*public async Task<Boolean> AddGuide(Guide guide)
+            public async Task<Boolean> AddGuide(Guide guide)
             {
+                DocumentReference docRef = db.Collection("Guides").Document(guide.AppName);
+
+                Dictionary<string, object> NewGuide = new Dictionary<string, object>
+                {
+                    {"AppName",guide.AppName},
+                    {"Category",guide.Category },
+                    {"Content", guide.Content },
+                    {"AppLogo",guide.AppLogo }
+
+                };
+
+                await docRef.SetAsync(NewGuide);
+
+
+                return true;
                 
-            }*/
+            }
 
        
     }

@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "WriteNewGuide";
 }
-@model EldenGuide.Models.Guide
+@model EldenGuide.Models.Guide          
+
 
 <html>
 <head>
@@ -29,13 +30,13 @@
     <div id="mail-body-editor"></div>
 
     <!--<div id="editor" style="max-height:400px;overflow:auto">-->
-    @using (Html.BeginForm("NewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
+    @using (Html.BeginForm("NewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
     {
         <table>
             <tr>
                 <td>Button Return</td>
                 <td>
-                    <select name="Category" id="Category">
+                    <select name="Category" id="Category">                                  <!---Category input-->
                         <option value="All">Select Category: </option>
                         <option value="Banking">Banking</option>
                         <option value="Health">Health</option>
@@ -44,25 +45,29 @@
                         <option value="Transport">Transport</option>
                     </select>
 
-                    <input type="text" name="AppName" id="AppName" />
+                    <input type="text" name="AppName" id="AppName" />                       <!---App Name input-->
 
                     <label for="img">Select App Logo:</label>
-                    <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />
+                    <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />           <!---App logo input-->
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table>
+                    <table id="TOC">
                         <!--Table OF contents-->
                         <tr>
                             <td>Table of Contents </td>
-
+                        </tr>
+                        <tr>
+                            <td>Input 1</td>        <!--TOC adding test-->
                         </tr>
                         <tr>
 
                             <td>
+                                
                                 <input type="text" value="test" />
                                 <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
+                                
                             </td>
 
                         </tr>
@@ -107,9 +112,9 @@
         }
     </style>
 
-    <form id="form" asp-controller="Guide" asp-action="WriteNewGuide" onsubmit="handleSubmit()">
-        
-        <input type="hidden" id="hCategory" asp-for="@Model.Category" />
+    <form id="form" asp-controller="Guide" asp-action="WriteNewGuide" onsubmit="handleSubmit()"> <!--Add inputs to model object to be submitted under a form -->
+
+        <input type="hidden" id="hCategory" asp-for="@Model.Category" />          <!--Set each property of model under a hidden input field to be submitted under a form to be pushed to the controller then to the DAL-->
         <input type="hidden" id="hAppName" asp-for="@Model.AppName" />
         <input type="hidden" id="hImg" asp-for="@Model.AppLogo" />
 

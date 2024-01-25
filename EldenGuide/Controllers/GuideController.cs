@@ -128,15 +128,13 @@ namespace EldenGuide.Controllers
         {
             Guide guide = new Guide();
 
-            guide.Category = form["Category"];
+            guide.Category = form["Category"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
             guide.AppName = form["AppName"];
             guide.AppLogo = form["AppLogo"];
             guide.Content = Convert.ToString(form["Content"]);
-            //var HtmlString = form["jdr"];
-            //guide.Content = HtmlString;
-
+            
             GuideDAL guideDAL = new GuideDAL();
-            //guideDAL.AddGuide(guide);
+            guideDAL.AddGuide(guide);
 
             return View();
         }
