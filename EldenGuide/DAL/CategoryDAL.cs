@@ -46,16 +46,17 @@ namespace EldenGuide.DAL
             // [START fs_get_all]
             CollectionReference usersRef = db.Collection("Guides");
             QuerySnapshot snapshot = await usersRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Guides collection
-            Guide guide = new Guide();
+            
             List<Guide> CategoryList = new List<Guide>();
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
-               
+
                 
                 Dictionary<string, object> documentDictionary = document.ToDictionary();
 
                  if(documentDictionary["Category"].ToString() == category) 
-                 { 
+                 {
+                    Guide guide = new Guide();      //Constantly creates a new model object 
                     guide.GuideId = document.Id;
                     guide.AppName = documentDictionary["AppName"].ToString();
 

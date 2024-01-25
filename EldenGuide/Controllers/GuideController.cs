@@ -124,19 +124,17 @@ namespace EldenGuide.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> NewGuide(IFormCollection form)
+        public async Task<ActionResult> NewGuide(Guide guide)
         {
-            Guide guide = new Guide();
+            /*Guide guide = new Guide();
 
-            guide.Category = form["Category"];
-            guide.AppName = form["AppName"];
-            guide.AppLogo = form["AppLogo"];
-            guide.Content = Convert.ToString(form["Content"]);
-            //var HtmlString = form["jdr"];
-            //guide.Content = HtmlString;
+guide.Category = form["Category"];      //IFormCollection form Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
+guide.AppName = form["AppName"];
+guide.AppLogo = form["AppLogo"];
+guide.Content = Convert.ToString(form["Content"]);*/
 
             GuideDAL guideDAL = new GuideDAL();
-            //guideDAL.AddGuide(guide);
+            await guideDAL.AddGuide(guide);
 
             return View();
         }
