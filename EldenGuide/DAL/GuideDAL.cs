@@ -75,7 +75,7 @@ namespace EldenGuide.DAL
 
             public async Task<Boolean> AddGuide(Guide guide)
             {
-                DocumentReference docRef = db.Collection("Guides").Document(guide.AppName);
+                
 
                 Dictionary<string, object> NewGuide = new Dictionary<string, object>
                 {
@@ -86,7 +86,9 @@ namespace EldenGuide.DAL
 
                 };
 
-                await docRef.SetAsync(NewGuide);
+                DocumentReference addedDocRef = await db.Collection("Guides").AddAsync(NewGuide);
+
+                //await docRef.SetAsync(NewGuide);
 
 
                 return true;
