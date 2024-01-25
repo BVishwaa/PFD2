@@ -1,0 +1,86 @@
+﻿@model EldenGuide.Models.Threads
+
+@{
+    ViewData["Title"] = "WriteNewThread";
+}
+
+<html>
+
+<body>
+
+    @using (Html.BeginForm("NewThread", "Thread", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+    {
+        <div class="row mb-3">
+            <label asp-for="Title"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type ="text" id="Title" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Category"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <select name="Category" id="Category">
+                    <!---Category input-->
+                    <option value="All">Select Category: </option>
+                    <option value="Banking">Banking</option>
+                    <option value="Health">Health</option>
+                    <option value="Telecommunications">Telecommunications</option>
+                    <option value="Food Delivery">Food Delivery</option>
+                    <option value="Transport">Transport</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Description"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type ="text" id ="Desc" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" />
+            </div>
+        </div>
+        <!--the above doesnt work-->
+        <table>
+            <tr>
+                <td>
+                    <select name="Category" id="Category">
+                        <!---Category input-->
+                        <option value="All">Select Category: </option>
+                        <option value="Banking">Banking</option>
+                        <option value="Health">Health</option>
+                        <option value="Telecommunications">Telecommunications</option>
+                        <option value="Food Delivery">Food Delivery</option>
+                        <option value="Transport">Transport</option>
+                    </select>
+                    <label for="Title">Title:</label>
+                    <input type="text" name="Title" id="Title" />
+                    <label for="Title">Description:</label>
+                    <input type="text" name="Desc" id="Desc" />
+                    <input type="submit">
+                </td>
+            </tr>
+        </table>
+    }
+
+    <form id="form" asp-controller="Thread" asp-action="WriteNewThread" onsubmit="handleSubmit()">
+        <input type="hidden" id="category" asp-for="@Model.Category" />       
+        <input type="hidden" id="title" asp-for="@Model.Title" />
+        <input type="hidden" id="desc" asp-for="@Model.Description" />
+    </form>
+
+    <script>
+        function handleSubmit() {
+            console.log('handleSubmit called');
+            document.getElementById('category').value = document.getElementById('Category').value;
+            document.getElementById('title').value = document.getElementById('Title').value;
+            document.getElementById('desc').value = document.getElementById('Desc').value;
+        };
+
+    </script>
+</body>
+</html>

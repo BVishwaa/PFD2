@@ -1,0 +1,11 @@
+﻿@model IEnumerable<EldenGuide.Models.Threads>
+
+@{
+    ViewData["Title"] = "View Threads";
+}
+
+<h4 class="PageTitle">View threads</h4>
+<p><a asp-action="ViewThreads">View all threads</a></p>
+<!-- Add a partial view to display a list of staff records
+in a tabular format. -->
+<partial name="~/Views/Thread/_ViewThreads.cshtml" model="@Model" />

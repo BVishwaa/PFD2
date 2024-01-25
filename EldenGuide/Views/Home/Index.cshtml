@@ -4,14 +4,81 @@
     <link rel="stylesheet" href="~/css/Eldenguide.css">
     <script src="/js/script.js"></script>
     <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <link rel="stylesheet" href="~/css/bttBtn.css">
+    
+    
 </head>
 <body>
-    <div id="navbarContainer"></div>
-
+    <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <section class="services">
+        <div class="service-item" style="background-color:#FFF4A3;">
+            <a href="#apps" style="text-decoration:none;  color: inherit;">
+                <img src="Images/For-Logos/About_us.png" style="width: 50%; height: 60%;" alt="App icon"> <h2>Apps</h2>
+            <p3>Learn how to understand what applications are! Applications can be used for a variety of tasks in order to improve quality of life.</p3>
+            </a>
+        </div>
+        <div class="service-item" style="background-color:#D9EEE1;">
+            <a asp-controller="Home" asp-action="About" style="text-decoration:none;  color: inherit;">
+            <img src=Images/For-Logos/tutorial.png style="width: 50%; height: 60%;" alt="Tutorial icon"> <h2>Tutorials</h2>
+                <p3>Learn how to use applications with ease from  <br />  our simplified tutorials and easy navigation!</p3>
+            </a>
+        </div>
+        <div class="service-item" style="background-color:#FFC0C7;">
+            <a asp-controller="Home" asp-action="Forum" style="text-decoration:none;  color: inherit;">
+                <img src="Images/For-Logos/community.png" style="width: 50%; height: 60%;" alt="Community icon"> <h2>Community</h2>
+            <p3>Learn with what our community has to offer! Get to know more about what is currently happening and keep updated with new applications daily!</p3>
+            </a>
+        </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="wrapper">
+        <div id="search-container">
+            <p id="apps">Applications List</p>
+            <input type="search" id="search-input" placeholder="search app here."/>
+                <button id="search">Search</button>
+        </div> 
+        <div id="buttons">
+            <button class="button_value" onclick="filterProduct('all')">All</button>
+            <button class="button_value" onclick="filterProduct('Banking')">Banking</button>
+            <button class="button_value" onclick="filterProduct('Health')">Health</button>
+            <button class="button_value" onclick="filterProduct('Messaging')">Messaging</button>
+            <button class="button_value" onclick="filterProduct('Food')">Food</button>
+            <button class="button_value" onclick="filterProduct('Transport')">Transport</button>
+        </div>
+        <div id="products"></div>
+    </div>
+    <script src="/js/filter.js"></script>
+    
     <section>
         <form>
             <table>
-                <tr><p style="font-size: 5rem;  margin-left: 34%;" >Our Services</p></tr>
+                <tr><p style="font-size: 5rem;  margin-left: 30%;" >Our Applications</p></tr>
+               
+
                 <tr>
                     <a asp-controller="Category" asp-action="Banking"><img src="Images/For-Logos/BankIcon.png"  class="btn  btn-square-md"></a>
                     <a asp-controller="Category" asp-action="Health"><img src="Images/For-Logos/healthicon.png"  class="btn btn-square-md"></a>
@@ -33,7 +100,7 @@
     </section>
 
     <div id="google_translate_element"></div>
-
+    
  
     <script type="module">
         import { redirectToAuthPage } from '../../wwwroot/js/auth.js';
@@ -42,5 +109,7 @@
         redirectToAuthPage();
       });
     </script>
+
+    <script src="~/js/bttbtn.js"></script>
 </body>
 </html>
