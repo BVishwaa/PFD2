@@ -1,39 +1,33 @@
 ﻿using EldenGuide.DAL;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using EldenGuide.Models;
-using System.Data.Common;
-using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Google.Cloud.Firestore;
-using System.Dynamic;
 
 namespace EldenGuide.Controllers
 {
-    public class ThreadController : Controller
+    public class EventController : Controller
     {
-        private ThreadDAL threadContext = new ThreadDAL();
         private EventDAL eventContext = new EventDAL();
-        // GET: ThreadController
-        public IActionResult Thread()
+        public IActionResult Event()
         {
             return View();
         }
-        
-        // GET: ThreadController/Details/5
+        // GET: EventController
+
+        // GET: EventController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ThreadController/Create
+        // GET: EventController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ThreadController/Create
+        // POST: EventController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -48,13 +42,13 @@ namespace EldenGuide.Controllers
             }
         }
 
-        // GET: ThreadController/Edit/5
+        // GET: EventController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ThreadController/Edit/5
+        // POST: EventController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -69,13 +63,13 @@ namespace EldenGuide.Controllers
             }
         }
 
-        // GET: ThreadController/Delete/5
+        // GET: EventController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ThreadController/Delete/5
+        // POST: EventController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -92,37 +86,35 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> Index()
         {
-            dynamic mymodel = new ExpandoObject();
-            mymodel.Threads = await threadContext.GetThreads();
-            mymodel.Event = await eventContext.GetEvents();
-            //List<Threads> threadList = await threadContext.GetThreads();
-            Console.WriteLine("Controller get threads");
-            return View(mymodel);
+            List<Event> eventList = await eventContext.GetEvents();
+            Console.WriteLine("Controller get events");
+            return View(eventList);
 
         }
 
-        public async Task<ActionResult> WriteNewThread()
+        //writenewthread
+        public async Task<ActionResult> AddEvent()
         {
-            Threads thread = new Threads();
-            return View(thread);
+            Event events = new Event();
+            return View(events);
         }
 
+        //newthread
         [HttpPost]
-        public async Task<ActionResult> NewThread(IFormCollection form)
+        public async Task<ActionResult> NewEvent(IFormCollection form)
         {
-            Threads thread = new Threads();
-            ThreadDAL threadDAL = new ThreadDAL();
+            Event events = new Event();
+            EventDAL eventDAL = new EventDAL();
 
-            thread.Category = form["Category"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
-            thread.Description = form["Desc"];
-            thread.Title = form["Title"];
+            events.EventName = form["Name"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
+            events.Details = form["Details"];
+            events.EventPhoto = form["Photo"];
 
-            await threadDAL.AddThread(thread);
+            await eventDAL.InsertEvent(events);
 
 
-            Debug.WriteLine("Debug statement: Something happened!");
-            return View("WriteNewThread");
+            Console.WriteLine("event added");
+            return View();
         }
-
     }
 }

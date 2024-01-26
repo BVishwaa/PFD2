@@ -1,37 +1,43 @@
-﻿@model IEnumerable<EldenGuide.Models.Threads>
-
-@if (Model.ToList().Count > 0) {
-    <div class="table-responsive">
-         <table id="viewThread" class="table table-striped table-bordered">
-             <thead class="table-dark">
-                 <tr>
-                     <th>ThreadID</th>
-                     <th>Title</th>
-                     <th>Category</th>
-                     <th>Description</th>
-                     <th>Username</th>
-                     <th>Date Posted</th>
-                     <th></th>
-                 </tr>
-             </thead>
-             <tbody>
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@item.Title</h5></a>
-                                <p class="card-text">@item.Description</p>
-                                <p class="card-text">@item.Username @item.DatePosted</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-             </tbody>
-        </table>
+﻿@model dynamic
+@foreach (Event events in Model.Event)
+{
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                <p class="card-text">@events.EventPhoto</p>
+            </div>
+        </div>
     </div>
 }
-else
-{
-    <span style="color:red">No record found!</span>
-}
+
+
+<div class="table-responsive">
+    <table id="viewThread" class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ThreadID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Username</th>
+                <th>Date Posted</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Threads thread in Model.Threads)
+            {
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@thread.Title</h5></a>
+                            <p class="card-text">@thread.Description</p>
+                            <p class="card-text">@thread.Username @thread.DatePosted</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>
