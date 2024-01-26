@@ -1,30 +1,25 @@
 ﻿@model dynamic
-@foreach (Event events in Model.Event)
-{
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-body">
-                <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
-                <p class="card-text">@events.EventPhoto</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-TI+Lq5Yq+AhJKtxVc1T81a7xjZJiSExXaFZLPqjxLq+tcKE+qfCFmCGJmmYqJ1OJ" crossorigin="anonymous">
+
+<div class="container">
+    <div class="row">
+        @foreach (Event events in Model.Event)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                        <p class="card-text">@events.EventPhoto</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        }
     </div>
-}
+</div>
 
 
 <div class="table-responsive">
     <table id="viewThread" class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>ThreadID</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Username</th>
-                <th>Date Posted</th>
-                <th></th>
-            </tr>
-        </thead>
         <tbody>
             @foreach (Threads thread in Model.Threads)
             {
