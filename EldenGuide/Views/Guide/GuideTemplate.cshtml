@@ -27,15 +27,17 @@
         </div>
         <div class="toc-list-wrapper">
             <ul class="toc-list">
-                <li class="toc-list-item"><a href="#About">About</a></li>
-                <li class="toc-list-item"><a href="#Inst">Installation Guide</a></li>
-                <li class="toc-list-item"><a href="#reg">Register</a></li>
-                <li class="toc-list-item"><a href="#paynow">PayNow</a></li>
-                <li class="toc-list-item"><a href="#Update">Update Particulars</a></li>
+                @if (Model != null && Model.TOC != null)
+                {
+                    foreach (string content in Model.TOC)
+                    {
+                        <li class="toc-list-item"><a href="#@content">@content</a></li>
+                    }
+                }
             </ul>
         </div>
     </div>
-    <a asp-controller="Category" asp-action="Banking"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
+    <a asp-controller="Category" asp-action="@Model.Category"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
     
 
     <section>

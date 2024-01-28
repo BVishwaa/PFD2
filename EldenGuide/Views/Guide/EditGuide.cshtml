@@ -1,0 +1,234 @@
+﻿@model EldenGuide.Models.Guide
+
+@{
+    ViewData["Title"] = "EditGuide";
+}
+
+
+<html>
+    <head>
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+        <style>
+            .ql-font-times-new-roman {
+                font-family: 'Times New Roman', serif;
+            }
+
+            .ql-font-arial {
+                font-family: Arial, sans-serif;
+            }
+        </style>
+        <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <script src="https://cdn.rawgit.com/kensnyder/quill-image-resize-module/3411c9a7/image-resize.min.js">
+        </script>
+    </head>
+
+
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <!-- Rest of the editing components-->
+                    @using (Html.BeginForm("NewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+                    {
+                        <table id="TOC">
+                            <tr>
+                                <td>
+                                    <!--<input type="text" id="tb1" name="tb" value="" />-->                                        
+                                            @if (Model != null && Model.TOC != null)
+                                            {
+                                                foreach (string content in Model.TOC)
+                                                {
+                                                    <input type="text" id="tb1" name="tb" value=@content />
+                                          
+                                                }
+                                            }
+                                    <button onclick="return addTR()">
+                                        <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Button Return
+                                </td>
+                                <td>
+                                    
+                                        <!---Category input-->
+                                    @{
+                                        string[] categories = { "All","Banking","Health","Telecommunications","Food Delivery","Transport"};
+
+                                        Html.DropDownListFor(model => model.Category, new List<SelectListItem>
+                                            {
+
+                                                new SelectListItem{Text="Deactive", Value="False"}}, "Select One");
+
+                                            foreach(string category in categories)
+                                            {
+                                                if(Model.Category == category)
+                                                {
+                                                    new SelectListItem { Text = category, Value = category, Selected = true };
+                                                }
+                                                else
+                                                {
+                                                    new SelectListItem { Text = category, Value = category };
+                                                }
+                                            }
+                                        }
+                                     
+                                <select name="Category" id="Category">
+                                        <option value="All">Select Category: </option>
+                                        <option value="Banking">Banking</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Telecommunications">Telecommunications</option>
+                                        <option value="Food Delivery">Food Delivery</option>
+                                        <option value="Transport">Transport</option>
+                                    </select>
+
+                                    <input type="text" name="AppName" id="AppName" />                       <!---App Name input-->
+
+                                    <label for="img">Select App Logo:</label>
+                                    <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />           <!---App logo input-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div id="description"> @Html.Raw(Model.Content)</div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="submit"></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="jdr" asp-for="@Model.Content" />
+                    }
+                </td>
+            </tr>
+        </table>
+
+        <style>
+            /*Adding the values from the array which has the values as data-values*/
+
+
+            /*for font-size*/
+
+            .ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,
+            .ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before {
+                content: attr(data-value) !important;
+            }
+
+
+            /*for font-family*/
+
+            .ql-snow .ql-picker.ql-font .ql-picker-label[data-value]::before,
+            .ql-snow .ql-picker.ql-font .ql-picker-item[data-value]::before {
+                content: attr(data-value) !important;
+            }
+
+            .ql-snow .ql-picker.ql-font {
+                width: 150px !important;
+                white-space: nowrap;
+            }
+        </style>
+
+    <form id="form" asp-controller="Guide" asp-action="WriteNewGuide" onsubmit="handleSubmit()">
+        <!--Add inputs to model object to be submitted under a form -->
+
+        <input type="hidden" id="hCategory" asp-for="@Model.Category" />          <!--Set each property of model under a hidden input field to be submitted under a form to be pushed to the controller then to the DAL-->
+        <input type="hidden" id="hAppName" asp-for="@Model.AppName" />
+        <input type="hidden" id="hImg" asp-for="@Model.AppLogo" />
+        
+        <!---Binding existing Model content here (for content update)--->
+        
+    </form>
+    <script>
+        // add an array of values
+        const fontFamilyArr = ["Roboto Condensed", "Times New Roman", "Calibri", "Calibri Light", "Sans-Serif"];
+        let fonts = Quill.import("attributors/style/font");
+        fonts.whitelist = fontFamilyArr;
+        Quill.register(fonts, true);
+
+        const fontSizeArr = ['10px', '11px', '12px', '14px', '18px', '24px', '26px', '28px', '30px'];
+        var Size = Quill.import('attributors/style/size');
+        Size.whitelist = fontSizeArr;
+        Quill.register(Size, true);
+
+
+
+
+        let jdQuill = new Quill('#description', {
+            theme: 'snow',
+            modules: {
+                imageResize: {
+                    displaySize: true
+                },
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'header': 1 }, { 'header': 2 }],
+                    [{ 'size': ['normal', 'small', 'large'] }],
+                    [{ 'font': fontFamilyArr }],
+                    [{ 'size': fontSizeArr }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],       // outdent/indent
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'align': [] }],
+                    ['image'],                              // Add the image button here
+                    ['clean']                                        // remove formatting button
+                ],
+            }
+        });
+
+
+
+        function handleSubmit() {
+            document.getElementById('jdr').value = jdQuill.root.innerHTML;
+            document.getElementById('hCategory').value = document.getElementById('Category').value;
+            document.getElementById('hAppName').value = document.getElementById('AppName').value;
+            document.getElementById('hImg').value = document.getElementById('img').value;
+            document.getElementById('h1').value = document.getElementById('tb1').value; //not working
+
+            alert(document.getElementById('tb1').value);
+        };
+
+        function addTR() {
+            var table = document.getElementById("TOC");
+            var rowCount = table.rows.length;
+
+            //insert text box
+            var element = document.createElement("input");
+            element.setAttribute("type", "text");
+            element.setAttribute("id", "tb" + rowCount);
+            alert(rowCount);
+            element.setAttribute("value", "");
+            element.setAttribute("name", "tb");
+            element.setAttribute("style", "width:200px");
+
+            var row = table.insertRow(rowCount);
+            var cell = row.insertCell(0);
+            cell.appendChild(element);
+
+            //insert hidden field                                           NO LONGER NEEDED AS WE ARE USING IFOMRMCOLLECTION FOR NOW
+            var hide = document.createElement("input");
+            hide.setAttribute("type", "hidden");
+            hide.setAttribute("id", "h" + rowCount);
+            hide.setAttribute("value", "");
+            hide.setAttribute("asp-for", "&#64Model.TOC[" + rowCount + "]");
+
+            document.querySelector("form").appendChild(hide);
+
+            return false;
+        }
+
+    </script>
+
+    </body>
+</html>
+
+
+
