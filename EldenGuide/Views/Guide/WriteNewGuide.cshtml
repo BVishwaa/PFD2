@@ -27,31 +27,26 @@
 
 <body>
 
-    <div id="mail-body-editor"></div>
+    
 
 
     <table>
         <tr>
             <td> <!-- TOC -->
-                    <table id="TOC">
-                        <!--Table OF contents-->
-                        <tr>
-                            <td>Table of Contents </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="tb1" value="" />
-                            <button onclick="return addTR()">
-                                <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
-                            </button>
-                            </td>
-                        </tr>
-                    </table>
+               
             </td>
             <td> <!-- Rest of the editing components-->
                 @using (Html.BeginForm("NewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
                 {
-                    <table>
+                    <table id="TOC">
+                        <tr>
+                            <td>
+                                <input type="text" id="tb1" name="tb" value="" />
+                                <button onclick="return addTR()">
+                                    <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
+                                </button>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 Button Return
@@ -138,7 +133,7 @@
         <input type="hidden" id="hCategory" asp-for="@Model.Category" />          <!--Set each property of model under a hidden input field to be submitted under a form to be pushed to the controller then to the DAL-->
         <input type="hidden" id="hAppName" asp-for="@Model.AppName" />
         <input type="hidden" id="hImg" asp-for="@Model.AppLogo" />
-        <input type="hidden" id="h1" asp-for="@Model.TOC[0]" /> <!-- not working -->
+        <input type="hidden" id="h1" asp-for="@Model.TOC" /> <!-- not working -->
 
         <!---Binding existing Model content here (for content update)--->
         <div id="description">
@@ -183,17 +178,15 @@
         });
 
 
+
         function handleSubmit() {
-            console.info('handleSubmit called');
             document.getElementById('jdr').value = jdQuill.root.innerHTML;
             document.getElementById('hCategory').value = document.getElementById('Category').value;
             document.getElementById('hAppName').value = document.getElementById('AppName').value;
             document.getElementById('hImg').value = document.getElementById('img').value;
-            document.getElementById('h1').value = document.getElementById('tb1').value;
+            document.getElementById('h1').value = document.getElementById('tb1').value; //not working
 
-
-            //create for loop, loop through all document.getElementById('tb2...tbN') check IF value is not null, store into respective hN
-
+            alert(document.getElementById('tb1').value);
         };
 
         function addTR() {
@@ -206,14 +199,14 @@
             element.setAttribute("id", "tb" + rowCount);
             alert(rowCount);
             element.setAttribute("value", "");
-            element.setAttribute("name", "Test Name");
+            element.setAttribute("name", "tb");
             element.setAttribute("style", "width:200px");
 
             var row = table.insertRow(rowCount);
             var cell = row.insertCell(0);
             cell.appendChild(element);
 
-            //insert hidden field
+            //insert hidden field                                           NO LONGER NEEDED AS WE ARE USING IFOMRMCOLLECTION FOR NOW
             var hide = document.createElement("input");
             hide.setAttribute("type", "hidden");
             hide.setAttribute("id", "h" + rowCount);

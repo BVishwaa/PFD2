@@ -27,7 +27,7 @@
                     @foreach (Guide guide in Model)
                     {
                         <tr>
-                            <td>@Html.ActionLink(guide.AppName, "GuideTemplate", "Guide", new { guideId = guide.GuideId })</td>
+                            <td>@Html.ActionLink(guide.AppName, "EditGuide", "Guide", new { guideId = guide.GuideId })</td>
                         </tr>
                     }
                 </td>

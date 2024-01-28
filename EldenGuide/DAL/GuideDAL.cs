@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace EldenGuide.DAL
 {
@@ -53,46 +54,59 @@ namespace EldenGuide.DAL
 
             public async Task<Guide> ExtractGuideID(string gid)
             {
-            // [START fs_get_all]
-            CollectionReference usersRef = db.Collection("Guides");
-            QuerySnapshot snapshot = await usersRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Guides collection
-            Guide guide = new Guide();
-            foreach (DocumentSnapshot document in snapshot.Documents)
-            {
-                if(document.Id == gid)
+                // [START fs_get_all]
+                CollectionReference usersRef = db.Collection("Guides");
+                QuerySnapshot snapshot = await usersRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Guides collection
+                Guide guide = new Guide();
+                foreach (DocumentSnapshot document in snapshot.Documents)
                 {
-                    guide.GuideId = document.Id;
-                    Dictionary<string, object> documentDictionary = document.ToDictionary();
+                    if(document.Id == gid)
+                    {
+                        guide.GuideId = document.Id;
+                        Dictionary<string, dynamic> documentDictionary = document.ToDictionary();
 
-                    guide.AppName = documentDictionary["AppName"].ToString();
-                    //guide.Category = documentDictionary["Category"].ToString();
+                        guide.AppName = documentDictionary["AppName"].ToString();
+                        guide.Category = documentDictionary["Category"].ToString();
 
-                    guide.Content = documentDictionary["Content"].ToString();
+                        guide.Content = documentDictionary["Content"].ToString();
+                    }
+
+                    if (document.Id == gid)
+                    {
+                        guide.GuideId = document.Id;
+                        guide.TOC = document.GetValue<string[]>("TOC");
+                    }
                 }
-            }
-            return guide;
+                return guide;
             }
 
             public async Task<Boolean> AddGuide(Guide guide)
             {
-                
-
                 Dictionary<string, object> NewGuide = new Dictionary<string, object>
                 {
                     {"AppName",guide.AppName},
                     {"Category",guide.Category },
                     {"Content", guide.Content },
-                    {"AppLogo",guide.AppLogo }
-
+                    {"AppLogo", "/images/For-Logos/" + guide.AppLogo },
+                    {"TOC",guide.TOC }
                 };
 
                 DocumentReference addedDocRef = await db.Collection("Guides").AddAsync(NewGuide);
 
                 //await docRef.SetAsync(NewGuide);
 
+                //Inserting guide TOC to firebase
 
+                
                 return true;
                 
+            }
+
+            public async Task<Boolean> EditGuide(Guide guide)
+            {
+
+
+                return true;
             }
 
        
