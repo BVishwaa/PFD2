@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using EldenGuide.Controllers;
 using System.Collections;
 using System.ComponentModel;
+using Google.Api;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EldenGuide.DAL
 {
@@ -107,6 +109,73 @@ namespace EldenGuide.DAL
             }
 
             return threadList;
+        }
+
+
+        public async Task<List<Threads>> FilterThreads(string? category)
+        {
+            try
+            {
+                List<Threads> filterList = new List<Threads>();
+
+                Query query;
+                if (string.IsNullOrEmpty(category))
+                {
+                    // If no category is specified, get all threads
+                    query = db.Collection("Threads");
+                }
+                else
+                {
+                    // If a specific category is specified, filter by that category
+                    query = db.Collection("Threads").WhereEqualTo("Category", category);
+                }
+
+                // Execute the query
+                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                {
+                    if (documentSnapshot.Exists)
+                    {
+                        Threads data = documentSnapshot.ConvertTo<Threads>();
+                        filterList.Add(new Threads
+                        {
+                            ThreadID = data.ThreadID,
+                            Title = data.Title,
+                            Category = data.Category,
+                            Description = data.Description,
+                            Username = data.Username,
+                            DatePosted = data.DatePosted
+                        });
+                    }
+                }
+
+                return filterList;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                // Handle the error appropriately
+                throw; // or return a default value
+            }
+
+        }
+
+        public async Task<List<Threads>> GetBankingThreads()
+        {
+            List<Threads> bankingThreads = new List<Threads>();
+            Query query = db.Collection("Threads").WhereEqualTo("Category", "Banking");
+            QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                if (documentSnapshot.Exists)
+                {
+                    Threads thread = documentSnapshot.ConvertTo<Threads>();
+                    bankingThreads.Add(thread);
+                }
+            }
+            return bankingThreads;
         }
 
         /*

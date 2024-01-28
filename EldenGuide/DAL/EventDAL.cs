@@ -90,6 +90,13 @@ namespace EldenGuide.DAL
 
             return eventList;
         }
+        public async Task<int> GetTotal()
+        {
+            CollectionReference collectionRef = db.Collection("Events");
+            QuerySnapshot snapshot = await collectionRef.GetSnapshotAsync();
+            int total = snapshot.Documents.Count;
+            return total;
+        }
 
     }
 }

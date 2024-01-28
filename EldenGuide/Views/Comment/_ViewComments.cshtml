@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EldenGuide.Models.Comment>
+
+<html>
+
+<body>
+    <div class="container">
+        <div class="row">
+            @foreach (var comment in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p> @comment.Username @comment.CommentText @comment.DateCommented</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>
