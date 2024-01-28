@@ -1,0 +1,146 @@
+﻿@model EldenGuide.Models.Event
+
+@{
+    ViewData["Title"] = "AddEvent";
+}
+
+<html>
+<head>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        .ql-font-times-new-roman {
+            font-family: 'Times New Roman', serif;
+        }
+
+        .ql-font-arial {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.rawgit.com/kensnyder/quill-image-resize-module/3411c9a7/image-resize.min.js">
+    </script>
+</head>
+
+<body>
+
+    <div id="mail-body-editor"></div>
+
+
+    <table>
+        <tr>
+            <td>
+                <!-- Rest of the editing components-->
+                @using (Html.BeginForm("NewEvent", "Event", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+                {
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="text" name="Name" id="Name" />
+
+                                <label for="img">Select App Logo:</label>
+                                <input type="file" id="Photo" name="Photo" accept="image/*" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="description">Loaded text comes here using id="description"</div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit"></td>
+                        </tr>
+                        <input type="hidden" id="details" asp-for="@Model.Details" />
+                    </table>
+                }
+            </td>
+        </tr>
+    </table>
+
+
+
+    <style>
+        /*Adding the values from the array which has the values as data-values*/
+
+
+        /*for font-size*/
+
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before {
+            content: attr(data-value) !important;
+        }
+
+
+        /*for font-family*/
+
+        .ql-snow .ql-picker.ql-font .ql-picker-label[data-value]::before,
+        .ql-snow .ql-picker.ql-font .ql-picker-item[data-value]::before {
+            content: attr(data-value) !important;
+        }
+
+        .ql-snow .ql-picker.ql-font {
+            width: 150px !important;
+            white-space: nowrap;
+        }
+    </style>
+
+    <form id="form" asp-controller="Event" asp-action="AddEvent" onsubmit="handleSubmit()">
+        <!--Add inputs to model object to be submitted under a form -->
+
+        <input type="hidden" id="name" asp-for="@Model.EventName" />          <!--Set each property of model under a hidden input field to be submitted under a form to be pushed to the controller then to the DAL-->
+        <input type="hidden" id="photo" asp-for="@Model.EventPhoto" />
+    </form>
+    <script>
+        // add an array of values
+        const fontFamilyArr = ["Roboto Condensed", "Times New Roman", "Calibri", "Calibri Light", "Sans-Serif"];
+        let fonts = Quill.import("attributors/style/font");
+        fonts.whitelist = fontFamilyArr;
+        Quill.register(fonts, true);
+
+        const fontSizeArr = ['10px', '11px', '12px', '14px', '18px', '24px', '26px', '28px', '30px'];
+        var Size = Quill.import('attributors/style/size');
+        Size.whitelist = fontSizeArr;
+        Quill.register(Size, true);
+
+
+
+
+        let jdQuill = new Quill('#description', {
+            theme: 'snow',
+            modules: {
+                imageResize: {
+                    displaySize: true
+                },
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'header': 1 }, { 'header': 2 }],
+                    [{ 'size': ['normal', 'small', 'large'] }],
+                    [{ 'font': fontFamilyArr }],
+                    [{ 'size': fontSizeArr }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'indent': '-1' }, { 'indent': '+1' }],       // outdent/indent
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'align': [] }],
+                    ['image'],                              // Add the image button here
+                    ['clean']                                        // remove formatting button
+                ],
+            }
+        });
+
+
+        function handleSubmit() {
+            console.info('handleSubmit called');
+            document.getElementById('details').value = jdQuill.root.innerHTML;
+            document.getElementById('name').value = document.getElementById('Name').value;
+            //document.getElementById('details').value = document.getElementById('description').value;
+            document.getElementById('photo').value = document.getElementById('Photo').value
+        };
+
+    </script>
+</body>
+</html>
+

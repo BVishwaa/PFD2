@@ -138,7 +138,7 @@ namespace EldenGuide.Controllers
 
 
             GuideDAL guideDAL = new GuideDAL();
-            await guideDAL.AddGuide(guide);
+            //guideDAL.AddGuide(guide);
 
             return View();
         }
