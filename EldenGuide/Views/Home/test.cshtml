@@ -1,0 +1,33 @@
+﻿@model EldenGuide.Models.User
+
+@{
+    ViewData["Title"] = "Authentication";
+}
+
+<html>
+    <header>
+
+    </header>
+    <body>
+        <form asp-action="SignIn">
+            <fieldset class="FormContent">
+                <div class="row mb-3">
+                    <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9 col-md-5">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label asp-for="Password" class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9 col-md-5">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </body>
+</html>

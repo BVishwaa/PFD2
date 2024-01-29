@@ -1,11 +1,12 @@
 import { db, auth } from "./utils/firebase.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js'
 import { collection, getDocs, setDoc, doc } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js'
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js';
 
 async function signUp(name, userEmail, password) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
+      console.log("Signed up user:", userCredential.user);
     
     // Add a new document with auto-generated ID in the 'users' collection
     await setDoc(doc(db, 'users', userCredential.user.uid), {
@@ -13,11 +14,12 @@ async function signUp(name, userEmail, password) {
       email: userEmail,
       points: 0
     });
+      console.log("User data set in Firestore for user:", userCredential.user.uid);
     document.querySelector('.signup-popup').style.display = 'none';
     const unsubscribeAuthState = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
-        console.log("User is signed in: " + user.uid);
+        Console.WriteLine("User is signed in: " + user.uid);
 
         // Redirect to the home page
         redirectToHomePage();
@@ -37,22 +39,24 @@ async function signUp(name, userEmail, password) {
 
 
 async function signIn(emailOrUsername, password) {
-  console.log(auth.currentUser);
+    Console.WriteLine("Attempting to sign in with:", emailOrUsername, password);
+    Console.WriteLine(auth.currentUser);
   let userCredential = null;
   let userEmail = null;
   try {
     const isEmail = /\S+@\S+\.\S+/.test(emailOrUsername);
 
     if (isEmail) {
-      userCredential = await signInWithEmailAndPassword(auth, emailOrUsername, password).catch(function (error) {
+        userCredential = await signInWithEmailAndPassword(auth, emailOrUsername, password).catch(function (error) {
+            Console.WriteLine("Signed in user:", userCredential.user);
         throw error;
       });
-      console.log("Signed in successfully: " + userCredential.user);
+        Console.WriteLine("Signed in successfully: " + userCredential.user);
 
       const unsubscribeAuthState = onAuthStateChanged(auth, (user) => {
         if (user) {
           // User is signed in
-          console.log("User is signed in: " + user.uid);
+            Console.WriteLine("User is signed in: " + user.uid);
   
           // Redirect to the home page
           redirectToHomePage();
@@ -60,6 +64,7 @@ async function signIn(emailOrUsername, password) {
         } else {
           // User is signed out
           // You can handle this case if needed
+            Console.WriteLine('Attempting to retrieve email for username:', emailOrUsername);
         }
       });
 
@@ -72,9 +77,10 @@ async function signIn(emailOrUsername, password) {
         querySnapshot.forEach((doc) => {
           const userData = doc.data();
           if (userData.username === emailOrUsername) {
-            console.log('User found:', userData);
-            userEmail = userData.email;
-            console.log('User email:', userEmail);
+              Console.WriteLine('User found:', userData);
+              userEmail = userData.email;
+              Console.WriteLine('Found user email:', userEmail);
+              Console.WriteLine('User email:', userEmail);
             }
           });
           userCredential = await signInWithEmailAndPassword(auth, userEmail, password).catch(function (error) {
