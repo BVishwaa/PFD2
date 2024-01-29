@@ -114,7 +114,7 @@ namespace EldenGuide.Controllers
 
 
             Console.WriteLine("event added");
-            return View();
+            return View("AddEvent");
         }
     }
 }

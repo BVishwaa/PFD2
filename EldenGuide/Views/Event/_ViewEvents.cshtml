@@ -8,8 +8,9 @@
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                        <p class="card-title"><h5>@events.EventName</h5></p>
                         <p class="card-text">@events.EventPhoto</p>
+                        @Html.Raw(events.Details)
                     </div>
                 </div>
             </div>
