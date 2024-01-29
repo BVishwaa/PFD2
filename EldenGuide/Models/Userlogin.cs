@@ -10,7 +10,7 @@ namespace EldenGuide.Models
 
         [Required]
         [DataType(DataType.Password)]
-        //[StringLength]
+        [StringLength(20)]
         public string Password { get; set; }
     }
 }
