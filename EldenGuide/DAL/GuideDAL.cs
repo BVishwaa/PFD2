@@ -105,8 +105,19 @@ namespace EldenGuide.DAL
             public async Task<Boolean> EditGuide(Guide guide)
             {
 
+                DocumentReference docRef = db.Collection("Guides").Document(guide.GuideId);
 
-                return true;
+                // Update the document with the modified guide data
+                await docRef.UpdateAsync(new Dictionary<string, object>
+                {
+                  {"AppName", guide.AppName},
+                  {"Category", guide.Category},
+                  {"Content", guide.Content},
+                  {"AppLogo", "/images/For-Logos/" + guide.AppLogo},
+                  {"TOC", guide.TOC}
+                });
+
+                return true; 
             }
 
        
