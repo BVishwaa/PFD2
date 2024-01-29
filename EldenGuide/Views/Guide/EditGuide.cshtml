@@ -58,17 +58,21 @@
                                 <td>
                                     
                                         <!---Category input-->
-                                    @{
-                                        string[] categories = { "All","Banking","Health","Telecommunications","Food Delivery","Transport"};
+                                        @{
+                                            string[] categories = { "All", "Banking", "Health", "Telecommunications", "Food Delivery", "Transport" };
 
-                                        Html.DropDownListFor(model => model.Category, new List<SelectListItem>
+                                            Html.DropDownListFor(model => model.Category, model.Category
+                                            (op => new SelectListItem()
+                                                   {
+                                                      Value = model.Category,
+                                                      Text = model.Category
+                                                   }
+                                            )
+                                            );
+
+                                            foreach (string category in categories)
                                             {
-
-                                                new SelectListItem{Text="Deactive", Value="False"}}, "Select One");
-
-                                            foreach(string category in categories)
-                                            {
-                                                if(Model.Category == category)
+                                                if (Model.Category == category)
                                                 {
                                                     new SelectListItem { Text = category, Value = category, Selected = true };
                                                 }
@@ -78,15 +82,15 @@
                                                 }
                                             }
                                         }
-                                     
-                                <select name="Category" id="Category">
+
+                                <!---<select name="Category" id="Category">
                                         <option value="All">Select Category: </option>
                                         <option value="Banking">Banking</option>
                                         <option value="Health">Health</option>
                                         <option value="Telecommunications">Telecommunications</option>
                                         <option value="Food Delivery">Food Delivery</option>
                                         <option value="Transport">Transport</option>
-                                    </select>
+                                    </select>-->
 
                                     <input type="text" name="AppName" id="AppName" />                       <!---App Name input-->
 
