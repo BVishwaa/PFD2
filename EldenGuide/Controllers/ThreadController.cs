@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Html;
 using System.Diagnostics;
 using Google.Cloud.Firestore;
 using System.Dynamic;
+using Google.Api;
 
 namespace EldenGuide.Controllers
 {
@@ -90,12 +91,14 @@ namespace EldenGuide.Controllers
             }
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string? category)
         {
             dynamic mymodel = new ExpandoObject();
             mymodel.Threads = await threadContext.GetThreads();
             mymodel.Event = await eventContext.GetEvents();
-            //List<Threads> threadList = await threadContext.GetThreads();
+            ViewData["totalevents"] = await eventContext.GetTotal();
+            //mymodel.FilteredThreads = await threadContext.FilterThreads(category);
+            mymodel.FilteredThreads = await threadContext.GetBankingThreads();
             Console.WriteLine("Controller get threads");
             return View(mymodel);
 
@@ -122,6 +125,20 @@ namespace EldenGuide.Controllers
 
             Debug.WriteLine("Debug statement: Something happened!");
             return View("WriteNewThread");
+        }
+
+        public async Task<ActionResult> GetFilteredThreads(string category)
+        {
+            var threads = await threadContext.FilterThreads(category);
+            Console.WriteLine("Filtered");
+            return PartialView("_ViewThreads", threads); // Assuming "_ThreadsPartial" is the name of your partial view
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> BankingThreads()
+        {
+            var bankingThreads = await threadContext.GetBankingThreads();
+            return Json(bankingThreads);
         }
 
     }

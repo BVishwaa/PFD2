@@ -3,7 +3,5 @@
 }
 
 <h4 class="PageTitle">View threads</h4>
-<p><a asp-action="ViewThreads">View all threads</a></p>
-<!-- Add a partial view to display a list of staff records
-in a tabular format. -->
+<p><a asp-controller="Thread" asp-action="WriteNewThread">Add new thread</a></p>
 <partial name="~/Views/Thread/_ViewThreads.cshtml" model="@Model" />

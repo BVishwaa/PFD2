@@ -1,0 +1,31 @@
+﻿@model CommentViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="~/Views/Comment/_ViewComments.cshtml" model="@Model.Comments" />
+
+@using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
+{
+    <table>
+        <tr>
+            <td>
+                <label for="CommentText">Comment</label>
+                <input type="text" name="CommentText" id="CommentText" />
+                <input type="hidden" name="ThreadID" id ="ThreadID" value="@Model.ThreadID" />
+                <p>@Model.ThreadID</p>
+                <input type="submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+}
+
+
+<script>
+    function handleSubmit() {
+        console.log('handleSubmit called');
+        document.getElementById('commentText').value = document.getElementById('CommentText').value;
+    };
+
+</script>

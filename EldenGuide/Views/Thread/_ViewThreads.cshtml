@@ -1,38 +1,106 @@
 ﻿@model dynamic
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-TI+Lq5Yq+AhJKtxVc1T81a7xjZJiSExXaFZLPqjxLq+tcKE+qfCFmCGJmmYqJ1OJ" crossorigin="anonymous">
-
-<div class="container">
-    <div class="row">
-        @foreach (Event events in Model.Event)
-        {
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
-                        <p class="card-text">@events.EventPhoto</p>
-                    </div>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                @foreach (Event events in Model.Event)
+                {
+                    <!--display only top 3 most recent events-->
+                    @if(Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"])-3))
+                    {
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                                    <p class="card-text">@events.EventPhoto</p>
+                                </div>
+                            </div>
+                        </div>
+                    }            
+                }
             </div>
-        }
-    </div>
-</div>
+        </div>
 
+        <button id="allButton">View all</button>
+        <button id="bankingButton">Banking</button>
+        <button id="healthButton">Health</button>
+        <button id="teleButton">Telecomunication</button>
+        <button id="fooddeliveryButton">Food Delivery</button>
+        <button id="transportButton">Transport</button>
 
-<div class="table-responsive">
-    <table id="viewThread" class="table table-striped table-bordered">
-        <tbody>
-            @foreach (Threads thread in Model.Threads)
-            {
-                <div class="col-md-6">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@thread.Title</h5></a>
-                            <p class="card-text">@thread.Description</p>
-                            <p class="card-text">@thread.Username @thread.DatePosted</p>
+        <br />
+
+        <div class="container">
+            <div class="row">
+                @foreach (Threads thread in Model.Threads)
+                {
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                            <a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID" class="card-title"><h5>@thread.Title</h5></a>
+                                <p class="card-text">@thread.Description</p>
+                                <p class="card-text">@thread.Username @thread.DatePosted</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </tbody>
-    </table>
-</div>
+                }
+            </div>
+        </div>
+        
+        <ol>
+        <div id="threadContainer">
+            <!-- Filtered threads will be loaded here -->
+        </div>
+        </ol>
+        
+
+        
+    </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // This code will run once the DOM is fully loaded
+
+        // Add click event listener to the 'bankingButton'
+        document.getElementById('bankingButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            var container = document.querySelector('ol');
+            container.innerHTML = ''; // Clear existing content
+
+            // AJAX request to ASP.NET backend
+            $.ajax({
+                url: 'ThreadController\BankingThreads', // Update with your actual URL
+                type: 'GET',
+                dataType: 'json',
+                success: function (threads) {
+                    threads.forEach(function (thread) {
+                        if (thread.Category === 'Banking') {
+                            var html = `<div class="col-md-6">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                                    <a href="/Thread/ViewComments/${thread.ThreadID}" class="card-title"><h5>${thread.Title}</h5></a>
+                                                    <p class="card-text">${thread.Description}</p>
+                                                    <p class="card-text">${thread.Username} ${thread.DatePosted}</p>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                            container.insertAdjacentHTML('beforeend', html);
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.error("Error fetching data: ", error);
+                }
+            });
+        });
+    });
+
+
+</script>

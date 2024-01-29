@@ -1,14 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EldenGuide.DAL;
+using EldenGuide.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldenGuide.Controllers
 {
     public class CommentController : Controller
     {
-        // GET: CommentController
-        public ActionResult Index()
+        private CommentDAL commentContext = new CommentDAL();
+
+        public IActionResult Comment()
         {
             return View();
+        }
+
+        // GET: CommentController
+        public async Task<ActionResult> Index(int threadId)
+        {
+            CommentViewModel mymodel = new CommentViewModel();
+            mymodel.Comments = await commentContext.GetComments(threadId);
+            mymodel.SingleComment = new Comment();
+            return View(mymodel);
         }
 
         // GET: CommentController/Details/5
@@ -79,5 +91,41 @@ namespace EldenGuide.Controllers
                 return View();
             }
         }
+
+        public async Task<ActionResult> AddComment()
+        {
+            Comment comments = new Comment();
+            return View(comments);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> NewComment(IFormCollection form)
+        {
+            Comment comments = new Comment();
+            CommentDAL commentDAL = new CommentDAL();
+
+            comments.CommentText = form["CommentText"];
+            comments.ThreadID = Convert.ToInt32(form["ThreadId"]);
+
+            // Retrieve threadId from form
+            int threadId = Convert.ToInt32(form["ThreadId"]);
+
+            await commentDAL.InsertComment(comments);
+
+            // Fetch the updated list of comments
+            var updatedComments = await commentDAL.GetComments(threadId);
+
+            // Construct the CommentViewModel
+            CommentViewModel viewModel = new CommentViewModel
+            {
+                Comments = updatedComments,
+                SingleComment = comments // or null, depending on your use case
+            };
+
+            Console.WriteLine("comment added");
+            return View("Index", viewModel);
+        }
+
+
     }
 }
