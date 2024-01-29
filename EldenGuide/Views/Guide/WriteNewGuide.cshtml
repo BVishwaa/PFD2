@@ -36,7 +36,7 @@
                
             </td>
             <td> <!-- Rest of the editing components-->
-                @using (Html.BeginForm("NewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+                @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
                 {
                     <table id="TOC">
                         <tr>

@@ -124,13 +124,13 @@ namespace EldenGuide.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> NewGuide(Guide guide, IFormCollection form)
+        public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form)
         {
             
 
-            string StoreTextbox = form["tb"];
+            /*string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
-
+*/
 
             GuideDAL guideDAL = new GuideDAL();
             await guideDAL.AddGuide(guide);
