@@ -126,21 +126,16 @@ namespace EldenGuide.Controllers
         [HttpPost]
         public async Task<ActionResult> NewGuide(Guide guide, IFormCollection form)
         {
-            /*Guide guide = new Guide();
-
-            guide.Category = form["Category"];      //IFormCollection form Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
-            guide.AppName = form["AppName"];
-            guide.AppLogo = form["AppLogo"];
-            guide.Content = Convert.ToString(form["Content"]);*/
+            
 
             string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
 
 
             GuideDAL guideDAL = new GuideDAL();
-            //guideDAL.AddGuide(guide);
+            await guideDAL.AddGuide(guide);
 
-            return View();
+            return RedirectToAction("StaffGuideList", "Guide");
         }
 
         public async Task<ActionResult> EditGuide(string guideId)
@@ -149,7 +144,17 @@ namespace EldenGuide.Controllers
             Guide GuideToEdit = new Guide();
             GuideToEdit = await guideDAL.ExtractGuideID(guideId);
 
+            await guideDAL.EditGuide(GuideToEdit);
+
             return View(GuideToEdit);
+        }
+
+        [HttpPost]
+
+        public async Task<ActionResult> EditedGuide(Guide guide)
+        {
+
+            return RedirectToAction("StaffGuideList", "Guide");
         }
     }
 }
