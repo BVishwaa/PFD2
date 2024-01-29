@@ -121,6 +121,7 @@ namespace EldenGuide.Controllers
 
 
             Debug.WriteLine("Debug statement: Something happened!");
+            Debug.WriteLine("Nice statement: Something happened!");
             return View();
         }
 

@@ -21,7 +21,7 @@ namespace EldenGuide.Models
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [Display(Name = "Email Address")]
-        [UserEmailValidation]
+        //[UserEmailValidation]
         public string Email { get; set; }
 
         //Password

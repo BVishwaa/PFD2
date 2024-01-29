@@ -7,28 +7,28 @@ namespace EldenGuide.Models
 {
     public class UserEmailValidation : ValidationAttribute
     {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            // Get the email value to validate
-            string email = value as string;
+        //protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        //{
+        //    // Get the email value to validate
+        //    string email = value as string;
 
-            // Get an instance of the AuthDAL class
-            AuthDAL authContext = (AuthDAL)validationContext.GetService(typeof(AuthDAL));
+        //    // Get an instance of the AuthDAL class
+        //    AuthDAL authContext = (AuthDAL)validationContext.GetService(typeof(AuthDAL));
 
-            // Check if the email already exists in the database
-            bool emailExists = authContext.CheckEmailExists(email); // Assuming you have this method in AuthDAL
+        //    // Check if the email already exists in the database
+        //    bool emailExists = authContext.CheckEmailExists(email); // Assuming you have this method in AuthDAL
 
-            if (emailExists)
-            {
-                // Email already exists
-                return new ValidationResult("Email address already exists!");
-            }
-            else
-            {
-                // Email is unique
-                return ValidationResult.Success;
-            }
-        }
+        //    if (emailExists)
+        //    {
+        //        // Email already exists
+        //        return new ValidationResult("Email address already exists!");
+        //    }
+        //    else
+        //    {
+        //        // Email is unique
+        //        return ValidationResult.Success;
+        //    }
+        //}
         //protected override ValidationResult IsValid(
         //    object value, ValidationContext validationContext)
         //{
