@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="~/css/Eldenguide.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/Eldenguide.css">
     <script src="/js/script.js"></script>
     <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <link rel="stylesheet" href="~/css/bttBtn.css">
-    
+    <link rel="stylesheet" href="/css/bttBtn.css">
     
 </head>
 <body>
@@ -21,22 +22,41 @@
     <br />
     <br />
     <section class="services">
-        <div class="service-item" style="background-color:#FFF4A3;">
-            <a href="#apps" style="text-decoration:none;  color: inherit;">
-                <img src="Images/For-Logos/About_us.png" style="width: 50%; height: 60%;" alt="App icon"> <h2>Apps</h2>
-            <p3>Learn how to understand what applications are! Applications can be used for a variety of tasks in order to improve quality of life.</p3>
+        <div class="service-item">
+            <a href="#apps">
+                <button type="button" class="nes-btn is-primary" style="border-image-repeat:unset;">
+                    <img src="Images/For-Logos/About_us.png" style="width: 25%; height: 30%;" alt="App icon">
+                    <br />
+                    <br />
+                    <h2>Apps</h2><p3>Learn how to understand what applications are!</p3>
+                    <br />
+                    <br />
+                </button>
             </a>
         </div>
-        <div class="service-item" style="background-color:#D9EEE1;">
-            <a asp-controller="Home" asp-action="About" style="text-decoration:none;  color: inherit;">
-            <img src=Images/For-Logos/tutorial.png style="width: 50%; height: 60%;" alt="Tutorial icon"> <h2>Tutorials</h2>
-                <p3>Learn how to use applications with ease from  <br />  our simplified tutorials and easy navigation!</p3>
+        <div class="service-item ">
+            <a asp-controller="Event" asp-action="Index" style="border-image-repeat:unset;" class="nes-btn is-success">     
+            <img src=Images/For-Logos/tutorial.png style="width: 25%; height: 30%;" alt="Tutorial icon"> 
+                <br/>
+                <br />
+                <h2>Events</h2>
+                <p3>Find out currently what is happening!</p3>
+                <br />
+                <br />
+                <br />
+
             </a>
+            </button>
         </div>
-        <div class="service-item" style="background-color:#FFC0C7;">
-            <a asp-controller="Home" asp-action="Forum" style="text-decoration:none;  color: inherit;">
-                <img src="Images/For-Logos/community.png" style="width: 50%; height: 60%;" alt="Community icon"> <h2>Community</h2>
-            <p3>Learn with what our community has to offer! Get to know more about what is currently happening and keep updated with new applications daily!</p3>
+        <div class="service-item">
+            <a asp-controller="Thread" asp-action="Index" style="border-image-repeat:unset; color: white;" class="nes-btn is-error">
+                <img src="Images/For-Logos/community.png" style="width: 25%; height: 30%;" alt="Community icon"> 
+                <br />
+                <br />
+                <h2>Community</h2>
+            <p3>Learn with our community! Get in touch with everyone!</p3>           
+                <br />
+                <br />
             </a>
         </div>
     </section>
@@ -57,17 +77,17 @@
     <br />
     <div class="wrapper">
         <div id="search-container">
-            <p id="apps">Applications List</p>
-            <input type="search" id="search-input" placeholder="search app here."/>
+            <p id="apps" style="font-family:none;">Applications List</p>
+            <input type="search" id="search-input" class="button" style="color:black" placeholder="search app here."/>
                 <button id="search">Search</button>
         </div> 
         <div id="buttons">
-            <button class="button_value" onclick="filterProduct('all')">All</button>
-            <button class="button_value" onclick="filterProduct('Banking')">Banking</button>
-            <button class="button_value" onclick="filterProduct('Health')">Health</button>
-            <button class="button_value" onclick="filterProduct('Messaging')">Messaging</button>
-            <button class="button_value" onclick="filterProduct('Food')">Food</button>
-            <button class="button_value" onclick="filterProduct('Transport')">Transport</button>
+            <button class="button_value button" onclick="filterProduct('all')">All</button>
+            <button class="button_value button" onclick="filterProduct('Banking')">Banking</button>
+            <button class="button_value button" onclick="filterProduct('Health')">Health</button>
+            <button class="button_value button" onclick="filterProduct('Messaging')">Messaging</button>
+            <button class="button_value button" onclick="filterProduct('Food')">Food</button>
+            <button class="button_value button" onclick="filterProduct('Transport')">Transport</button>
         </div>
         <div id="products"></div>
     </div>
@@ -76,7 +96,7 @@
     <section>
         <form>
             <table>
-                <tr><p style="font-size: 5rem;  margin-left: 30%;" >Our Applications</p></tr>
+                <tr><p style="font-size: 5rem;  margin-left: 30%; font-family:none;">Our Applications</p></tr>
                
 
                 <tr>
@@ -110,6 +130,6 @@
       });
     </script>
 
-    <script src="~/js/bttbtn.js"></script>
+    <script src="/js/bttbtn.js"></script>
 </body>
 </html>

@@ -118,10 +118,10 @@ p{
     display: flex;
     justify-content: space-evenly;
     height: 50%;
+
 }
 
 .service-item {
-
     width: 30%;
 }
 
