@@ -18,7 +18,7 @@
                         <div class="col-md-4">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                                    <a asp-controller="Event" asp-action="Index" class="card-title"><h5>@events.EventName</h5></a>
                                     <p class="card-text">@events.EventPhoto</p>
                                 </div>
                             </div>
@@ -26,6 +26,7 @@
                     }            
                 }
             </div>
+            <a asp-controller="Event" asp-action="Index" >Click here to view more events</a>
         </div>
 
     <button id="all">View all</button>
