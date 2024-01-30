@@ -2,34 +2,68 @@
     ViewData["Title"] = "Video Call";
 }
 
-<!--video call screen will be below-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Elden Guide Video Call</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="~/css/Videocall.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC Demo</title>
 </head>
 <body>
+    <style>
+        body {
+          font-family: 'Syne Mono', monospace;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-align: center;
+          color: #2c3e50;
+          margin: 80px 10px;
+        }
 
-    <h4 class="PageTitle">Video Call</h4>
-    <p><a asp-controller="Thread" asp-action="WriteNewThread">Go to Forum</a></p>
-    <p><a asp-controller="Event" asp-action="NewEvent">Go to Events</a></p>
-    <button id="join-btn">Join Stream</button>
+        video {
+          width: 40vw;
+          height: 30vw;
+          margin: 2rem;
+          background: #2c3e50;
+        }
 
-    <div id="stream-wrapper">
-        <div id="video-streams"></div>
+        .videos {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    </style>
 
-        <div id="stream-controls">
-            <button id="leave-btn">Leave Stream</button>
-            <button id="mic-btn">Mic On</button>
-            <button id="camera-btn">Camera on</button>
-        </div>
+    <h2>1. Start your Webcam</h2>
+    <div class="videos">
+        <span>
+            <h3>Local Stream</h3>
+            <video id="webcamVideo" autoplay playsinline></video>
+        </span>
+        <span>
+            <h3>Remote Stream</h3>
+            <video id="remoteVideo" autoplay playsinline></video>
+        </span>
+
+
     </div>
-    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
-    <script src="Agora.js"></script>
-    <script src='Videocall.js'></script>
+
+    <button id="webcamButton">Start webcam</button>
+    <h2>2. Create a new Call</h2>
+    <button id="callButton" disabled>Create Call (offer)</button>
+
+    <h2>3. Join a Call</h2>
+    <p>Answer the call from a different browser window or device</p>
+
+    <input id="callInput" />
+    <button id="answerButton" disabled>Answer</button>
+
+    <h2>4. Hangup</h2>
+
+    <button id="hangupButton" disabled>Hangup</button>
+
+    <script type="module" src="videocall2.js"></script>
+
 </body>
 </html>
