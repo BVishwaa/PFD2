@@ -124,7 +124,7 @@ namespace EldenGuide.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> NewGuide(Guide guide, IFormCollection form)
+        public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form)
         {
             
 
@@ -151,7 +151,7 @@ namespace EldenGuide.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> EditedGuide(Guide guide)
+        public async Task<ActionResult> EditGuide(Guide guide)
         {
 
             return RedirectToAction("StaffGuideList", "Guide");

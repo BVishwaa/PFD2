@@ -61,14 +61,14 @@
                                         @{
                                             string[] categories = { "All", "Banking", "Health", "Telecommunications", "Food Delivery", "Transport" };
 
-                                            Html.DropDownListFor(model => model.Category, model.Category
+                                            /*Html.DropDownListFor(model => model.Category,Model.Category
                                             (op => new SelectListItem()
                                                    {
                                                       Value = model.Category,
                                                       Text = model.Category
                                                    }
                                             )
-                                            );
+                                            );*/
 
                                             foreach (string category in categories)
                                             {
