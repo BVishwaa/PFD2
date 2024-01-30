@@ -1,0 +1,103 @@
+﻿@model EldenGuide.Models.Staff
+@{
+    ViewData["Title"] = "Staff Login";
+}
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff Login</title>
+
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+          crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/1bb416726a.js"
+            crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="styles/auth.css" />
+
+    <script src="scripts\script.js"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </head>
+    <body class ="min-vh-100 row m-0 position-relative">
+        <div id="navbarContainer" class="container"></div>
+
+        <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
+            <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
+                           background="transparent"
+                           speed="1"
+                           style="width: 100%; height: auto"
+                           loop
+                           autoplay></lottie-player>
+
+            <h1 class="mt-2 mb-3">Let's go!</h1>
+            <p>
+                Sign up for Elden Guide and use our detailed user guides designed to close the digital divide.
+                <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
+            </p>
+        </aside>
+
+        <h3>Staff Login</h3>
+    @using (Html.BeginForm("StaffLogin", "Auth", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))
+        {
+            @*<input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="submit" value="Sign In" />*@
+        <div class="row mb-3">
+            <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="email" id="Email" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Password"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="password" id="Password" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" />
+            </div>
+        </div>
+    }
+
+
+    <!--JavaScript-->
+    <script type="module" src="./js/site.js"></script>
+    <form id="form" asp-controller="User" asp-action="StaffLogin" onsubmit="StaffLogin()">
+        <input type="hidden" id="email" asp-for="@Model.Email" />
+        <input type="hidden" id="password" asp-for="@Model.Password" />
+    </form>
+
+    <script>
+        function StaffLogin() {
+            console.log('StaffLogin called');
+            //document.getElementById('category').value = document.getElementById('Category').value;
+            document.getElementById('email').value = document.getElementById('Email').value;
+            document.getElementById('password').value = document.getElementById('Password').value;
+        };
+
+    </script>
+    <script src='https://unpkg.com/&#64;lottiefiles/lottie-player@latest/dist/lottie-player.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+            integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+
+    </body>
+</html>
