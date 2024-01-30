@@ -4,6 +4,7 @@ using Google.Cloud.Firestore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Firebase.Storage;
 
 namespace EldenGuide.Controllers
 {
@@ -113,7 +114,7 @@ namespace EldenGuide.Controllers
             if (Photo != null && Photo.Length > 0)
             {
                 // Upload the photo and get the URL
-                var photoUrl = await eventContext.UploadPhotoToFirebaseStorage(Photo);
+                var photoUrl = await UploadPhotoToFirebaseStorage(Photo);
                 events.EventPhoto = photoUrl;
             }
 
@@ -121,6 +122,18 @@ namespace EldenGuide.Controllers
 
             Console.WriteLine("event added");
             return View("AddEvent");
+        }
+
+        private async Task<string> UploadPhotoToFirebaseStorage(IFormFile photo)
+        {
+            var firebaseStorage = new FirebaseStorage("your_firebase_storage_bucket");// Initialize your Firebase Storage
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
+
+            using (var stream = photo.OpenReadStream())
+            {
+                var task = await firebaseStorage.Child("images").Child(fileName).PutAsync(stream);
+                return task; // This will be the download URL of the image
+            }
         }
 
     }

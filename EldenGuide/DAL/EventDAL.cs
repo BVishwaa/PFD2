@@ -1,4 +1,5 @@
 ﻿using EldenGuide.Models;
+using Firebase.Storage;
 using Google.Cloud.Firestore;
 
 namespace EldenGuide.DAL
@@ -86,18 +87,6 @@ namespace EldenGuide.DAL
             QuerySnapshot snapshot = await collectionRef.GetSnapshotAsync();
             int total = snapshot.Documents.Count;
             return total;
-        }
-
-        private async Task<string> UploadPhotoToFirebaseStorage(IFormFile photo)
-        {
-            var firebaseStorage = // Initialize your Firebase Storage
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
-
-            using (var stream = photo.OpenReadStream())
-            {
-                var task = await firebaseStorage.Child("images").Child(fileName).PutAsync(stream);
-                return await task; // This will be the download URL of the image
-            }
         }
 
 
