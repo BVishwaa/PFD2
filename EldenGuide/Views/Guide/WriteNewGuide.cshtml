@@ -36,7 +36,7 @@
                
             </td>
             <td> <!-- Rest of the editing components-->
-                @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+                @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();", enctype = "multipart/form-data" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
                 {
                     <table id="TOC">
                         <tr>
@@ -183,7 +183,7 @@
             document.getElementById('jdr').value = jdQuill.root.innerHTML;
             document.getElementById('hCategory').value = document.getElementById('Category').value;
             document.getElementById('hAppName').value = document.getElementById('AppName').value;
-            document.getElementById('hImg').value = document.getElementById('img').value;
+            document.getElementById('hImg').value = document.getElementById('AppLogo').value;
             document.getElementById('h1').value = document.getElementById('tb1').value; //not working
 
             alert(document.getElementById('tb1').value);
@@ -202,7 +202,7 @@
             element.setAttribute("name", "tb");
             element.setAttribute("style", "width:200px");
 
-            var row = table.insertRow(rowCount);
+            var row = table.insertRow(rowCount);    //Edit here if you want to change positioning of new TOC textboxes that just got added through the plus button
             var cell = row.insertCell(0);
             cell.appendChild(element);
 

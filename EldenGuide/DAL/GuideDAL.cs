@@ -67,7 +67,7 @@ namespace EldenGuide.DAL
 
                         guide.AppName = documentDictionary["AppName"].ToString();
                         guide.Category = documentDictionary["Category"].ToString();
-
+                        guide.AppLogo = documentDictionary["AppLogo"].ToString();
                         guide.Content = documentDictionary["Content"].ToString();
                     }
 
