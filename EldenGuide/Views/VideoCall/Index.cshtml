@@ -3,67 +3,72 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC Demo</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <!-- my css file-->
+    <link rel="stylesheet" type="text/css" href="videochat2.css">
+    <script src='https://meet.jit.si/external_api.js'></script>
 </head>
 <body>
-    <style>
-        body {
-          font-family: 'Syne Mono', monospace;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-align: center;
-          color: #2c3e50;
-          margin: 80px 10px;
-        }
+    <div class="thebody text-center">
+        <nav class="navbar navbar-dark" style="background-color:shd; box-shadow: 2px 4px rgba(226, 203, 242,0.5)">
+            <span class="navbar-brand" style="font-size: 40px; color:#9864bd">Video Calling</span>
+        </nav>
 
-        video {
-          width: 40vw;
-          height: 30vw;
-          margin: 2rem;
-          background: #2c3e50;
-        }
+        <div class="container align-items-center " style="margin-top: 15%;">
+            <div class="transbox text-center">
+                <br><br>
+                <button id="start" class="btn btn-light btn-lg" type="button"><b>Start a new meeting</b></button>
+            </div>
+        </div>
 
-        .videos {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-    </style>
 
-    <h2>1. Start your Webcam</h2>
-    <div class="videos">
-        <span>
-            <h3>Local Stream</h3>
-            <video id="webcamVideo" autoplay playsinline></video>
-        </span>
-        <span>
-            <h3>Remote Stream</h3>
-            <video id="remoteVideo" autoplay playsinline></video>
-        </span>
 
+        <div id="jitsi-container" class="container align-items-center">
+        </div>
 
     </div>
 
-    <button id="webcamButton">Start webcam</button>
-    <h2>2. Create a new Call</h2>
-    <button id="callButton" disabled>Create Call (offer)</button>
 
-    <h2>3. Join a Call</h2>
-    <p>Answer the call from a different browser window or device</p>
+    <script>
+        var button = document.querySelector('#start');
+        var container = document.querySelector('#jitsi-container');
+        var api = null;
 
-    <input id="callInput" />
-    <button id="answerButton" disabled>Answer</button>
+        button.addEventListener('click', () => {
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var stringLength = 30;
 
-    <h2>4. Hangup</h2>
+            function pickRandom() {
+                return possible[Math.floor(Math.random() * possible.length)];
+            }
 
-    <button id="hangupButton" disabled>Hangup</button>
+            var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
 
-    <script type="module" src="videocall2.js"></script>
+            var domain = "meet.jit.si";
+            var options = {
+                "roomName": randomString,
+                "parentNode": container,
+                "width": 600,
+                "height": 600,
+            };
+            api = new JitsiMeetExternalAPI(domain, options);
+        });
 
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
