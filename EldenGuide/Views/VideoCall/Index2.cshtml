@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Video Call";
+}
+
+<!--video call screen will be below-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Elden Guide Video Call</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="~/css/Videocall.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <h4 class="PageTitle">Video Call</h4>
+    <p><a asp-controller="Thread" asp-action="WriteNewThread">Go to Forum</a></p>
+    <p><a asp-controller="Event" asp-action="NewEvent">Go to Events</a></p>
+    <button id="join-btn">Join Stream</button>
+
+    <div id="stream-wrapper">
+        <div id="video-streams"></div>
+
+        <div id="stream-controls">
+            <button id="leave-btn">Leave Stream</button>
+            <button id="mic-btn">Mic On</button>
+            <button id="camera-btn">Camera on</button>
+        </div>
+    </div>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+    <script src="Agora.js"></script>
+    <script src='Videocall.js'></script>
+</body>
+</html>

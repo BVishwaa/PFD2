@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+    <script src="/js/forum.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     </head>
     <body>
         <div class="container">
@@ -15,7 +18,7 @@
                         <div class="col-md-4">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
+                                    <a asp-controller="Event" asp-action="Index" class="card-title"><h5>@events.EventName</h5></a>
                                     <p class="card-text">@events.EventPhoto</p>
                                 </div>
                             </div>
@@ -23,31 +26,33 @@
                     }            
                 }
             </div>
+            <a asp-controller="Event" asp-action="Index" >Click here to view more events</a>
         </div>
 
-        <button id="allButton">View all</button>
-        <button id="bankingButton">Banking</button>
-        <button id="healthButton">Health</button>
-        <button id="teleButton">Telecomunication</button>
-        <button id="fooddeliveryButton">Food Delivery</button>
-        <button id="transportButton">Transport</button>
+    <button id="all">View all</button>
+    <button id="Banking">Banking</button>
+    <button id="Health">Health</button>
+    <button id="Telecomunication">Telecomunication</button>
+    <button id="Food Delivery">Food Delivery</button>
+    <button id="Transport">Transport</button>
 
         <br />
 
         <div class="container">
             <div class="row">
-                @foreach (Threads thread in Model.Threads)
-                {
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
+            @foreach (Threads thread in Model.Threads)
+            {
+                <div class="col-md-6 thread-item" data-category="@thread.Category">
+                    <div class="card mb-4">
+                        <div class="card-body">
                             <a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID" class="card-title"><h5>@thread.Title</h5></a>
-                                <p class="card-text">@thread.Description</p>
-                                <p class="card-text">@thread.Username @thread.DatePosted</p>
-                            </div>
+                            <p class="card-text">@thread.Description</p>
+                            <p class="card-text">@thread.Username @thread.DatePosted</p>
                         </div>
                     </div>
-                }
+                </div>
+            }
+
             </div>
         </div>
         
@@ -61,46 +66,58 @@
         
     </body>
 </html>
-
+<script src="/js/threadingfilter.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+@* -- Ignore this as threadingfilter will fix the filter
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // This code will run once the DOM is fully loaded
-
-        // Add click event listener to the 'bankingButton'
-        document.getElementById('bankingButton').addEventListener('click', function (event) {
-            event.preventDefault();
-            var container = document.querySelector('ol');
-            container.innerHTML = ''; // Clear existing content
-
-            // AJAX request to ASP.NET backend
-            $.ajax({
-                url: 'ThreadController\BankingThreads', // Update with your actual URL
-                type: 'GET',
-                dataType: 'json',
-                success: function (threads) {
-                    threads.forEach(function (thread) {
-                        if (thread.Category === 'Banking') {
-                            var html = `<div class="col-md-6">
-                                            <div class="card mb-4">
-                                                <div class="card-body">
-                                                    <a href="/Thread/ViewComments/${thread.ThreadID}" class="card-title"><h5>${thread.Title}</h5></a>
-                                                    <p class="card-text">${thread.Description}</p>
-                                                    <p class="card-text">${thread.Username} ${thread.DatePosted}</p>
-                                                </div>
-                                            </div>
-                                        </div>`;
-                            container.insertAdjacentHTML('beforeend', html);
-                        }
-                    });
-                },
-                error: function (error) {
-                    console.error("Error fetching data: ", error);
+        // Event listener for all category buttons
+        ['all', 'Banking', 'Health', 'Telecomunication', 'Food Delivery', 'Transport'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (event) {
+                event.preventDefault();
+                var category = this.id.replace('threads', ''); // Extract category from id
+                if (category === 'all') {
+                    category = ''; // If 'all', set category to empty string
                 }
+                loadThreads(category);
             });
         });
     });
 
+    function loadThreads(category) {
+        var container = document.querySelector('ol');
+        container.innerHTML = ''; // Clear existing content
+
+        // AJAX request to ASP.NET backend
+        $.ajax({
+            url: 'ThreadController/GetThreads', // Endpoint to get all threads
+            type: 'GET',
+            dataType: 'json',
+            success: function (threads) {
+                threads.forEach(function (thread) {
+                    // Check if thread's category includes the selected category
+                    if (category === '' || thread.Category.split(',').includes(category)) {
+                        var html = `<div class="col-md-6">
+                                        <div class="card mb-4">
+                                            <div class="card-body">
+                                                <a href="/Thread/ViewComments/${thread.ThreadID}" class="card-title"><h5>${thread.Title}</h5></a>
+                                                <p class="card-text">${thread.Description}</p>
+                                                <p class="card-text">${thread.Username} ${thread.DatePosted}</p>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                        container.insertAdjacentHTML('beforeend', html);
+                    }
+                });
+            },
+            error: function (error) {
+                console.error("Error fetching data: ", error);
+            }
+        });
+    }
+
+
 
 </script>
+*@

@@ -128,9 +128,9 @@ namespace EldenGuide.Controllers
         {
             
 
-            /*string StoreTextbox = form["tb"];
+            string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
-*/
+
 
             GuideDAL guideDAL = new GuideDAL();
             await guideDAL.AddGuide(guide);
@@ -151,7 +151,7 @@ namespace EldenGuide.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> EditedGuide(Guide guide)
+        public async Task<ActionResult> EditGuide(Guide guide)
         {
 
             return RedirectToAction("StaffGuideList", "Guide");
