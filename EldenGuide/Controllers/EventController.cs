@@ -1,5 +1,6 @@
 ﻿using EldenGuide.DAL;
 using EldenGuide.Models;
+using Google.Cloud.Firestore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -101,20 +102,26 @@ namespace EldenGuide.Controllers
 
         //newthread
         [HttpPost]
-        public async Task<ActionResult> NewEvent(IFormCollection form)
+        public async Task<ActionResult> NewEvent(IFormCollection form, IFormFile Photo)
         {
             Event events = new Event();
             EventDAL eventDAL = new EventDAL();
 
-            events.EventName = form["Name"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
+            events.EventName = form["Name"];
             events.Details = form["Details"];
-            events.EventPhoto = form["Photo"];
+
+            if (Photo != null && Photo.Length > 0)
+            {
+                // Upload the photo and get the URL
+                var photoUrl = await eventContext.UploadPhotoToFirebaseStorage(Photo);
+                events.EventPhoto = photoUrl;
+            }
 
             await eventDAL.InsertEvent(events);
-
 
             Console.WriteLine("event added");
             return View("AddEvent");
         }
+
     }
 }

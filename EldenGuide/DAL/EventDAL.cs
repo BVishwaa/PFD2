@@ -22,23 +22,12 @@ namespace EldenGuide.DAL
         }
         public async Task<bool> InsertEvent(Event events)
         {
-            //Reference to collection
-            CollectionReference collectionReference = db.Collection("Events");
-
-            // Get a snapshot of the documents in the collection
-            QuerySnapshot querySnapshot = await collectionReference.GetSnapshotAsync();
-
-            // Count the number of documents
-            int numberOfDocuments = querySnapshot.Documents.Count;
-            //Console.WriteLine($"Number of documents in Threads: {numberOfDocuments}");
-
             try
             {
-                DocumentReference docRef = db.Collection("Events").Document(Convert.ToString(numberOfDocuments + 1));
+                DocumentReference docRef = db.Collection("Events").Document(); // Firestore generates ID
 
                 Dictionary<string, object> newEvent = new Dictionary<string, object>
                 {
-                    {"EventID", numberOfDocuments + 1 },
                     {"EventName", events.EventName},
                     {"Details", events.Details },
                     {"EventPhoto", events.EventPhoto }
@@ -51,10 +40,11 @@ namespace EldenGuide.DAL
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding thread to Firestore: {ex.Message}");
+                Console.WriteLine($"Error adding event to Firestore: {ex.Message}");
                 return false;
             }
         }
+
         public async Task<List<Event>> GetEvents()
         {
             int id = 1;
@@ -97,6 +87,19 @@ namespace EldenGuide.DAL
             int total = snapshot.Documents.Count;
             return total;
         }
+
+        private async Task<string> UploadPhotoToFirebaseStorage(IFormFile photo)
+        {
+            var firebaseStorage = // Initialize your Firebase Storage
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
+
+            using (var stream = photo.OpenReadStream())
+            {
+                var task = await firebaseStorage.Child("images").Child(fileName).PutAsync(stream);
+                return await task; // This will be the download URL of the image
+            }
+        }
+
 
     }
 }
