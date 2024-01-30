@@ -1,5 +1,5 @@
 ﻿const APP_ID = "d939b241827e40d88cafdaf17103a8f6"
-const TOKEN = "007eJxTYNgRojZdY7olQ9v5p9ouN4pZ3b2q4tJ/Tm1Q9Wky9PjDt0qBIcXS2DLJyMTQwsg81cQgxcIiOTEtJTHN0NzQwDjRIs3M69r21IZARoZ/rQmMjAwQCOLzMLjmpKTmKbiXZqakKjAwAAC9nCCp"
+const TOKEN = "007eJxTYHikb3PlK2fIo9Vvlq97yn/bz16kf+shi4LJ37NSbO85ToxUYEixNLZMMjIxtDAyTzUxSLGwSE5MS0lMMzQ3NDBOtEgzO9y8I7UhkJHhYrAZIyMDBIL43AyuOSmpeQrupZkpqQwMAMZEI2s="
 const CHANNEL = "Elden Guide"
 
 const client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' })
