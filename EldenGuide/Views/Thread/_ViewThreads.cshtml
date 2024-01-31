@@ -2,53 +2,58 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/threads.css">
     </head>
     <body>
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <h4 class="mtop">Events</h4>
+        <div class="row">
                 @foreach (Event events in Model.Event)
                 {
-                    <!--display only top 3 most recent events-->
-                    @if(Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"])-3))
+                    @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 3))
                     {
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <a asp-controller="Thread" asp-action="ViewComments" class="card-title"><h5>@events.EventName</h5></a>
-                                    <p class="card-text">@events.EventPhoto</p>
+                            <div class="card">
+                                <div>
+                                    <a asp-controller="Thread" asp-action="ViewComments"><h5>@events.EventName</h5></a>
+                                    <p>@events.EventPhoto</p>
                                 </div>
                             </div>
-                        </div>
-                    }            
+                    }
                 }
-            </div>
         </div>
 
-        <button id="allButton">View all</button>
-        <button id="bankingButton">Banking</button>
-        <button id="healthButton">Health</button>
-        <button id="teleButton">Telecomunication</button>
-        <button id="fooddeliveryButton">Food Delivery</button>
-        <button id="transportButton">Transport</button>
+        <div class="content-area">
+            <table class="threads-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Threads thread in Model.Threads)
+                    {
+                        <tr>
+                            <td><a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID">@thread.Title</a></td>
+                            <td>@thread.DatePosted</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <br />
+            
 
-        <div class="container">
-            <div class="row">
-                @foreach (Threads thread in Model.Threads)
-                {
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                            <a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID" class="card-title"><h5>@thread.Title</h5></a>
-                                <p class="card-text">@thread.Description</p>
-                                <p class="card-text">@thread.Username @thread.DatePosted</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
+        <div class="categories-area">
+            <!-- Category buttons on the right -->
+            <h3 class>Categories</h3>
+            <button class="categories-button" id="allButton">View all</button>
+            <button class="categories-button" id="bankingButton">Banking</button>
+            <button class="categories-button" id="healthButton">Health</button>
+            <button class="categories-button" id="teleButton">Telecommunication</button>
+            <button class="categories-button" id="fooddeliveryButton">Food Delivery</button>
+            <button class="categories-button" id="transportButton">Transport</button>
         </div>
         
         <ol>

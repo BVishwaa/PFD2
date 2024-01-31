@@ -1,0 +1,87 @@
+﻿.container {
+    width: 100%;
+}
+
+.row {
+    display: flex  !important;
+    margin-bottom: 20px !important;
+    justify-content: center !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+.card {
+    margin-right: 20px;
+    flex: 0 1 auto;
+}
+
+.mtop{
+    margin-top: 20px;
+}
+
+#button-new {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#threadContainer {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+
+.threads-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    margin-bottom: 20px; 
+}
+
+    .threads-table th,
+    .threads-table td {
+        border: 1px solid #ddd; /* Light grey border */
+        padding: 8px; /* Padding inside cells */
+        text-align: left; /* Align text to the left */
+    }
+
+    .threads-table th {
+        background-color: #f2f2f2; /* Light grey background for header */
+    }
+
+
+.categories-area {
+    position: fixed;
+    top: 45%;
+    right: 60px; 
+    transform: translateY(-50%);
+    background: linear-gradient(to bottom, #f9f9f9 0%,#f0f0f0 100%); /* subtle gradient */
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif; /* modern font */
+    z-index: 1000; /* ensure it's above other content */
+}
+
+.categories-button {
+    display: block;
+    margin-bottom: 10px; /* more space */
+    padding: 10px 20px; /* more clickable area */
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px; /* rounded corners */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-size: 16px; /* increased font size */
+    color: #333;
+    text-align: left;
+    transition: background-color 0.3s, box-shadow 0.3s; /* smooth transitions */
+}
+
+    .categories-button:hover {
+        background-color: #e9e9e9; /* hover effect */
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 3px rgba(0, 0, 0, 0.1);
+    }
