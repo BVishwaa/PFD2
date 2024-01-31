@@ -14,7 +14,7 @@
             <label asp-for="Title"
                    class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9 col-md-5">
-                <input type ="text" id="Title" class="form-control" />
+                <input type ="text" name ="Title" id="Title" class="form-control" />
             </div>
         </div>
         <div class="row mb-3">
@@ -36,7 +36,7 @@
             <label asp-for="Description"
                    class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9 col-md-5">
-                <input type ="text" id ="Desc" class="form-control" />
+                <input type ="text" name = "Desc" id ="Desc" class="form-control" />
             </div>
         </div>
         <div class="row mb-3">
@@ -45,26 +45,7 @@
             </div>
         </div>
         <!--the above doesnt work-->
-        <table>
-            <tr>
-                <td>
-                    <select name="Category" id="Category">
-                        <!---Category input-->
-                        <option value="All">Select Category: </option>
-                        <option value="Banking">Banking</option>
-                        <option value="Health">Health</option>
-                        <option value="Telecommunications">Telecommunications</option>
-                        <option value="Food Delivery">Food Delivery</option>
-                        <option value="Transport">Transport</option>
-                    </select>
-                    <label for="Title">Title:</label>
-                    <input type="text" name="Title" id="Title" />
-                    <label for="Title">Description:</label>
-                    <input type="text" name="Desc" id="Desc" />
-                    <input type="submit">
-                </td>
-            </tr>
-        </table>
+        
     }
 
     <form id="form" asp-controller="Thread" asp-action="WriteNewThread" onsubmit="handleSubmit()">

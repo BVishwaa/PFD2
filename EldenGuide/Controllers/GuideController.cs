@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using EldenGuide.Models;
 using System.Data.Common;
 using Microsoft.AspNetCore.Html;
+using Microsoft.CodeAnalysis.Differencing;
 
 namespace EldenGuide.Controllers
 {
@@ -90,6 +91,7 @@ namespace EldenGuide.Controllers
         {
             GuideDAL guideDAL = new GuideDAL();
             Guide GuideTemplate = new Guide();
+
             GuideTemplate = await guideDAL.ExtractGuideID(guideId);
             return View(GuideTemplate);
         }
@@ -124,16 +126,17 @@ namespace EldenGuide.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form)
-        {
-            
-
+        public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form, IFormFile AppLogo)
+        { 
             string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
 
+            guide.AppLogo = AppLogo.FileName;
 
             GuideDAL guideDAL = new GuideDAL();
             await guideDAL.AddGuide(guide);
+            
+            await saveImage(AppLogo);
 
             return RedirectToAction("StaffGuideList", "Guide");
         }
@@ -144,17 +147,37 @@ namespace EldenGuide.Controllers
             Guide GuideToEdit = new Guide();
             GuideToEdit = await guideDAL.ExtractGuideID(guideId);
 
-            await guideDAL.EditGuide(GuideToEdit);
-
             return View(GuideToEdit);
         }
 
         [HttpPost]
-
-        public async Task<ActionResult> EditGuide(Guide guide)
+        public async Task<ActionResult> EditGuide(Guide guide, IFormCollection form, IFormFile AppLogo)
         {
+            string StoreTextbox = form["tb"];
+            guide.TOC = StoreTextbox.Split(",");
 
+            guide.AppLogo = AppLogo.FileName;
+
+            GuideDAL guideDAL = new GuideDAL();
+            await guideDAL.EditGuide(guide);
+
+            await saveImage(AppLogo);
             return RedirectToAction("StaffGuideList", "Guide");
+        }
+
+        public async Task<Boolean> saveImage(IFormFile image)
+        {
+            if (image != null && image.Length > 0)
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/For-Logos/", image.FileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+                
+            }
+            return true;
         }
     }
 }
