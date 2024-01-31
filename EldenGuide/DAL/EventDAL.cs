@@ -23,15 +23,24 @@ namespace EldenGuide.DAL
         }
         public async Task<bool> InsertEvent(Event events)
         {
+            //Reference to collection
+            CollectionReference collectionReference = db.Collection("Events");
+
+            // Get a snapshot of the documents in the collection
+            QuerySnapshot querySnapshot = await collectionReference.GetSnapshotAsync();
+
+            // Count the number of documents
+            int numberOfDocuments = querySnapshot.Documents.Count;
+            //Console.WriteLine($"Number of documents in Threads: {numberOfDocuments}");
             try
             {
-                DocumentReference docRef = db.Collection("Events").Document(); // Firestore generates ID
+                DocumentReference docRef = db.Collection("Events").Document(Convert.ToString(numberOfDocuments + 1)); // Firestore generates ID
 
                 Dictionary<string, object> newEvent = new Dictionary<string, object>
                 {
                     {"EventName", events.EventName},
                     {"Details", events.Details },
-                    {"EventPhoto", events.EventPhoto }
+                    {"EventPhoto", "/images/EvenImg/" + events.EventPhoto }
                 };
 
                 await docRef.SetAsync(newEvent);
@@ -50,6 +59,7 @@ namespace EldenGuide.DAL
         {
             int id = 1;
             List<Event> eventList = new List<Event>();
+            
 
             while (true)
             {
@@ -65,7 +75,7 @@ namespace EldenGuide.DAL
                         EventID = data.EventID,
                         EventName = data.EventName,
                         Details = data.Details,
-                        EventPhoto = data.EventPhoto,
+                        EventPhoto = Path.Combine("~/images/EventImg/", data.EventPhoto)
                     });
                 }
                 else
