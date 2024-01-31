@@ -6,12 +6,14 @@
     z-index: 1000;
   }
 
-  .navbar ul li{
+
+/*
+.navbar ul li {
     font-family: 'Times New Roman', Times, serif;
-    display:inline-flex;
+    display: inline-flex;
     line-height: 16px;
-    margin: 0 5px;  
-  }
+    margin: 0 5px;
+}
   
   .navbar a:hover {
     background-color: #D0CFCF;
@@ -48,4 +50,4 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 25px;
-  }
+  }*/

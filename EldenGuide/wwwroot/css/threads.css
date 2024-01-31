@@ -45,7 +45,7 @@
 
 .categories-area {
     position: fixed;
-    top: 45%;
+    top: 34%;
     right: 10%; 
     transform: translateY(-50%);
     background: linear-gradient(to bottom, #f9f9f9 0%,#f0f0f0 100%); 

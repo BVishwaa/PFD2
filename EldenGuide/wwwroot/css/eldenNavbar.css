@@ -239,6 +239,10 @@ img{
     height:10em;
 }
 
+.container{
+    padding-top:1em;
+}
+
 .hide{
     display:none;
 }

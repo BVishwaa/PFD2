@@ -1,6 +1,6 @@
 ﻿using EldenGuide.DAL;
 using EldenGuide.Models;
-using FirebaseAdmin.Auth.Hash;
+//using FirebaseAdmin.Auth.Hash;    //Uncomment later
 using Google.Cloud.Firestore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

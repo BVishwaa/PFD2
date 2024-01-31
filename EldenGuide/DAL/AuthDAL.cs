@@ -17,7 +17,7 @@ using System.Xml.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
-using FirebaseAdmin.Auth.Hash;
+//using FirebaseAdmin.Auth.Hash;   //uncomment later
 //using Firebase.Auth;
 
 namespace EldenGuide.DAL
