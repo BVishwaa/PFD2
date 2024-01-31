@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/chatRoom.css">
+</head>
+<body>
+    <div id="chatRoomContainer">
+        <div id="header">Chat Room</div>
+        <div>User</div>
+        <div><input type="text" id="userInput" placeholder="Enter your name"></div>
+        <div>Message</div>
+        <div><input type="text" id="messageInput" placeholder="Type your message"></div>
+        <input type="button" id="sendButton" value="Send Message">
+        <div>
+            <ul id="messagesList">
+            </ul>
+        </div>
+    </div>
+    <script src="Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.signalR.min.js" type="text/javascript"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
+</html>

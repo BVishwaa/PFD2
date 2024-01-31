@@ -8,14 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="agora_rtc_sdk" Version="4.2.1" />
+    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
-    <PackageReference Include="Google.Cloud.Firestore" Version="3.4.0" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="3.5.0" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="4.7.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\EventImg\" />
+    <Folder Include="wwwroot\lib\microsoft\" />
   </ItemGroup>
 
 </Project>
