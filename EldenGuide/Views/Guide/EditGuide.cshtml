@@ -113,6 +113,12 @@
                         <input type="hidden" id="jdr" asp-for="@Model.Content" />
                         <input type="hidden" id="hId" asp-for="@Model.GuideId" />
                     }
+
+                        <!--Delete form-->
+                    <form id="gDelete" onclick="guideDelete()" asp-controller="Guide" asp-action="DeleteGuide" >
+                            <input type="submit" value="Delete" />
+                    <input type="hidden" id="hId" name="hId" asp-for="@Model.GuideId" />
+                </form>
                 </td>
             </tr>
         </table>
@@ -230,6 +236,13 @@
             return false;
         }
 
+        function guideDelete(event){
+            let text = "Are you sure you want to delete @Model.AppName";
+            if (confirm(text) == false) {
+                event.stopImmediatePropagation();
+                return false;
+            }
+        }
     </script>
 
     </body>
