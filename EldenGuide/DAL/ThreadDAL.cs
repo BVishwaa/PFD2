@@ -58,7 +58,7 @@ namespace EldenGuide.DAL
                     {"Category", thread.Category },
                     {"Description", thread.Description },
                     {"Username", "guest" },
-                    {"DatePosted", "19/01/2024" }
+                    {"DatePosted", Convert.ToString(DateTime.Now) }
                 };
 
                 await docRef.SetAsync(NewThread);

@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Firebase.Storage;
+using Google.Cloud.Firestore.V1;
 
 namespace EldenGuide.Controllers
 {
     public class EventController : Controller
     {
         private EventDAL eventContext = new EventDAL();
+        
         public IActionResult Event()
         {
             return View();
@@ -110,31 +112,29 @@ namespace EldenGuide.Controllers
 
             events.EventName = form["Name"];
             events.Details = form["Details"];
-
-            if (Photo != null && Photo.Length > 0)
-            {
-                // Upload the photo and get the URL
-                var photoUrl = await UploadPhotoToFirebaseStorage(Photo);
-                events.EventPhoto = photoUrl;
-            }
+            events.EventPhoto = Photo.FileName;
 
             await eventDAL.InsertEvent(events);
+
+            await saveImage(Photo);
 
             Console.WriteLine("event added");
             return View("AddEvent");
         }
 
-        private async Task<string> UploadPhotoToFirebaseStorage(IFormFile photo)
+        public async Task<Boolean> saveImage(IFormFile image)
         {
-            var firebaseStorage = new FirebaseStorage("your_firebase_storage_bucket");// Initialize your Firebase Storage
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
-
-            using (var stream = photo.OpenReadStream())
+            if (image != null && image.Length > 0)
             {
-                var task = await firebaseStorage.Child("images").Child(fileName).PutAsync(stream);
-                return task; // This will be the download URL of the image
-            }
-        }
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/EventImg/", image.FileName);
 
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+
+            }
+            return true;
+        }
     }
 }
