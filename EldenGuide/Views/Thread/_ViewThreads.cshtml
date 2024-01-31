@@ -4,20 +4,30 @@
     <head>
         <link rel="stylesheet" href="~/css/threads.css">
         <script src="/js/forum.js"></script>
-    
         <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/bttBtn.css">
+    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </head>
     <body>
+    <div class="gif-container">
+        <div class="gif-text">Use me to translate!</div>
+        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
+    </div>
+    <div id="google_translate_element"></div>
+
 
     <div class="categories-area">
         <h3>Categories</h3>
-        <button class="categories-button" id="all">View all</button>
-        <button class="categories-button" id="Banking">Banking</button>
-        <button class="categories-button" id="Health">Health</button>
-        <button class="categories-button" id="Telecommunication">Telecommunication</button>
-        <button class="categories-button" id="Food Delivery">Food Delivery</button>
-        <button class="categories-button" id="Transport">Transport</button>
+        <button class="categories-button button" id="all">View all</button>
+        <button class="categories-button button" id="Banking">Banking</button>
+        <button class="categories-button button" id="Health">Health</button>
+        <button class="categories-button button" id="Telecommunication">Telecommunication</button>
+        <button class="categories-button button" id="Food Delivery">Food Delivery</button>
+        <button class="categories-button button" id="Transport">Transport</button>
     </div>
+
     <div class="container">
         <div class="row">
             @foreach (Threads thread in Model.Threads)

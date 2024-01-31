@@ -6,8 +6,19 @@
     <script src="/js/forum.js"></script>
 
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/bttBtn.css">
+    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+    <div class="gif-container">
+        <div class="gif-text">Use me to translate!</div>
+        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
+    </div>
+    <div id="google_translate_element"></div>
+
+
     <div class="container">
         <div class="row">
             @foreach (var events in Model)

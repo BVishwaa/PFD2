@@ -2,8 +2,12 @@
     ViewData["Title"] = "View Threads";
 }
 <head>
+    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
 </head>
-<h4 class="PageTitle">View threads</h4>
-<p><a asp-controller="Thread" asp-action="WriteNewThread">Add new thread</a></p>
+
+
+<!--<h4 class="PageTitle" style="font-family:'Times New Roman', Times, serif;font-size:25px;">View threads</h4>-->
+<p style="font-family:'Times New Roman', Times, serif;font-size:25px; text-align:right;"><a asp-controller="Thread" asp-action="WriteNewThread">Create a new thread</a></p>
 <partial name="~/Views/Thread/_ViewThreads.cshtml" model="@Model" />

@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <partial name="~/Views/Comment/_ViewComments.cshtml" model="@Model.Comments" />
+<link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
 @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
 {
