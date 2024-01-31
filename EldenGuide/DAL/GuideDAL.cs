@@ -120,6 +120,16 @@ namespace EldenGuide.DAL
                 return true; 
             }
 
+            public async Task<Boolean> DeleteGuide(string GuideId)
+            {
+
+                DocumentReference docRef = db.Collection("Guides").Document(GuideId);
+                
+                await docRef.DeleteAsync();
+                
+                return true;
+            }
+
        
     }
 }

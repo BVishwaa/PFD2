@@ -179,5 +179,19 @@ namespace EldenGuide.Controllers
             }
             return true;
         }
+
+        [HttpPost]
+
+        public async Task<ActionResult> DeleteGuide(IFormCollection form)
+        {
+            GuideDAL guideDAL = new GuideDAL();
+            Guide GuideToDelete = new Guide();
+            //GuideToDelete = await guideDAL.ExtractGuideID(guideId);
+
+            await guideDAL.DeleteGuide(form["hId"]);
+
+            return RedirectToAction("StaffGuideList", "Guide"); // Redirect to a suitable page
+
+        }
     }
 }
