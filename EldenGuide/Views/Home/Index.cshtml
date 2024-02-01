@@ -19,7 +19,7 @@
     <div id="google_translate_element" style="position: fixed;"></div>
 
 
-    <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+    <button onclick="audio.play();" id="bttBtn" title="Go to top">Back to top</button>
     <br />
     <br />
     <br />
@@ -134,7 +134,7 @@
 
     
     
- 
+    <script src="/js/penguinspeech.js"></script>
     <script type="module">
         import { redirectToAuthPage } from '../../wwwroot/js/auth.js';
 
@@ -142,9 +142,10 @@
         redirectToAuthPage();
       });
     </script>
-
     <script src="/js/bttbtn.js"></script>
-
+    <script type="text/javascript">
+        const audio = new Audio();
+        audio.src = "images/fall.mp3";</script>
 
 </body>
 </html>
