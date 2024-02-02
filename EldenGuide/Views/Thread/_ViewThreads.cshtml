@@ -16,7 +16,7 @@
         <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
     </div>
     <div id="google_translate_element"></div>
-
+    <h2>Events</h2><br />
     <div class="container">
         <div class="row">
             @foreach (Event events in Model.Event)
@@ -36,6 +36,7 @@
             }
         </div>
         <br />
+        <h2>Threads</h2><br />
         <a asp-controller="Event" asp-action="Index">Click here to view more events</a><br /><br />
     </div>
     <div class="categories-area">
