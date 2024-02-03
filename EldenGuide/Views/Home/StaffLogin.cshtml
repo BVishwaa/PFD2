@@ -3,102 +3,77 @@
     ViewData["Title"] = "Staff Login";
 }
 <html>
-    <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Staff Login</title>
-        
-    <style>
-        * {
-            box-sizing: border-box;
-        }
 
-        /* Create two equal columns that float next to each other */
-        .column {
-            float: left;
-            width: 50%;
-            padding: 10px;
-            height: auto; /* Adjust or remove as needed */
 
-            display: flex; /* Added */
-            flex-direction: column; /* Added */
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-        }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+          crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/1bb416726a.js"
+            crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="~/css/threads.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous" />
+
     <link rel="stylesheet" href="styles/auth.css" />
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <script src="/js/script.js"></script>
-    <link rel="stylesheet" href="/css/pingu.css">
+
     <script src="scripts\script.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    </head>
+</head>
+<body class="min-vh-100 row m-0 position-relative">
+    <div id="navbarContainer" class="container"></div>
 
-    <body >
-    <div class="gif-container">
-        <div class="gif-text">Use me to translate!</div>
-        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
-    </div>
-    <div id="google_translate_element"></div>
-    <div class="row">
-        <div class="column">
-            <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                           background="transparent"
-                           speed="1"
-                           style="width: 100%; height: auto"
-                           loop
-                           autoplay></lottie-player>
+    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
+        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
+                       background="transparent"
+                       speed="1"
+                       style="width: 100%; height: auto"
+                       loop
+                       autoplay></lottie-player>
 
-            <h1 class="mt-2 mb-3">Let's go!</h1>
-            <p>
-                Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
-                <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
-            </p>
+        <h1 class="mt-2 mb-3">Let's go!</h1>
+        <p>
+            Sign up for Elden Guide and use our detailed user guides designed to close the digital divide.
+            <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
+        </p>
+    </aside>
 
+    <h3>Staff Login</h3>
+    @using (Html.BeginForm("StaffLogin", "Home", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))
+    {
+        @*<input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="submit" value="Sign In" />*@
+        <div class="row mb-3">
+            <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="email" id="Email" name="Email" class="form-control" />
+            </div>
         </div>
-        <div class="column">
-            <h3>Staff Login</h3>
-        @using (Html.BeginForm("StaffLogin", "Auth", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))
-            {
-                @*<input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" value="Sign In" />*@
-            <div class="row mb-3">
-                <label asp-for="Email" class="col-sm-3 col-form-label"></label>
-                <div class="col-sm-9 col-md-5">
-                    <input type="email" id="Email" class="form-control" />
-                </div>
-
+        <div class="row mb-3">
+            <label asp-for="Password"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="password" id="Password" name="Password" class="form-control" />
             </div>
-            <div class="row mb-3">
-                <label asp-for="Password"
-                       class="col-sm-3 col-form-label"></label>
-                <div class="col-sm-9 col-md-5">
-                    <input type="password" id="Password" class="form-control" />
-                </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" />
             </div>
+        </div>
     }
     <label>@Html.ValidationSummary()</label>
-   
-
-            <div class="row mb-3">
-                <div class="col-sm-9 offset-sm-3">
-                    <input type="submit" />
-                </div>
-            </div>
-        }
-    </div>
-    </div>
 
 
     <!--JavaScript-->
@@ -125,5 +100,5 @@
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous"></script>
 
-    </body>
+</body>
 </html>
