@@ -13,106 +13,70 @@
     <link rel="stylesheet" href="~/css/threads.css">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
 
-        /* Create two equal columns that float next to each other */
-        .column {
-            float: left;
-            width: 50%;
-            padding: 10px;
-            height: auto; /* Adjust or remove as needed */
 
-            display: flex; /* Added */
-            flex-direction: column; /* Added */
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-        }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    </style>
-    <script src="/js/script.js"></script>
-    <link rel="stylesheet" href="/css/bttBtn.css">
-    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="scripts\script.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 
-<body>
-    <div class="gif-container">
-        <div class="gif-text">Use me to translate!</div>
-        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
-    </div>
-    <div id="google_translate_element"></div>
+<body class="min-vh-100 row m-0 position-relative">
+    <div id="navbarContainer" class="container"></div>
 
+    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
+        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
+                       background="transparent"
+                       speed="1"
+                       style="width: 100%; height: auto"
+                       loop
+                       autoplay></lottie-player>
 
-    .<div class="row">
-        <div class="column">
-                <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                               background="transparent"
-                               speed="1"
-                               style="width: 100%; height: auto"
-                               loop
-                               autoplay></lottie-player>
+        <h1 class="mt-2 mb-3">Let's go!</h1>
+        <p>
+            Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
+            <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
+        </p>
+    </aside>
 
-                <h1 class="mt-2 mb-3">Let's go!</h1>
-                <p>
-                    Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
-                    <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
-                </p>
-
+    <!-- Log In -->
+    @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post, new { onsubmit = "return SignIn()" }))
+    {
+        @*<input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="submit" value="Sign In" />*@
+        <div class="row mb-3">
+            <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="email" id="Email" name="Email" class="form-control" />
+            </div>
         </div>
-        <div class="column">
-            <!-- Log In -->
-            @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post, new { onsubmit = "return SignIn()" }))
-            {
-                @*<input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" value="Sign In" />*@
-                <div class="row mb-3">
-                    <label asp-for="Email"  class="col-sm-3 col-form-label"></label>
-                    <div class="col-sm-9 col-md-5">
-                        <input type="email" id="Email" class="form-control" />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label asp-for="Password"
-                           class="col-sm-3 col-form-label"></label>
-                    <div class="col-sm-9 col-md-5">
-                        <input type="password" id="Password" class="form-control" />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-9 offset-sm-3">
-                        <input type="submit" />
-                    </div>
-                </div>
-
-                <br /><br /><br />
-                <a asp-action="NewUser" asp-controller="Auth" class="btn btn-primary">Sign Up</a>
+        <div class="row mb-3">
+            <label asp-for="Password"
+                   class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 col-md-5">
+                <input type="password" id="Password" name="Password" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-9 offset-sm-3">
+                <input type="submit" />
+            </div>
+        </div>
+    }
+    <a asp-action="NewUser" asp-controller="Auth" class="btn btn-primary">Sign Up</a>
 
 
-                <a asp-action="Staff" asp-controller="Auth" class="btn btn-primary">Staff Login</a>
-            }
-           
-
-       
-    
+    <a asp-action="Staff" asp-controller="Auth" class="btn btn-primary">Staff Login</a>
 
 
     @*<!-- Sign Up -->
     @using (Html.BeginForm("NewUser", "Auth", FormMethod.Post, new { onsubmit = "return NewUser()"}))
     {
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <input type="submit" value="Sign Up" />
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="submit" value="Sign Up" />
     }*@
     <!-- JavaScript for Firebase Authentication -->
     <script type="module" src="./js/site.js"></script>
@@ -121,9 +85,9 @@
         <input type="hidden" id="password" asp-for="@Model.Password" />
     </form>
     @*<form id="form" asp-controller="NewUser" asp-action="NewUser" onsubmit="NewUser()">
-        <input type="hidden" id="email" asp-for="@Model.Email" />
-        <input type="hidden" id="password" asp-for="@Model.Password" />
-        <input type="hidden" id="username" asp-for="@Model.Username" />
+    <input type="hidden" id="email" asp-for="@Model.Email" />
+    <input type="hidden" id="password" asp-for="@Model.Password" />
+    <input type="hidden" id="username" asp-for="@Model.Username" />
     </form>*@
     <script>
         function SignIn() {
@@ -144,139 +108,139 @@
             crossorigin="anonymous"></script>
 
     <script type="module" src="./js/auth.js"></script>
-            <script src="/js/penguinspeech.js"></script>
+
     @*<script>
-        function NewUser() {
-            console.log('NewUser called');
-            document.getElementById('username').value = document.getElementById('Username').value;
-            document.getElementById('email').value = document.getElementById('Email').value;
-            document.getElementById('password').value = document.getElementById('Password').value;
-        };  
+    function NewUser() {
+    console.log('NewUser called');
+    document.getElementById('username').value = document.getElementById('Username').value;
+    document.getElementById('email').value = document.getElementById('Email').value;
+    document.getElementById('password').value = document.getElementById('Password').value;
+    };
 
     </script>*@
 
     @*<script>
-        document.getElementById('signInForm').addEventListener('submit', handleSignInSubmit);
-        document.getElementById('signUpForm').addEventListener('submit', handleSignUpSubmit);
+    document.getElementById('signInForm').addEventListener('submit', handleSignInSubmit);
+    document.getElementById('signUpForm').addEventListener('submit', handleSignUpSubmit);
 
-        function handleSignInSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementsByName('email')[0].value;
-            const password = document.getElementsByName('password')[0].value;
-            // Further processing, like validation or AJAX submission
-        }
+    function handleSignInSubmit(event) {
+    event.preventDefault();
+    const email = document.getElementsByName('email')[0].value;
+    const password = document.getElementsByName('password')[0].value;
+    // Further processing, like validation or AJAX submission
+    }
 
-        function handleSignUpSubmit(event) {
-            event.preventDefault();
-            const username = document.getElementsByName('username')[0].value;
-            const email = document.getElementsByName('email')[0].value;
-            const password = document.getElementsByName('password')[0].value;
-            // Further processing, like validation or AJAX submission
-        }
+    function handleSignUpSubmit(event) {
+    event.preventDefault();
+    const username = document.getElementsByName('username')[0].value;
+    const email = document.getElementsByName('email')[0].value;
+    const password = document.getElementsByName('password')[0].value;
+    // Further processing, like validation or AJAX submission
+    }
     </script>*@
 
     @*<main class="col-md-6 flex-fill d-flex flex-column gap-4 p-5 justify-content-center">
-        <!-- <input type="text" name="emailOrUsername" id="emailOrUsername" placeholder="Enter your email or username" /> -->
-        <!-- temp sign in -->
-        <h3>Enter your Elden Guide username or the email you used to sign up:</h3>
-        <input type="text" name="emailOrUsername" id="emailOrUsername" placeholder="Username/Email" />
-        <input type="password"
-               name="password"
-               id="signInPassword"
-               placeholder="Password" />
+    <!-- <input type="text" name="emailOrUsername" id="emailOrUsername" placeholder="Enter your email or username" /> -->
+    <!-- temp sign in -->
+    <h3>Enter your Elden Guide username or the email you used to sign up:</h3>
+    <input type="text" name="emailOrUsername" id="emailOrUsername" placeholder="Username/Email" />
+    <input type="password"
+    name="password"
+    id="signInPassword"
+    placeholder="Password" />
 
-        <div class="d-flex mb-5">
-            <button id="signIn" class="btn btn-primary">Sign In</button>
-        </div>
-        <div class="d-flex gap-3 mt-1">
-            <h4>Or create a new account here:</h4>
-            <button id="openSignUp" class="btn btn-primary">Sign Up</button>
-        </div>
-        <div id="google_translate_element"></div>
+    <div class="d-flex mb-5">
+    <button id="signIn" class="btn btn-primary">Sign In</button>
+    </div>
+    <div class="d-flex gap-3 mt-1">
+    <h4>Or create a new account here:</h4>
+    <button id="openSignUp" class="btn btn-primary">Sign Up</button>
+    </div>
+    <div id="google_translate_element"></div>
 
     </main>
 
 
     <div class="signup-popup">
-        <div class="popup-content">
-            <!-- Your sign-up form elements -->
-            <input type="text" name="username" id="username" placeholder="Username" />
-            <input type="email" name="email" id="email" placeholder="Email Address" />
-            <input type="password" name="password" id="password" placeholder="Password" />
-            <div class="d-flex flex-row gap-4">
-                <button id="signUp" class="btn btn-primary flex-fill">Sign Up</button>
-                <button class="btn btn-danger flex-fill" id="closeSignUp">Close</button>
-            </div>
-        </div>
+    <div class="popup-content">
+    <!-- Your sign-up form elements -->
+    <input type="text" name="username" id="username" placeholder="Username" />
+    <input type="email" name="email" id="email" placeholder="Email Address" />
+    <input type="password" name="password" id="password" placeholder="Password" />
+    <div class="d-flex flex-row gap-4">
+    <button id="signUp" class="btn btn-primary flex-fill">Sign Up</button>
+    <button class="btn btn-danger flex-fill" id="closeSignUp">Close</button>
+    </div>
+    </div>
 
     </div>*@
-@*   <script type="module">
-        import { getAuth, createUserwithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js'
-        signUp.addEventListener('click', (e) =>{
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+    @*   <script type="module">
+    import { getAuth, createUserwithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js'
+    signUp.addEventListener('click', (e) =>{
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
-            
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed up
-                    const user = userCredential.user;
-                    // ...
-                    alert('User created successfully');
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    // ..
-                    alert("errorMessage");  
-                });
-        });
-        //createuserwithemailandpassword(auth, email, password)
-        //    .then((usercredential) => {
-        //         signed up
-        //        const user = usercredential.user;
-        //         ...
-        //    })
-        //    .catch((error) => {
-        //        const errorcode = error.code;
-        //        const errormessage = error.message;
-        //         ..
-        //    });
-        // fetch and inject the content of the navbar.html file
-        //fetch('./components/navbar.html')
-        //    .then(response => response.text())
-        //    .then(html => {
-        //        document.getelementbyid('navbarcontainer').innerhtml = html;
-        //    });
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+    // Signed up
+    const user = userCredential.user;
+    // ...
+    alert('User created successfully');
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    alert("errorMessage");
+    });
+    });
+    //createuserwithemailandpassword(auth, email, password)
+    //    .then((usercredential) => {
+    //         signed up
+    //        const user = usercredential.user;
+    //         ...
+    //    })
+    //    .catch((error) => {
+    //        const errorcode = error.code;
+    //        const errormessage = error.message;
+    //         ..
+    //    });
+    // fetch and inject the content of the navbar.html file
+    //fetch('./components/navbar.html')
+    //    .then(response => response.text())
+    //    .then(html => {
+    //        document.getelementbyid('navbarcontainer').innerhtml = html;
+    //    });
     </script>*@
 
-   
+
     @*<script type="module">
-        import { signIn, signUp } from './js/auth.js';
-        Console.WriteLine("Adding event listeners");
-        document.getElementById('signIn').addEventListener('click', async function () {
-            const emailOrUsername = document.getElementById('emailOrUsername').value;
-            const signInPassword = document.getElementById('signInPassword').value;
-            signIn(emailOrUsername, signInPassword);
-        });
+    import { signIn, signUp } from './js/auth.js';
+    Console.WriteLine("Adding event listeners");
+    document.getElementById('signIn').addEventListener('click', async function () {
+    const emailOrUsername = document.getElementById('emailOrUsername').value;
+    const signInPassword = document.getElementById('signInPassword').value;
+    signIn(emailOrUsername, signInPassword);
+    });
 
-        // Show the sign-up popup
-        document.getElementById('openSignUp').addEventListener('click', function () {
-            document.querySelector('.signup-popup').style.display = 'flex';
-        });
+    // Show the sign-up popup
+    document.getElementById('openSignUp').addEventListener('click', function () {
+    document.querySelector('.signup-popup').style.display = 'flex';
+    });
 
-        // Close the sign-up popup
-        document.getElementById('closeSignUp').addEventListener('click', function () {
-            document.querySelector('.signup-popup').style.display = 'none';
-        });
+    // Close the sign-up popup
+    document.getElementById('closeSignUp').addEventListener('click', function () {
+    document.querySelector('.signup-popup').style.display = 'none';
+    });
 
 
-        document.getElementById('signUp').addEventListener('click', async function () {
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            await signUp(username, email, password);
-        });
+    document.getElementById('signUp').addEventListener('click', async function () {
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    await signUp(username, email, password);
+    });
     </script>*@
 </body>
 </html>

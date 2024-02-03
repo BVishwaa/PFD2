@@ -16,7 +16,7 @@ namespace EldenGuide.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Guide> guideList = new List<Guide>();  
+            List<Guide> guideList = new List<Guide>();
             CategoryDAL categoryDAL = new CategoryDAL();
             guideList = await categoryDAL.OrganizeAllGuides();
             return View(guideList);
