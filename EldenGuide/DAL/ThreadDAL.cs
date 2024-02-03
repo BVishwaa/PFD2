@@ -57,7 +57,7 @@ namespace EldenGuide.DAL
                     {"Title", thread.Title},
                     {"Category", thread.Category },
                     {"Description", thread.Description },
-                    {"Username", "guest" },
+                    {"Username", thread.Username },
                     {"DatePosted", Convert.ToString(DateTime.Now) }
                 };
 

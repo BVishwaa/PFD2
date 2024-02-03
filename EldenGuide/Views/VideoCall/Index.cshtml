@@ -43,8 +43,6 @@
 
     <script>
         var button = document.querySelector('#start');
-        var container = document.querySelector('#jitsi-container');
-        var api = null;
 
         button.addEventListener('click', () => {
             var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -57,16 +55,13 @@
             var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
 
             var domain = "meet.jit.si";
-            var options = {
-                "roomName": randomString,
-                "parentNode": container,
-                "width": 600,
-                "height": 600,
-            };
-            api = new JitsiMeetExternalAPI(domain, options);
-        });
+            var meetingURL = `https://${domain}/${randomString}`;
 
+            // Open the meeting URL in a new tab
+            window.open(meetingURL, '_blank');
+        });
     </script>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

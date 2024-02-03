@@ -116,6 +116,7 @@ namespace EldenGuide.Controllers
             Threads thread = new Threads();
             ThreadDAL threadDAL = new ThreadDAL();
 
+            thread.Username = Convert.ToString(TempData["Username"]);
             thread.Category = form["Category"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
             thread.Description = form["Desc"];
             thread.Title = form["Title"];

@@ -17,6 +17,7 @@ using System.Xml.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using Microsoft.AspNetCore.Mvc;
 //using FirebaseAdmin.Auth.Hash;   //uncomment later
 //using Firebase.Auth;
 
@@ -39,6 +40,28 @@ namespace EldenGuide.DAL
                 ProjectId = projectId,
                 JsonCredentials = json
             }.Build();
+        }
+        public async Task<User> GetUsername(string username)
+        {
+            CollectionReference usersRef = db.Collection("users");
+
+            // Create a query against the collection.
+            Query query = usersRef.WhereEqualTo("Username", username);
+            QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+            if (querySnapshot.Documents.Count > 0)
+            {
+                // Assuming email is unique, there should only be one matching document.
+                DocumentSnapshot documentSnapshot = querySnapshot.Documents[0];
+                if (documentSnapshot.Exists)
+                {
+                    User user = documentSnapshot.ConvertTo<User>();
+                    return user;
+                }
+            }
+
+            // Return null if no user is found
+            return null;
         }
 
         //Get User Email

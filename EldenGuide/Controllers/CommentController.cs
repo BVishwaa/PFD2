@@ -19,11 +19,10 @@ namespace EldenGuide.Controllers
         public async Task<ActionResult> Index(int threadId)
         {
             TempData["ThreadID"] = threadId;
+            TempData.Keep("ThreadID");
 
-            Console.WriteLine(threadId);
-            ViewBag.ThreadId = Convert.ToInt32(threadId);
-            Console.WriteLine(ViewBag.ThreadId);
-            //CommentViewModel mymodel = new CommentViewModel();
+            Console.WriteLine(TempData["ThreadID"]);
+
             var viewModel = new CommentViewModel
             {
                 Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
@@ -114,18 +113,13 @@ namespace EldenGuide.Controllers
         {
             Comment comments = new Comment();
             CommentDAL commentDAL = new CommentDAL();
-
             comments.ThreadID = Convert.ToInt32(TempData["ThreadID"]);
-
-            //comments.ThreadID = Convert.ToInt32(ViewBag.ThreadId);
-
+            comments.Username = Convert.ToString(TempData["Username"]);
             comments.CommentText = form["CommentText"];
-            //comments.ThreadID = Convert.ToInt32(ViewBag.threadid);
 
-            // Retrieve threadId from form
-            //int threadId = Convert.ToInt32(ViewBag.ThreadId);
             int threadId = Convert.ToInt32(TempData["ThreadID"]);
             Console.WriteLine(TempData["ThreadID"]);
+            Console.WriteLine(TempData["Username"]);
 
             await commentDAL.InsertComment(comments);
 
