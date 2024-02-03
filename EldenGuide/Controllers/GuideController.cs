@@ -6,6 +6,7 @@ using EldenGuide.Models;
 using System.Data.Common;
 using Microsoft.AspNetCore.Html;
 using Microsoft.CodeAnalysis.Differencing;
+using Google.Api;
 
 namespace EldenGuide.Controllers
 {
@@ -100,9 +101,31 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> StaffGuideList(string cat)
         {
-            //List<string> categories = new List<string>();
-            
-            CategoryDAL catDAL = new CategoryDAL();
+
+            if (HttpContext.Session.GetString("staffEmail") != null)
+            {
+                CategoryDAL catDAL = new CategoryDAL();
+                List<Guide> output = new List<Guide>();
+                if (cat == "")
+                {
+
+                }
+                else
+                {
+                    output = await catDAL.ExtractGuideIDByCat(cat);   //Extracts all the guides of the particular category parameter
+                }
+
+
+
+                return View(output);
+            }
+
+            else
+            {
+                return RedirectToAction("StaffLogin", "Home");
+            }
+
+            /*CategoryDAL catDAL = new CategoryDAL();
             List<Guide> output = new List<Guide>();
             if (cat == "")
             {
@@ -112,25 +135,41 @@ namespace EldenGuide.Controllers
             {
                 output = await catDAL.ExtractGuideIDByCat(cat);   //Extracts all the guides of the particular category parameter
             }
+
+
             
-
-
-            return View(output);
+            return View(output);*/
         }
 
         public async Task<ActionResult> WriteNewGuide()
         {
-            Guide guide = new Guide();
-            return View(guide);
+            if (HttpContext.Session.GetString("staffEmail") != null)
+            {
+                Guide guide = new Guide();
+                return View(guide);
+            }
+            else
+            {
+                return RedirectToAction("StaffLogin", "Home");
+            }
+            /*Guide guide = new Guide();
+            return View(guide);*/
         }
 
 
         [HttpPost]
         public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form, IFormFile AppLogo)
-        { 
+        {
+            /*if (!TryValidateModel(guide))
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Guide Post.");
+                return View(); // Return to staff login view
+            }*/
+
             string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
 
+            
             guide.AppLogo = AppLogo.FileName;
 
             GuideDAL guideDAL = new GuideDAL();
@@ -138,16 +177,31 @@ namespace EldenGuide.Controllers
             
             await saveImage(AppLogo);
 
+            
             return RedirectToAction("StaffGuideList", "Guide");
         }
 
         public async Task<ActionResult> EditGuide(string guideId)
         {
-            GuideDAL guideDAL = new GuideDAL();
+            if (HttpContext.Session.GetString("staffEmail") != null)
+            {
+                GuideDAL guideDAL = new GuideDAL();
+                Guide GuideToEdit = new Guide();
+                GuideToEdit = await guideDAL.ExtractGuideID(guideId);
+
+                return View(GuideToEdit);
+            }
+
+            else
+            {
+                return RedirectToAction("StaffLogin", "Home");
+            }
+
+            /*GuideDAL guideDAL = new GuideDAL();
             Guide GuideToEdit = new Guide();
             GuideToEdit = await guideDAL.ExtractGuideID(guideId);
-
-            return View(GuideToEdit);
+            
+            return View(GuideToEdit);*/
         }
 
         [HttpPost]
@@ -155,13 +209,18 @@ namespace EldenGuide.Controllers
         {
             string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
+            bool LogoCheck = false;
 
-            guide.AppLogo = AppLogo.FileName;
-
+            if(AppLogo != null)
+            {
+                LogoCheck = true;
+                guide.AppLogo = AppLogo.FileName;
+                await saveImage(AppLogo);
+            }
+                
             GuideDAL guideDAL = new GuideDAL();
-            await guideDAL.EditGuide(guide);
+            await guideDAL.EditGuide(guide, LogoCheck);
 
-            await saveImage(AppLogo);
             return RedirectToAction("StaffGuideList", "Guide");
         }
 

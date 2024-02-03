@@ -3,7 +3,7 @@
     ViewData["Title"] = "Staff Login";
 }
 <html>
-    <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,42 +29,42 @@
 
     <script src="scripts\script.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    </head>
-    <body class ="min-vh-100 row m-0 position-relative">
-        <div id="navbarContainer" class="container"></div>
+</head>
+<body class="min-vh-100 row m-0 position-relative">
+    <div id="navbarContainer" class="container"></div>
 
-        <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
-            <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                           background="transparent"
-                           speed="1"
-                           style="width: 100%; height: auto"
-                           loop
-                           autoplay></lottie-player>
+    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
+        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
+                       background="transparent"
+                       speed="1"
+                       style="width: 100%; height: auto"
+                       loop
+                       autoplay></lottie-player>
 
-            <h1 class="mt-2 mb-3">Let's go!</h1>
-            <p>
-                Sign up for Elden Guide and use our detailed user guides designed to close the digital divide.
-                <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
-            </p>
-        </aside>
+        <h1 class="mt-2 mb-3">Let's go!</h1>
+        <p>
+            Sign up for Elden Guide and use our detailed user guides designed to close the digital divide.
+            <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
+        </p>
+    </aside>
 
-        <h3>Staff Login</h3>
-    @using (Html.BeginForm("StaffLogin", "Auth", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))
-        {
-            @*<input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <input type="submit" value="Sign In" />*@
+    <h3>Staff Login</h3>
+    @using (Html.BeginForm("StaffLogin", "Home", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))
+    {
+        @*<input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="submit" value="Sign In" />*@
         <div class="row mb-3">
             <label asp-for="Email" class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9 col-md-5">
-                <input type="email" id="Email" class="form-control" />
+                <input type="email" id="Email" name="Email" class="form-control" />
             </div>
         </div>
         <div class="row mb-3">
             <label asp-for="Password"
                    class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9 col-md-5">
-                <input type="password" id="Password" class="form-control" />
+                <input type="password" id="Password" name="Password" class="form-control" />
             </div>
         </div>
         <div class="row mb-3">
@@ -73,6 +73,7 @@
             </div>
         </div>
     }
+    <label>@Html.ValidationSummary()</label>
 
 
     <!--JavaScript-->
@@ -99,5 +100,5 @@
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous"></script>
 
-    </body>
+</body>
 </html>

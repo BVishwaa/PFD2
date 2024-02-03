@@ -140,15 +140,16 @@ namespace EldenGuide.Controllers
                 // Replace this with a hash comparison if you implement hashed passwords
                 if (user.Password == form["Password"])
                 {
-                    var userData = new { user.Username, user.Email };
-                    string userJson = System.Text.Json.JsonSerializer.Serialize(userData);
-                    HttpContext.Session.SetString("UserSession", userJson);
+                    //var userData = new { user.Username, user.Email };
+                    //string userJson = System.Text.Json.JsonSerializer.Serialize(userData);
+                    HttpContext.Session.SetString("Username", user.Username);
+                    HttpContext.Session.SetString("UserEmail", user.Email);
                     return RedirectToAction("Index", "Home");
                 }
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View();
+            return RedirectToAction("Auth","Home");
 
             //// Check if the user exists and the password matches
             //if (user != null && user.Password == form["Password"])
@@ -218,7 +219,7 @@ namespace EldenGuide.Controllers
                 HttpContext.Session.SetString("StaffSession", staffJson);
 
                 // Redirect to a secure staff page after login
-                return RedirectToAction("StaffDashboard", "Staff"); // Redirect to the staff dashboard or a relevant page
+                return RedirectToAction("StaffGuideList", "Guide"); 
             }
             else
             {
@@ -282,7 +283,7 @@ namespace EldenGuide.Controllers
             {
                 // Redirect to Index Page ie. Main page
                 Console.WriteLine("Success");
-                return RedirectToAction("Index"); //Success
+                return RedirectToAction("Auth","Home"); //Success
             }
             else
             {
@@ -305,6 +306,7 @@ namespace EldenGuide.Controllers
             //Debug.WriteLine("Nice statement: User created!");
             //return View("AddNewUser");
         }
+        
         public ActionResult LogOut()
         {
             HttpContext.Session.Clear(); // Clear user session
@@ -314,7 +316,7 @@ namespace EldenGuide.Controllers
         public ActionResult StaffLogOut()
         {
             HttpContext.Session.Clear(); // Clear staff session
-            return RedirectToAction("StaffLogin", "Auth"); // Redirect to the staff login page or home page
+            return RedirectToAction("StaffLogin", "Home"); // Redirect to the staff login page or home page
         }
 
 

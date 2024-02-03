@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Event listener for all category buttons
-    ['all', 'Banking', 'Health', 'Telecomunication', 'Food Delivery', 'Transport'].forEach(function (id) {
+    ['all', 'Banking', 'Health', 'Telecommunications', 'Food-Delivery', 'Transport'].forEach(function (id) {
         document.getElementById(id).addEventListener('click', function (event) {
             event.preventDefault();
             filterThreads(this.id);

@@ -41,8 +41,8 @@
         <button class="categories-button button" id="all">View all</button>
         <button class="categories-button button" id="Banking">Banking</button>
         <button class="categories-button button" id="Health">Health</button>
-        <button class="categories-button button" id="Telecommunication">Telecommunication</button>
-        <button class="categories-button button" id="Food Delivery">Food Delivery</button>
+        <button class="categories-button button" id="Telecommunications">Telecommunications</button>
+        <button class="categories-button button" id="Food-Delivery">Food Delivery</button>
         <button class="categories-button button" id="Transport">Transport</button>
     </div>
 
@@ -50,7 +50,7 @@
         <div class="row">
             @foreach (Threads thread in Model.Threads)
             {
-                <div class="col-md-6 thread-item" data-category="@thread.Category">
+                <div class="col-md-6 thread-item " data-category="@thread.Category">
                     <div class="card mb-4">
                         <div class="card-body">
                             <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a>
@@ -74,12 +74,7 @@
 </html>
 <script src="/js/threadingfilter.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<script>
-    document.getElementById(threadid).addEventListener('click', function(event){
-        @ViewBag.ThreadId = asp-route-threadId;
-    })
-</script>
+<script src="/js/penguinspeech.js"></script>
 @* -- Ignore this as threadingfilter will fix the filter
 <script>
     document.addEventListener('DOMContentLoaded', function () {

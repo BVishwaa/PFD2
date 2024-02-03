@@ -20,6 +20,8 @@
 }
 
 
+
+
 .btn {
   display: block;
   width: 100%;
@@ -121,8 +123,14 @@ p{
 
 }
 
-.service-item {
-    width: 30%;
+.nes-btn {
+    min-height:17rem;
+    min-width:25rem;
+    max-width:17rem;
+    max-height:25rem;
+    display:inline-block;
+    overflow:hidden;
+    align-content:center;
 }
 
 .main-container {

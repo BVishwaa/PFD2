@@ -1,14 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@model List<EldenGuide.Models.Guide>
+
+
+<!DOCTYPE html>
 <html>
+
 <head>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/Eldenguide.css">
     <script src="/js/script.js"></script>
+
     <link rel="stylesheet" href="/css/bttBtn.css">
     <link rel="stylesheet" href="/css/pingu.css">
     <script src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
+
 <body>
 
     <div class="gif-container">
@@ -19,7 +26,7 @@
     <div id="google_translate_element" style="position: fixed;"></div>
 
 
-    <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
+    <button onclick="audio.play();" id="bttBtn" title="Go to top">Back to top</button>
     <br />
     <br />
     <br />
@@ -33,39 +40,32 @@
     <section class="services">
         <div class="service-item">
             <a href="#apps">
-                <button type="button" class="nes-btn is-primary" style="border-image-repeat:unset;">
+                <button type="button" class="nes-btn" style="background-color:#667DB4
+;border-image-repeat:unset; cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
+">
                     <img src="Images/For-Logos/About_us.png" style="width: 25%; height: 30%;" alt="App icon">
-                    <br />
-                    <br />
+
                     <h2>Apps</h2><p3>Learn how to understand what applications are!</p3>
-                    <br />
-                    <br />
                 </button>
             </a>
         </div>
-        <div class="service-item ">
-            <a asp-controller="Event" asp-action="Index" style="border-image-repeat:unset;" class="nes-btn is-success">     
+        <div class="service-item">
+            <a asp-controller="Event" asp-action="Index" style="border-image-repeat:unset;" class="nes-btn is-success"><br />    
             <img src=Images/For-Logos/tutorial.png style="width: 25%; height: 30%;" alt="Tutorial icon"> 
-                <br/>
-                <br />
+
                 <h2>Events</h2>
                 <p3>Find out currently what is happening!</p3>
-                <br />
-                <br />
-                <br />
-
             </a>
             </button>
         </div>
         <div class="service-item">
-            <a asp-controller="Thread" asp-action="Index" style="border-image-repeat:unset; color: white;" class="nes-btn is-error">
+
+            <a asp-controller="Thread" asp-action="Index" style="border-image-repeat:unset; color: white;" class="nes-btn is-error"><br />  
                 <img src="Images/For-Logos/community.png" style="width: 25%; height: 30%;" alt="Community icon"> 
-                <br />
-                <br />
                 <h2>Community</h2>
             <p3>Learn with our community! Get in touch with everyone!</p3>           
-                <br />
-                <br />
+
+
             </a>
         </div>
     </section>
@@ -87,63 +87,131 @@
     <div class="wrapper">
         <div id="search-container">
             <p id="apps" style="font-family:none;">Applications List</p>
-            <input type="search" id="search-input" class="button" style="color:black" placeholder="search app here."/>
-                <button id="search">Search</button>
-        </div> 
+            <input type="search" id="search-input" class="button" style="color:black"
+                   placeholder="search app here." />
+            <button id="search" onclick="return searchResult()">Search</button>
+        </div>
         <div id="buttons">
             <button class="button_value button" onclick="filterProduct('all')">All</button>
             <button class="button_value button" onclick="filterProduct('Banking')">Banking</button>
             <button class="button_value button" onclick="filterProduct('Health')">Health</button>
-            <button class="button_value button" onclick="filterProduct('Messaging')">Messaging</button>
+            <button class="button_value button"
+                    onclick="filterProduct('Telecommunications')">
+                Telecommunications
+            </button>
             <button class="button_value button" onclick="filterProduct('Food')">Food</button>
             <button class="button_value button" onclick="filterProduct('Transport')">Transport</button>
         </div>
-        <div id="products"></div>
+        <!--<div id="products"></div>--> <!--Commented line of code showing the hardcoded categories-->
     </div>
 
 
     <script src="/js/filter.js"></script>
 
-    
+    <div class="wrapper">
+        <div id="search-container">
+            <div id="buttons">
+            </div>
+            <div id="products">
+                @foreach (var guide in Model)
+                {
+                    <div class="card @guide.Category hide">
+                        <img src="@Url.Content(guide.AppLogo)" alt="@guide.AppName">
+                        <p class="product-name">@guide.AppName</p>
+                        <a href="@Url.Action("GuideTemplate", "Guide", new { guideId = guide.GuideId })">View Guide</a>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
     <section>
         <form>
             <table>
-                <tr><p style="font-size: 5rem;  margin-left: 30%; font-family:none;">Our Applications</p></tr>
-               
+                <tr>
+                    <p style="font-size: 5rem;  margin-left: 30%; font-family:none;">Our Applications</p>
+                </tr>
+
 
                 <tr>
-                    <a asp-controller="Category" asp-action="Banking"><img src="Images/For-Logos/BankIcon.png"  class="btn  btn-square-md"></a>
-                    <a asp-controller="Category" asp-action="Health"><img src="Images/For-Logos/healthicon.png"  class="btn btn-square-md"></a>
-                    <a asp-controller="Category" asp-action="Telecommunications"><img src="Images/For-Logos/telecommunication.png"  class="btn btn-square-md"></a>
-                    <a asp-controller="Category" asp-action="FoodDelivery"><img src="Images/For-Logos/fooddelivery.png"  class="btn btn-square-md"></a>
-                    <a asp-controller="Category" asp-action="Transport"><img src="Images/For-Logos/transport.png"  class="btn btn-square-md"></a>
+                    <a asp-controller="Category" asp-action="Banking">
+                        <img src="Images/For-Logos/BankIcon.png"
+                             class="btn  btn-square-md">
+                    </a>
+                    <a asp-controller="Category" asp-action="Health">
+                        <img src="Images/For-Logos/healthicon.png"
+                             class="btn btn-square-md">
+                    </a>
+                    <a asp-controller="Category" asp-action="Telecommunications">
+                        <img src="Images/For-Logos/telecommunication.png" class="btn btn-square-md">
+                    </a>
+                    <a asp-controller="Category" asp-action="FoodDelivery">
+                        <img src="Images/For-Logos/fooddelivery.png" class="btn btn-square-md">
+                    </a>
+                    <a asp-controller="Category" asp-action="Transport">
+                        <img src="Images/For-Logos/transport.png"
+                             class="btn btn-square-md">
+                    </a>
 
                 </tr>
 
                 <tr>
-                    <td class = "textDwnBtn" ><h3>Banking</h3></td>
-                    <td class = "textDwnBtn"><h3>Health</h3></td>
-                    <td class = "textDwnBtn"><h3>Messaging</h3></td>
-                    <td class = "textDwnBtn"><h3>Food Delivery</h3></td>
-                    <td class = "textDwnBtn"><h3>Transport</h3></td>
+                    <td class="textDwnBtn">
+                        <h3>Banking</h3>
+                    </td>
+                    <td class="textDwnBtn">
+                        <h3>Health</h3>
+                    </td>
+                    <td class="textDwnBtn">
+                        <h3>Messaging</h3>
+                    </td>
+                    <td class="textDwnBtn">
+                        <h3>Food Delivery</h3>
+                    </td>
+                    <td class="textDwnBtn">
+                        <h3>Transport</h3>
+                    </td>
                 </tr>
             </table>
         </form>
     </section>
 
+
     
     
- 
+    <script src="/js/penguinspeech.js"></script>
     <script type="module">
         import { redirectToAuthPage } from '../../wwwroot/js/auth.js';
 
         document.getElementById('auth').addEventListener('click', () => {
-        redirectToAuthPage();
-      });
+            redirectToAuthPage();
+        });
+    </script>
+    <script src="/js/bttbtn.js"></script>
+
+    <script type="text/javascript">
+        function searchResult() {
+            var searchInput = document.getElementById("search-input").value.toUpperCase();
+            var elements = document.querySelectorAll(".product-name");
+            var cards = document.querySelectorAll(".card");
+
+            elements.forEach((element, index) => {
+                if (element.innerText.toUpperCase().match(searchInput)) {
+                    cards[index].classList.remove("hide");
+                }
+                else {
+                    cards[index].classList.add("hide");
+                }
+            })
+        }
     </script>
 
-    <script src="/js/bttbtn.js"></script>
+    <script type="text/javascript">
+        const audio = new Audio();
+        audio.src = "images/fall.mp3";</script>
 
 
 </body>
+
 </html>
