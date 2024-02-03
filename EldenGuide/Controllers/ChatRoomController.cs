@@ -6,6 +6,9 @@ namespace EldenGuide.Controllers
     {
         public IActionResult Index()
         {
+            var roomId = Guid.NewGuid().ToString();
+            ViewBag.RoomId = roomId; 
+
             return View();
         }
     }
