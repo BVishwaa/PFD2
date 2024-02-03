@@ -40,7 +40,7 @@
     <section class="services">
         <div class="service-item">
             <a href="#apps">
-                <button type="button" class="nes-btn" style="background-color:#667DB4
+                <button type="button" class="nes-btn" style="background-color:#667DB4; color:white;
 ;border-image-repeat:unset; cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
 ">
                     <img src="Images/For-Logos/About_us.png" style="width: 25%; height: 30%;" alt="App icon">
@@ -115,9 +115,9 @@
             <div id="products">
                 @foreach (var guide in Model)
                 {
-                    <div class="card @guide.Category hide">
-                        <img src="@Url.Content(guide.AppLogo)" alt="@guide.AppName">
-                        <p class="product-name">@guide.AppName</p>
+                    <div class="card @guide.Category ">
+                        <img src="@Url.Content(guide.AppLogo)" alt="@guide.AppName" style="max-width:100%">
+                        <p style= "font-size:1rem;"class="product-name">@guide.AppName</p>
                         <a href="@Url.Action("GuideTemplate", "Guide", new { guideId = guide.GuideId })">View Guide</a>
                     </div>
                 }
@@ -125,58 +125,67 @@
         </div>
 
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+     
+    @*<section>
+    <form>
+    <table>
+    <tr>
+    <p style="font-size: 5rem;  margin-left: 30%; font-family:none;">Our Applications</p>
+    </tr>
 
-    <section>
-        <form>
-            <table>
-                <tr>
-                    <p style="font-size: 5rem;  margin-left: 30%; font-family:none;">Our Applications</p>
-                </tr>
 
+    <tr>
+    <a asp-controller="Category" asp-action="Banking">
+    <img src="Images/For-Logos/BankIcon.png"
+    class="btn  btn-square-md">
+    </a>
+    <a asp-controller="Category" asp-action="Health">
+    <img src="Images/For-Logos/healthicon.png"
+    class="btn btn-square-md">
+    </a>
+    <a asp-controller="Category" asp-action="Telecommunications">
+    <img src="Images/For-Logos/telecommunication.png" class="btn btn-square-md">
+    </a>
+    <a asp-controller="Category" asp-action="FoodDelivery">
+    <img src="Images/For-Logos/fooddelivery.png" class="btn btn-square-md">
+    </a>
+    <a asp-controller="Category" asp-action="Transport">
+    <img src="Images/For-Logos/transport.png"
+    class="btn btn-square-md">
+    </a>
 
-                <tr>
-                    <a asp-controller="Category" asp-action="Banking">
-                        <img src="Images/For-Logos/BankIcon.png"
-                             class="btn  btn-square-md">
-                    </a>
-                    <a asp-controller="Category" asp-action="Health">
-                        <img src="Images/For-Logos/healthicon.png"
-                             class="btn btn-square-md">
-                    </a>
-                    <a asp-controller="Category" asp-action="Telecommunications">
-                        <img src="Images/For-Logos/telecommunication.png" class="btn btn-square-md">
-                    </a>
-                    <a asp-controller="Category" asp-action="FoodDelivery">
-                        <img src="Images/For-Logos/fooddelivery.png" class="btn btn-square-md">
-                    </a>
-                    <a asp-controller="Category" asp-action="Transport">
-                        <img src="Images/For-Logos/transport.png"
-                             class="btn btn-square-md">
-                    </a>
+    </tr>
 
-                </tr>
-
-                <tr>
-                    <td class="textDwnBtn">
-                        <h3>Banking</h3>
-                    </td>
-                    <td class="textDwnBtn">
-                        <h3>Health</h3>
-                    </td>
-                    <td class="textDwnBtn">
-                        <h3>Messaging</h3>
-                    </td>
-                    <td class="textDwnBtn">
-                        <h3>Food Delivery</h3>
-                    </td>
-                    <td class="textDwnBtn">
-                        <h3>Transport</h3>
-                    </td>
-                </tr>
-            </table>
-        </form>
+    <tr>
+    <td class="textDwnBtn">
+    <h3>Banking</h3>
+    </td>
+    <td class="textDwnBtn">
+    <h3>Health</h3>
+    </td>
+    <td class="textDwnBtn">
+    <h3>Messaging</h3>
+    </td>
+    <td class="textDwnBtn">
+    <h3>Food Delivery</h3>
+    </td>
+    <td class="textDwnBtn">
+    <h3>Transport</h3>
+    </td>
+    </tr>
+    </table>
+    </form>
     </section>
-
+    *@
+    
 
     
     
