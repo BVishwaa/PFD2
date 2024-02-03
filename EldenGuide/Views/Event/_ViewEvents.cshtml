@@ -31,8 +31,8 @@
         <div class="gif-text">Use me to translate!</div>
         <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
     </div>
-    <div id="google_translate_element"></div>
-
+    <div id="google_translate_element"></div><br /><br />
+    <h2>List of Events</h2>
     <div class="column left side">
         <div class="container">
             <div class="row">
@@ -45,7 +45,7 @@
                                     <a asp-controller="Event" asp-action="DetailedIndex" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
                                 </p>
                                 <p class="card-text">
-                                    <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="330">
+                                    <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="100%">
                                 </p>
                             </div>
                         </div>
