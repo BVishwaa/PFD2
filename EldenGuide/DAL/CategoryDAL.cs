@@ -58,7 +58,7 @@ namespace EldenGuide.DAL
                  {
                     Guide guide = new Guide();      //Constantly creates a new model object 
                     guide.GuideId = document.Id;
-                    // guide.AppName = documentDictionary["AppName"].ToString();
+                    guide.AppName = documentDictionary["AppName"].ToString();
 
                     
 
