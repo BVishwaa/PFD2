@@ -80,13 +80,14 @@
             </tr>
         </table>
         @{
-            // Get today's date
+            //get todays date
             DateTime currentDate = DateTime.Today;
         }
         <div class="container">
             <div class="col">
                 @foreach (Videocall vc in Model.Videocall)
                 {
+                    //will only display urls that were created today
                     var newDate = Convert.ToDateTime(@vc.DateCreated).AddDays(1);
                     if(newDate > currentDate)
                     {
