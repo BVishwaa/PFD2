@@ -159,7 +159,13 @@ namespace EldenGuide.Controllers
 
         [HttpPost]
         public async Task<ActionResult> WriteNewGuide(Guide guide, IFormCollection form, IFormFile AppLogo)
-        { 
+        {
+            /*if (!TryValidateModel(guide))
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Guide Post.");
+                return View(); // Return to staff login view
+            }*/
+
             string StoreTextbox = form["tb"];
             guide.TOC = StoreTextbox.Split(",");
 
@@ -171,6 +177,7 @@ namespace EldenGuide.Controllers
             
             await saveImage(AppLogo);
 
+            
             return RedirectToAction("StaffGuideList", "Guide");
         }
 
