@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Chat Room</title>
+    <link rel="stylesheet" href="~/css/chatRoom.css">
+    <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="chatRoomContainer" style="display: flex;">
+        <aside id="roomList" style="width: 30%; padding: 20px; overflow-y: auto;">
+            <!-- Active rooms will be listed here -->
+        </aside>
+        <section style="width: 70%; padding: 20px;">
+            <div id="header">Admin Chat Room</div>
+            <ul id="messagesList">
+                <!-- Messages will be displayed here -->
+            </ul>
+            <input type="text" id="userInput" placeholder="Enter your name">
+            <div>Message</div>
+            <input type="text" id="messageInput" placeholder="Type your message">
+            <button id="sendButton">Send Message</button>
+        </section>
+    </div>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/adminchat.js"></script>   
+</body>
+</html>

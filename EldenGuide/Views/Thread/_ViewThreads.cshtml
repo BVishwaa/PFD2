@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="~/css/threads.css">
+        <link rel="stylesheet" href="/css/threads.css">
         <script src="/js/forum.js"></script>
         <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <script src="/js/script.js"></script>
@@ -16,18 +16,18 @@
         <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
     </div>
     <div id="google_translate_element"></div>
-
+    <h2>Recent Events</h2>
     <div class="container">
         <div class="row">
             @foreach (Event events in Model.Event)
             {
                 <!--display only top 3 most recent events-->
-                @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 3))
+                @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 4))
                 {
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <div class="card-body">
-                                <a asp-controller="Event" asp-action="NewEvent" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
+                            <div class="card-body nes-container" style="max-width:40rem; min-height:10rem; max-height:20rem; ">
+                                <a asp-controller="Event" asp-action="NewEvent" asp-route-eventId="@events.EventID" class="card-title "><h5>@events.EventName</h5></a>
                                 <p class="card-text">@events.EventPhoto</p>
                             </div>
                         </div>
@@ -46,15 +46,21 @@
         <button class="categories-button button" id="Transport">Transport</button>
     </div>
 
+        <br />
+        <br />
+        
+        <br />
+        <br />
+        <h2>Threads</h2>
     <div class="container">
         <div class="row">
             @foreach (Threads thread in Model.Threads)
             {
                 <div class="col-md-6 thread-item " data-category="@thread.Category">
                     <div class="card mb-4">
-                            <div class="card-body nes-container with-title" style="max-width:40rem; min-height:10rem; max-height:10rem;">
-                            <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a>
-                            <p class="card-text">@thread.Description</p>
+                            <div class="card-body nes-container with-title" style="max-width:40rem; min-height:10rem; max-height:20rem; ">
+                            <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a><br />
+                                <p class="card-text multi-line-ellipsis">@thread.Description</p>
                             <p class="card-text">@thread.Username @thread.DatePosted</p>
                         </div>
                     </div>

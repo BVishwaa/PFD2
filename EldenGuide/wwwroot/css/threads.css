@@ -76,3 +76,13 @@
         background-color: #e9e9e9; 
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 3px rgba(0, 0, 0, 0.1);
     }
+
+.multi-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines you want to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Reset to default to allow wrapping */
+    max-height: 12rem; /* Adjust based on your font-size and line-height */
+}
