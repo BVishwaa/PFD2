@@ -52,7 +52,7 @@
             {
                 <div class="col-md-6 thread-item " data-category="@thread.Category">
                     <div class="card mb-4">
-                        <div class="card-body">
+                            <div class="card-body nes-container with-title" style="max-width:40rem; min-height:10rem; max-height:10rem;">
                             <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a>
                             <p class="card-text">@thread.Description</p>
                             <p class="card-text">@thread.Username @thread.DatePosted</p>
