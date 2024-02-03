@@ -145,7 +145,8 @@ namespace EldenGuide.Controllers
                 };
 
                 Console.WriteLine("comment added");
-                return View("Index", viewModel);
+                return RedirectToAction("Index", new { threadId = comments.ThreadID });
+                //return View("Index", viewModel);
             }
             else
             {
