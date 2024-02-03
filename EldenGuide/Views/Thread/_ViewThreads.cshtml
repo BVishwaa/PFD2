@@ -17,6 +17,24 @@
     </div>
     <div id="google_translate_element"></div>
 
+    <div class="container">
+        <div class="row">
+            @foreach (Event events in Model.Event)
+            {
+                <!--display only top 3 most recent events-->
+                @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 3))
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <a asp-controller="Event" asp-action="NewEvent" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
+                                <p class="card-text">@events.EventPhoto</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
 
     <div class="categories-area">
         <h3>Categories</h3>
@@ -35,14 +53,13 @@
                 <div class="col-md-6 thread-item" data-category="@thread.Category">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID" class="card-title"><h5>@thread.Title</h5></a>
+                            <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a>
                             <p class="card-text">@thread.Description</p>
                             <p class="card-text">@thread.Username @thread.DatePosted</p>
                         </div>
                     </div>
                 </div>
             }
-
         </div>
     </div>
             
@@ -58,6 +75,11 @@
 <script src="/js/threadingfilter.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<script>
+    document.getElementById(threadid).addEventListener('click', function(event){
+        @ViewBag.ThreadId = asp-route-threadId;
+    })
+</script>
 @* -- Ignore this as threadingfilter will fix the filter
 <script>
     document.addEventListener('DOMContentLoaded', function () {
