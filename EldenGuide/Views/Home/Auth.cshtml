@@ -13,61 +13,97 @@
     <link rel="stylesheet" href="~/css/threads.css">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        /* Create two equal columns that float next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: auto; /* Adjust or remove as needed */
 
+            display: flex; /* Added */
+            flex-direction: column; /* Added */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+        }
 
-    <script src="scripts\script.js"></script>
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/bttBtn.css">
+    <link rel="stylesheet" href="/css/pingu.css">
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </head>
 
-<body class="min-vh-100 row m-0 position-relative">
-    <div id="navbarContainer" class="container"></div>
+<body>
+    <div class="gif-container">
+        <div class="gif-text">Use me to translate!</div>
+        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
+    </div>
+    <div id="google_translate_element"></div>
 
-    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
-        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                       background="transparent"
-                       speed="1"
-                       style="width: 100%; height: auto"
-                       loop
-                       autoplay></lottie-player>
 
-        <h1 class="mt-2 mb-3">Let's go!</h1>
-        <p>
-            Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
-            <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
-        </p>
-    </aside>
+    .<div class="row">
+        <div class="column">
+                <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
+                               background="transparent"
+                               speed="1"
+                               style="width: 100%; height: auto"
+                               loop
+                               autoplay></lottie-player>
+
+                <h1 class="mt-2 mb-3">Let's go!</h1>
+                <p>
+                    Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
+                    <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
+                </p>
+
+        </div>
+        <div class="column">
+            <!-- Log In -->
+            @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post, new { onsubmit = "return SignIn()" }))
+            {
+                @*<input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <input type="submit" value="Sign In" />*@
+                <div class="row mb-3">
+                    <label asp-for="Email"  class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9 col-md-5">
+                        <input type="email" id="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label asp-for="Password"
+                           class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9 col-md-5">
+                        <input type="password" id="Password" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-9 offset-sm-3">
+                        <input type="submit" />
+                    </div>
+                </div>
+
+                <br /><br /><br />
+                <a asp-action="NewUser" asp-controller="Auth" class="btn btn-primary">Sign Up</a>
+
+
+                <a asp-action="Staff" asp-controller="Auth" class="btn btn-primary">Staff Login</a>
+            }
+           
+
+       
     
-    <!-- Log In -->
-    @using (Html.BeginForm("LogInUser", "Auth", FormMethod.Post, new {onsubmit = "return SignIn()"}))
-    {
-        @*<input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <input type="submit" value="Sign In" />*@
-        <div class="row mb-3">
-            <label asp-for="Email" class="col-sm-3 col-form-label"></label>
-            <div class="col-sm-9 col-md-5">
-                <input type="email" id="Email" name="Email" class="form-control" />
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label asp-for="Password"
-                    class="col-sm-3 col-form-label"></label>
-            <div class="col-sm-9 col-md-5">
-                <input type="password" id="Password" name="Password" class="form-control" />
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm-9 offset-sm-3">
-                <input type="submit" />
-            </div>
-        </div>
-    }
-    <a asp-action="NewUser" asp-controller="Auth" class="btn btn-primary">Sign Up</a>
-
-
-    <a asp-action="Staff" asp-controller="Auth" class="btn btn-primary">Staff Login</a>
 
 
     @*<!-- Sign Up -->
@@ -108,7 +144,7 @@
             crossorigin="anonymous"></script>
 
     <script type="module" src="./js/auth.js"></script>
-
+            <script src="/js/penguinspeech.js"></script>
     @*<script>
         function NewUser() {
             console.log('NewUser called');

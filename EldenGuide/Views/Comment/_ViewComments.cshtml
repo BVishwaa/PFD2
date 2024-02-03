@@ -7,10 +7,10 @@
         <div class="col">
             @foreach (var comment in Model)
             {
-                <div class="col-md-4">
-                    <div class="col mb-4">
-                        <p> @comment.Username @comment.CommentText</p>
-                        <p>@comment.DateCommented</p>
+                <div class="col-md-4" style="font-family:'Times New Roman', Times, serif;font-size:30px;">
+                    <div class="col mb-4 nes-container with-title">
+                        <p class="title" style="font-size:2rem;"><b>@comment.Username</b> on @comment.DateCommented</p>
+                        <p>@comment.CommentText</p>
                     </div>
                 </div>
             }
