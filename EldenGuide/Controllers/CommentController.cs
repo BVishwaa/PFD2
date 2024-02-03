@@ -18,19 +18,26 @@ namespace EldenGuide.Controllers
         // GET: CommentController
         public async Task<ActionResult> Index(int threadId)
         {
-            TempData["ThreadID"] = threadId;
-            TempData.Keep("ThreadID");
-
-            Console.WriteLine(TempData["ThreadID"]);
-
-            var viewModel = new CommentViewModel
+            if (HttpContext.Session.GetString("userEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
             {
-                Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
-                Comments = await commentContext.GetComments(threadId)
-            };
-            viewModel.Comments = await commentContext.GetComments(threadId);
-            viewModel.SingleComment = new Comment();
-            return View(viewModel);
+                TempData["ThreadID"] = threadId;
+                TempData.Keep("ThreadID");
+
+                Console.WriteLine(TempData["ThreadID"]);
+
+                var viewModel = new CommentViewModel
+                {
+                    Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
+                    Comments = await commentContext.GetComments(threadId)
+                };
+                viewModel.Comments = await commentContext.GetComments(threadId);
+                viewModel.SingleComment = new Comment();
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
         }
 
         // GET: CommentController/Details/5
@@ -104,8 +111,16 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> AddComment()
         {
-            Comment comments = new Comment();
-            return View(comments);
+            if (HttpContext.Session.GetString("userEmail") != null)
+            {
+                Comment comments = new Comment();
+                return View(comments);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
+ 
         }
 
         [HttpPost]

@@ -113,8 +113,15 @@ namespace EldenGuide.Controllers
         //writenewthread
         public async Task<ActionResult> AddEvent()
         {
-            Event events = new Event();
-            return View(events);
+            if (HttpContext.Session.GetString("staffEmail") != null)
+            {
+                Event events = new Event();
+                return View(events);
+            }
+            else
+            {
+                return RedirectToAction("StaffLogin","Home");
+            }
         }
 
         //newthread

@@ -106,8 +106,15 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> WriteNewThread()
         {
-            Threads thread = new Threads();
-            return View(thread);
+            if (HttpContext.Session.GetString("userEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
+            {
+                Threads thread = new Threads();
+                return View(thread);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
         }
 
         [HttpPost]
