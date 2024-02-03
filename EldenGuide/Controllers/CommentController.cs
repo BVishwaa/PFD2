@@ -18,26 +18,19 @@ namespace EldenGuide.Controllers
         // GET: CommentController
         public async Task<ActionResult> Index(int threadId)
         {
-            if (HttpContext.Session.GetString("userEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
-            {
-                TempData["ThreadID"] = threadId;
-                TempData.Keep("ThreadID");
+            TempData["ThreadID"] = threadId;
+            TempData.Keep("ThreadID");
 
-                Console.WriteLine(TempData["ThreadID"]);
+            Console.WriteLine(TempData["ThreadID"]);
 
-                var viewModel = new CommentViewModel
-                {
-                    Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
-                    Comments = await commentContext.GetComments(threadId)
-                };
-                viewModel.Comments = await commentContext.GetComments(threadId);
-                viewModel.SingleComment = new Comment();
-                return View(viewModel);
-            }
-            else
+            var viewModel = new CommentViewModel
             {
-                return RedirectToAction("Auth", "Home");
-            }
+                Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
+                Comments = await commentContext.GetComments(threadId)
+            };
+            viewModel.Comments = await commentContext.GetComments(threadId);
+            viewModel.SingleComment = new Comment();
+            return View(viewModel);
         }
 
         // GET: CommentController/Details/5
@@ -111,7 +104,7 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> AddComment()
         {
-            if (HttpContext.Session.GetString("userEmail") != null)
+            if (HttpContext.Session.GetString("UserEmail") != null)
             {
                 Comment comments = new Comment();
                 return View(comments);
@@ -126,30 +119,38 @@ namespace EldenGuide.Controllers
         [HttpPost]
         public async Task<ActionResult> NewComment(IFormCollection form)
         {
-            Comment comments = new Comment();
-            CommentDAL commentDAL = new CommentDAL();
-            comments.ThreadID = Convert.ToInt32(TempData["ThreadID"]);
-            comments.Username = Convert.ToString(TempData["Username"]);
-            comments.CommentText = form["CommentText"];
-
-            int threadId = Convert.ToInt32(TempData["ThreadID"]);
-            Console.WriteLine(TempData["ThreadID"]);
-            Console.WriteLine(TempData["Username"]);
-
-            await commentDAL.InsertComment(comments);
-
-            // Fetch the updated list of comments
-            var updatedComments = await commentDAL.GetComments(threadId);
-
-            // Construct the CommentViewModel
-            CommentViewModel viewModel = new CommentViewModel
+            
+            if (HttpContext.Session.GetString("UserEmail") != null)
             {
-                Comments = updatedComments,
-                SingleComment = comments // or null, depending on your use case
-            };
+                Comment comments = new Comment();
+                CommentDAL commentDAL = new CommentDAL();
+                comments.ThreadID = Convert.ToInt32(TempData["ThreadID"]);
+                comments.Username = Convert.ToString(TempData["Username"]);
+                comments.CommentText = form["CommentText"];
 
-            Console.WriteLine("comment added");
-            return View("Index", viewModel);
+                int threadId = Convert.ToInt32(TempData["ThreadID"]);
+                Console.WriteLine(TempData["ThreadID"]);
+                Console.WriteLine(TempData["Username"]);
+
+                await commentDAL.InsertComment(comments);
+
+                // Fetch the updated list of comments
+                var updatedComments = await commentDAL.GetComments(threadId);
+
+                // Construct the CommentViewModel
+                CommentViewModel viewModel = new CommentViewModel
+                {
+                    Comments = updatedComments,
+                    SingleComment = comments // or null, depending on your use case
+                };
+
+                Console.WriteLine("comment added");
+                return View("Index", viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
         }
 
 

@@ -106,7 +106,7 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> WriteNewThread()
         {
-            if (HttpContext.Session.GetString("userEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
+            if (HttpContext.Session.GetString("UserEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
             {
                 Threads thread = new Threads();
                 return View(thread);
