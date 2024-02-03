@@ -114,7 +114,8 @@ namespace EldenGuide.DAL
                     {"Password", user.Password }
                 };
 
-                await docRef.SetAsync(NewUser);
+                //await docRef.SetAsync(NewUser);
+                await db.Collection("users").AddAsync(NewUser);
 
                 Console.WriteLine("User successfully added to Firestore.");
                 return true;

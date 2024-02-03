@@ -54,7 +54,7 @@
                             <td>
                                 <select name="Category" id="Category">
                                     <!---Category input-->
-                                    <option value="All">Select Category: </option>
+                                    <option value="">Select Category: </option>
                                     <option value="Banking">Banking</option>
                                     <option value="Health">Health</option>
                                     <option value="Telecommunications">Telecommunications</option>
@@ -137,9 +137,11 @@
 
         <!---Binding existing Model content here (for content update)--->
         <div id="description">
-            @Html.Raw(Model.Content)
+            
         </div>
     </form>
+
+    <label>@Html.ValidationSummary()</label>
     <script>
         // add an array of values
         const fontFamilyArr = ["Roboto Condensed", "Times New Roman", "Calibri", "Calibri Light", "Sans-Serif"];
@@ -186,7 +188,7 @@
             document.getElementById('hImg').value = document.getElementById('AppLogo').value;
             document.getElementById('h1').value = document.getElementById('tb1').value; //not working
 
-            alert(document.getElementById('tb1').value);
+            
         };
 
         function addTR() {

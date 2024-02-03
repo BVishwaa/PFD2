@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<partial name="~/Views/Comment/_ViewComments.cshtml" model="@Model.Comments" />
+<partial name="~/Views/Comment/_ViewComments.cshtml" model="@Model" />
 <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
 @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
@@ -13,9 +13,7 @@
             <td>
                 <label for="CommentText">Comment</label>
                 <input type="text" name="CommentText" id="CommentText" />
-                <input type="hidden" name="ThreadID" id ="ThreadID" value="@Model.ThreadID" />
                 <input type="submit" value="Submit" />
-                <p>@Model.ThreadID</p>
             </td>
         </tr>
     </table>
@@ -26,6 +24,7 @@
     function handleSubmit() {
         console.log('handleSubmit called');
         document.getElementById('commentText').value = document.getElementById('CommentText').value;
+        document.getElementById('threadid').value = document.getElementById('ThreadID').value;
     };
 
 </script>

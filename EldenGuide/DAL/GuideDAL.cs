@@ -102,21 +102,36 @@ namespace EldenGuide.DAL
                 
             }
 
-            public async Task<Boolean> EditGuide(Guide guide)
+            public async Task<Boolean> EditGuide(Guide guide, bool LogoCheck)
             {
 
                 DocumentReference docRef = db.Collection("Guides").Document(guide.GuideId);
 
                 // Update the document with the modified guide data
-                await docRef.UpdateAsync(new Dictionary<string, object>
-                {
-                  {"AppName", guide.AppName},
-                  {"Category", guide.Category},
-                  {"Content", guide.Content},
-                  {"AppLogo", "/images/For-Logos/" + guide.AppLogo},
-                  {"TOC", guide.TOC}
-                });
 
+
+                if(LogoCheck)
+                {
+                    await docRef.UpdateAsync(new Dictionary<string, object>
+                    {
+                      {"AppName", guide.AppName},
+                      {"Category", guide.Category},
+                      {"Content", guide.Content},
+                      {"AppLogo", "/images/For-Logos/" + guide.AppLogo},
+                      {"TOC", guide.TOC}
+                    });
+                }
+                else
+                {
+                    await docRef.UpdateAsync(new Dictionary<string, object>
+                    {
+                      {"AppName", guide.AppName},
+                      {"Category", guide.Category},
+                      {"Content", guide.Content},
+                      {"TOC", guide.TOC}
+                    });
+                }
+                
                 return true; 
             }
 
@@ -129,6 +144,8 @@ namespace EldenGuide.DAL
                 
                 return true;
             }
+
+            
 
        
     }

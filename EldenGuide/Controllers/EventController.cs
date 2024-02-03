@@ -88,12 +88,21 @@ namespace EldenGuide.Controllers
             }
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int eventId)
         {
+            TempData["EventID"] = eventId;
             List<Event> eventList = await eventContext.GetEvents();
             Console.WriteLine("Controller get events");
             return View(eventList);
 
+        }
+
+        public async Task<ActionResult> DetailedIndex(int eventId)
+        {
+            TempData["EventID"] = eventId;
+            List<Event> eventList = await eventContext.GetEvents();
+            Console.WriteLine(TempData["EventID"]);
+            return View(eventList);
         }
 
         //writenewthread

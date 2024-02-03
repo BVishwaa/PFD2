@@ -16,18 +16,18 @@
         <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
     </div>
     <div id="google_translate_element"></div>
-    <h2>Events</h2><br />
+
     <div class="container">
         <div class="row">
             @foreach (Event events in Model.Event)
             {
                 <!--display only top 3 most recent events-->
-                @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 4))
+                @if (Convert.ToInt32(events.EventID) > (Convert.ToInt32(ViewData["totalevents"]) - 3))
                 {
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <div class="card-body nes-container with-title" style="min-width:20rem; min-height:15rem;">
-                                <a asp-controller="Event" asp-action="Index" class="card-title title"><h5>@events.EventName</h5></a>
+                            <div class="card-body">
+                                <a asp-controller="Event" asp-action="NewEvent" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
                                 <p class="card-text">@events.EventPhoto</p>
                             </div>
                         </div>
@@ -35,10 +35,7 @@
                 }
             }
         </div>
-        <br />
-        <h2>Threads</h2><br />
-        <a asp-controller="Event" asp-action="Index">Click here to view more events</a><br /><br />
-    </div>
+
     <div class="categories-area">
         <h3>Categories</h3>
         <button class="categories-button button" id="all">View all</button>
@@ -55,15 +52,14 @@
             {
                 <div class="col-md-6 thread-item " data-category="@thread.Category">
                     <div class="card mb-4">
-                        <div class="card-body nes-container with-title" style="max-width:40rem; min-height:10rem; max-height:10rem;">
-                            <a asp-controller="Comment" asp-action="Index" asp-route-threadId="@thread.ThreadID" class="card-title title"><h5>@thread.Title</h5></a>
+                            <div class="card-body nes-container with-title" style="max-width:40rem; min-height:10rem; max-height:10rem;">
+                            <a href="@Url.Action("Index", "Comment", new { threadId = @thread.ThreadID })" class="card-title"><h5>@thread.Title</h5></a>
                             <p class="card-text">@thread.Description</p>
                             <p class="card-text">@thread.Username @thread.DatePosted</p>
                         </div>
                     </div>
                 </div>
             }
-
         </div>
     </div>
             
