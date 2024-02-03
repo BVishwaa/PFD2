@@ -108,7 +108,7 @@ namespace EldenGuide.Controllers
 
 
             Debug.WriteLine("Debug statement: Something happened!");
-            return View("Index","Event");
+            return View();
         }
     }
 }

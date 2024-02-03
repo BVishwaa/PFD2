@@ -79,22 +79,30 @@
                 </td>
             </tr>
         </table>
+        @{
+            // Get today's date
+            DateTime currentDate = DateTime.Today;
+        }
         <div class="container">
             <div class="col">
                 @foreach (Videocall vc in Model.Videocall)
                 {
-                    <div class="col-md-10">
-                        <div class="card mb-10">
-                            <div class="card-body">
-                                <p class="card-title">
-                                <p class="card-title"><h5>@vc.Title</h5></p>
-                                </p>
-                                <p class="card-text">
-                                <p>@vc.URL</p>
-                                </p>
+                    var newDate = Convert.ToDateTime(@vc.DateCreated).AddDays(1);
+                    if(newDate > currentDate)
+                    {
+                        <div class="col-md-10">
+                            <div class="card mb-20">
+                                <div class="card-body">
+                                    <p class="card-title">
+                                    <p class="card-title"><h5>@vc.Title</h5></p>
+                                    </p>
+                                    <p class="card-text">
+                                        <a href="@vc.URL" target="_blank">@vc.URL</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
             </div>
         </div>
