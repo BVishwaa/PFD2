@@ -36,6 +36,34 @@
                             <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Home" asp-action="Auth">Profile</a>
                         </li>
                     </ul>
+
+                    @if (Context.Session.GetString("UserEmail") != null)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LogOut">Log Out</a>
+                            </li>
+
+                        </ul>
+                    }
+
+
+                    @if (Context.Session.GetString("staffEmail") != null)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Guide" asp-action="StaffGuideList">Customize Guides</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="StaffLogOut">Log Out</a>
+                            </li>
+
+                        </ul>   
+                        
+
+                    }
+                    
                 </div>
             </div>
         </nav>

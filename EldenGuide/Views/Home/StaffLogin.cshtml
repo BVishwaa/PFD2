@@ -64,6 +64,7 @@
                 Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
                 <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
             </p>
+
         </div>
         <div class="column">
             <h3>Staff Login</h3>
@@ -77,6 +78,7 @@
                 <div class="col-sm-9 col-md-5">
                     <input type="email" id="Email" class="form-control" />
                 </div>
+
             </div>
             <div class="row mb-3">
                 <label asp-for="Password"
@@ -85,6 +87,11 @@
                     <input type="password" id="Password" class="form-control" />
                 </div>
             </div>
+        </div>
+    }
+    <label>@Html.ValidationSummary()</label>
+   
+
             <div class="row mb-3">
                 <div class="col-sm-9 offset-sm-3">
                     <input type="submit" />

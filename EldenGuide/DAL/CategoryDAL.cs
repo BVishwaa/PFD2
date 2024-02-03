@@ -58,7 +58,7 @@ namespace EldenGuide.DAL
                  {
                     Guide guide = new Guide();      //Constantly creates a new model object 
                     guide.GuideId = document.Id;
-                    guide.AppName = documentDictionary["AppName"].ToString();
+                    // guide.AppName = documentDictionary["AppName"].ToString();
 
                     
 
@@ -66,6 +66,34 @@ namespace EldenGuide.DAL
                  }
             }
             return CategoryList;
+        }
+
+        public async Task<List<Guide>> OrganizeAllGuides()
+        {
+            // [START fs_get_all]
+            CollectionReference usersRef = db.Collection("Guides");
+            QuerySnapshot snapshot = await usersRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Guides collection
+
+            List<Guide> guideList = new List<Guide>();
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+
+
+                Dictionary<string, object> documentDictionary = document.ToDictionary();
+
+
+                Guide guide = new Guide();      //Constantly creates a new model object 
+                guide.GuideId = document.Id;
+                // guide.AppName = documentDictionary["AppName"].ToString();
+                guide.Category = documentDictionary["Category"].ToString();
+                guide.AppLogo = documentDictionary["AppLogo"].ToString();
+
+
+
+                guideList.Add(guide);
+                
+            }
+            return guideList;
         }
 
     }
