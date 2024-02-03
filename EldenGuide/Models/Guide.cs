@@ -6,8 +6,8 @@ namespace EldenGuide.Models
     {
         public string GuideId { get; set; }
 
-        [Required]
-        [DataType(DataType.Text)]
+        // [Required]
+        // [DataType(DataType.Text)]
         public string AppName { get; set;}
 
         [Required]
