@@ -190,5 +190,27 @@ namespace EldenGuide.Controllers
             }
             return true;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteEvent(IFormCollection form)
+        {
+            EventDAL eventDAL = new EventDAL();
+            Event EventToDelete = new Event();
+
+            int eventId;
+            if (int.TryParse(form["hId"], out eventId))
+            {
+                EventToDelete.EventID = eventId;
+                await eventDAL.DeleteEvent(EventToDelete.EventID.ToString());
+                return RedirectToAction("Index", "Event");
+            }
+            else
+            {
+                // Handle invalid ID here (e.g., return an error message)
+                Console.WriteLine(form["hId"]);
+                return BadRequest("Invalid event ID");
+                
+            }
+        }
     }
 }
