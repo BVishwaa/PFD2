@@ -144,6 +144,7 @@ namespace EldenGuide.Controllers
                     //string userJson = System.Text.Json.JsonSerializer.Serialize(userData);
                     HttpContext.Session.SetString("Username", user.Username);
                     TempData["Username"] = user.Username;
+                    TempData.Keep("Username");
                     Console.WriteLine(TempData["Username"]);
                     HttpContext.Session.SetString("UserEmail", user.Email);
                     return RedirectToAction("Index", "Home");
