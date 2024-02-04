@@ -44,12 +44,9 @@
                                 <p class="card-title">
                                     <a asp-controller="Event" asp-action="DetailedIndex" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
                                 </p>
-                                @if((Convert.ToString(events.EventPhoto)).Length > 0)
-                                {
-                                    <p class="card-text">
-                                        <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="100%">
-                                    </p>
-                                }
+                                <p class="card-text">
+                                    <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="100%">
+                                </p>
                                 
                             </div>
                         </div>
@@ -96,7 +93,7 @@
                 {
                     //will only display urls that were created today
                     var newDate = Convert.ToDateTime(@vc.DateCreated).AddDays(1);
-                    if (newDate > currentDate)
+                    if (newDate < currentDate)
                     {
                         <div class="col">
                             <div class="card">
