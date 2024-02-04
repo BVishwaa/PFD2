@@ -53,16 +53,17 @@
 <body>
 <div class="row">
     <div class="column">
-        <img src="/images/penguin.gif" style="max-width:100%;" alt="Your GIF">
-        <h1 class="mt-2 mb-3">Let's go!</h1>
+        <img src="/images/hello.gif" style="width:50%" alt="Your GIF">
+        <br /><br />
+        <h1 >Hello :)</h1>
         <p style="font-family:'Times New Roman', Times, serif;font-size:25px;">
-            Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
+                Create a new account!
             <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
         </p>
     </div>
     <div class="column">
 
-        <br /><br /><br />
+            <br /><br /><br /><br /><br />
         <!-- Sign Up -->
         @using (Html.BeginForm("NewUser", "Auth", FormMethod.Post, new { onsubmit = "return NewUser()" }))
         {
