@@ -6,13 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Firebase.Storage;
 using Google.Cloud.Firestore.V1;
+using System.Dynamic;
 
 namespace EldenGuide.Controllers
 {
     public class EventController : Controller
     {
         private EventDAL eventContext = new EventDAL();
-        
+        private VideocallDAL videocallContext = new VideocallDAL();
+
         public IActionResult Event()
         {
             return View();
@@ -91,9 +93,12 @@ namespace EldenGuide.Controllers
         public async Task<ActionResult> Index(int eventId)
         {
             TempData["EventID"] = eventId;
-            List<Event> eventList = await eventContext.GetEvents();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Videocall = await videocallContext.GetURLs();
+            mymodel.Event = await eventContext.GetEvents();
+            //List<Event> eventList = await eventContext.GetEvents();
             Console.WriteLine("Controller get events");
-            return View(eventList);
+            return View(mymodel);
 
         }
 
@@ -108,8 +113,15 @@ namespace EldenGuide.Controllers
         //writenewthread
         public async Task<ActionResult> AddEvent()
         {
-            Event events = new Event();
-            return View(events);
+            if (HttpContext.Session.GetString("staffEmail") != null)
+            {
+                Event events = new Event();
+                return View(events);
+            }
+            else
+            {
+                return RedirectToAction("StaffLogin","Home");
+            }
         }
 
         //newthread

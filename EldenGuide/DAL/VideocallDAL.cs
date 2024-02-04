@@ -3,10 +3,10 @@ using Google.Cloud.Firestore;
 
 namespace EldenGuide.DAL
 {
-    public class CommentDAL
+    public class VideocallDAL
     {
         FirestoreDb db;
-        public CommentDAL() //constructor that helps with connecting to the database
+        public VideocallDAL() //constructor that helps with connecting to the database
         {
             string jsonPath = "./DAL/Config/elden-guide-firebase-adminsdk-r87mn-80a4f4580d.json";
             string projectId = "elden-guide";
@@ -20,11 +20,10 @@ namespace EldenGuide.DAL
                 JsonCredentials = json
             }.Build();
         }
-
-        public async Task<bool> InsertComment(Comment comments)
+        public async Task<bool> InsertURL(Videocall vc)
         {
             //Reference to collection
-            CollectionReference collectionReference = db.Collection("Comments");
+            CollectionReference collectionReference = db.Collection("MeetingURL");
 
             // Get a snapshot of the documents in the collection
             QuerySnapshot querySnapshot = await collectionReference.GetSnapshotAsync();
@@ -32,53 +31,50 @@ namespace EldenGuide.DAL
             // Count the number of documents
             int numberOfDocuments = querySnapshot.Documents.Count;
             //Console.WriteLine($"Number of documents in Threads: {numberOfDocuments}");
-
             try
             {
-                DocumentReference docRef = db.Collection("Comments").Document(Convert.ToString(numberOfDocuments + 1));
+                DocumentReference docRef = db.Collection("MeetingURL").Document(Convert.ToString(numberOfDocuments + 1)); // Firestore generates ID
 
-                Dictionary<string, object> newComment = new Dictionary<string, object>
+                Dictionary<string, object> newVc = new Dictionary<string, object>
                 {
-                    {"ThreadID", comments.ThreadID },
-                    {"CommentText", comments.CommentText},
-                    {"DateCommented", Convert.ToString(DateTime.Now) },
-                    {"Username", comments.Username }
+                    {"URL", vc.URL},
+                    {"Title", vc.Title },
+                    {"DateCreated", Convert.ToString(DateTime.Now) }
                 };
 
-                await docRef.SetAsync(newComment);
+                await docRef.SetAsync(newVc);
 
-                Console.WriteLine("Comment successfully added to Firestore.");
+                Console.WriteLine("Event successfully added to Firestore.");
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding thread to Firestore: {ex.Message}");
+                Console.WriteLine($"Error adding event to Firestore: {ex.Message}");
                 return false;
             }
         }
 
-        public async Task<List<Comment>> GetComments(int threadId)
+        public async Task<List<Videocall>> GetURLs()
         {
             int id = 1;
-            List<Comment> commentList = new List<Comment>();
+            List<Videocall> vcList = new List<Videocall>();
+
 
             while (true)
             {
-                DocumentReference docRef = db.Collection("Comments").Document(Convert.ToString(id));
+                DocumentReference docRef = db.Collection("MeetingURL").Document(Convert.ToString(id));
                 DocumentSnapshot documentSnapshot = await docRef.GetSnapshotAsync();
 
                 if (documentSnapshot.Exists)
                 {
-                    Comment data = documentSnapshot.ConvertTo<Comment>();
-                    if(data.ThreadID == threadId)
+                    Videocall data = documentSnapshot.ConvertTo<Videocall>();
+
+                    vcList.Add(new Videocall
                     {
-                        commentList.Add(new Comment
-                        {
-                            CommentText = data.CommentText,
-                            DateCommented = data.DateCommented,
-                            Username = data.Username,
-                        });
-                    }
+                        URL = data.URL,
+                        Title = data.Title,
+                        DateCreated = data.DateCreated
+                    });
                 }
                 else
                 {
@@ -91,7 +87,7 @@ namespace EldenGuide.DAL
                 Console.WriteLine("done");
             }
 
-            return commentList;
+            return vcList;
         }
     }
 }

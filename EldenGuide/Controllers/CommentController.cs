@@ -19,11 +19,10 @@ namespace EldenGuide.Controllers
         public async Task<ActionResult> Index(int threadId)
         {
             TempData["ThreadID"] = threadId;
+            TempData.Keep("ThreadID");
 
-            Console.WriteLine(threadId);
-            ViewBag.ThreadId = Convert.ToInt32(threadId);
-            Console.WriteLine(ViewBag.ThreadId);
-            //CommentViewModel mymodel = new CommentViewModel();
+            Console.WriteLine(TempData["ThreadID"]);
+
             var viewModel = new CommentViewModel
             {
                 Threads = await threadContext.GetThreads(), // Make sure this method returns a non-null collection
@@ -105,42 +104,54 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> AddComment()
         {
-            Comment comments = new Comment();
-            return View(comments);
+            if (HttpContext.Session.GetString("UserEmail") != null)
+            {
+                Comment comments = new Comment();
+                return View(comments);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
+ 
         }
 
         [HttpPost]
         public async Task<ActionResult> NewComment(IFormCollection form)
         {
-            Comment comments = new Comment();
-            CommentDAL commentDAL = new CommentDAL();
-
-            comments.ThreadID = Convert.ToInt32(TempData["ThreadID"]);
-
-            //comments.ThreadID = Convert.ToInt32(ViewBag.ThreadId);
-
-            comments.CommentText = form["CommentText"];
-            //comments.ThreadID = Convert.ToInt32(ViewBag.threadid);
-
-            // Retrieve threadId from form
-            //int threadId = Convert.ToInt32(ViewBag.ThreadId);
-            int threadId = Convert.ToInt32(TempData["ThreadID"]);
-            Console.WriteLine(TempData["ThreadID"]);
-
-            await commentDAL.InsertComment(comments);
-
-            // Fetch the updated list of comments
-            var updatedComments = await commentDAL.GetComments(threadId);
-
-            // Construct the CommentViewModel
-            CommentViewModel viewModel = new CommentViewModel
+            
+            if (HttpContext.Session.GetString("UserEmail") != null)
             {
-                Comments = updatedComments,
-                SingleComment = comments // or null, depending on your use case
-            };
+                Comment comments = new Comment();
+                CommentDAL commentDAL = new CommentDAL();
+                comments.ThreadID = Convert.ToInt32(TempData["ThreadID"]);
+                comments.Username = Convert.ToString(TempData["Username"]);
+                comments.CommentText = form["CommentText"];
 
-            Console.WriteLine("comment added");
-            return View("Index", viewModel);
+                int threadId = Convert.ToInt32(TempData["ThreadID"]);
+                Console.WriteLine(TempData["ThreadID"]);
+                Console.WriteLine(TempData["Username"]);
+
+                await commentDAL.InsertComment(comments);
+
+                // Fetch the updated list of comments
+                var updatedComments = await commentDAL.GetComments(threadId);
+
+                // Construct the CommentViewModel
+                CommentViewModel viewModel = new CommentViewModel
+                {
+                    Comments = updatedComments,
+                    SingleComment = comments // or null, depending on your use case
+                };
+
+                Console.WriteLine("comment added");
+                return RedirectToAction("Index", new { threadId = comments.ThreadID });
+                //return View("Index", viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
         }
 
 

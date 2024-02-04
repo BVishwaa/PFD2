@@ -143,6 +143,8 @@ namespace EldenGuide.Controllers
                     //var userData = new { user.Username, user.Email };
                     //string userJson = System.Text.Json.JsonSerializer.Serialize(userData);
                     HttpContext.Session.SetString("Username", user.Username);
+                    TempData["Username"] = user.Username;
+                    Console.WriteLine(TempData["Username"]);
                     HttpContext.Session.SetString("UserEmail", user.Email);
                     return RedirectToAction("Index", "Home");
                 }
@@ -350,7 +352,6 @@ namespace EldenGuide.Controllers
         //    // If model state is not valid, return the same view for corrections
         //    return View(user);
         //}
-
 
     }
 }

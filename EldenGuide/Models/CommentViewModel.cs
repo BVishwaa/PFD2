@@ -4,7 +4,6 @@
     {
         //public IEnumerable<Comment> Comments { get; set; }
         public Comment SingleComment { get; set; }
-        //public int ThreadID { get; set; }
         public IEnumerable<Threads> Threads { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
 

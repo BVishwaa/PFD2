@@ -106,8 +106,15 @@ namespace EldenGuide.Controllers
 
         public async Task<ActionResult> WriteNewThread()
         {
-            Threads thread = new Threads();
-            return View(thread);
+            if (HttpContext.Session.GetString("UserEmail") != null || HttpContext.Session.GetString("staffEmail") != null)
+            {
+                Threads thread = new Threads();
+                return View(thread);
+            }
+            else
+            {
+                return RedirectToAction("Auth", "Home");
+            }
         }
 
         [HttpPost]
@@ -116,6 +123,7 @@ namespace EldenGuide.Controllers
             Threads thread = new Threads();
             ThreadDAL threadDAL = new ThreadDAL();
 
+            thread.Username = Convert.ToString(TempData["Username"]);
             thread.Category = form["Category"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
             thread.Description = form["Desc"];
             thread.Title = form["Title"];
