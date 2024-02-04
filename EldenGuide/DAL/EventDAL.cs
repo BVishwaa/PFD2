@@ -38,9 +38,10 @@ namespace EldenGuide.DAL
 
                 Dictionary<string, object> newEvent = new Dictionary<string, object>
                 {
+                    {"EventID" , numberOfDocuments + 1 },
                     {"EventName", events.EventName},
                     {"Details", events.Details },
-                    {"EventPhoto", "/images/EvenImg/" + events.EventPhoto }
+                    {"EventPhoto",  events.EventPhoto }
                 };
 
                 await docRef.SetAsync(newEvent);

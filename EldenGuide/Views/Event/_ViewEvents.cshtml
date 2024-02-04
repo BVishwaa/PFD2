@@ -44,9 +44,13 @@
                                 <p class="card-title">
                                     <a asp-controller="Event" asp-action="DetailedIndex" asp-route-eventId="@events.EventID" class="card-title"><h5>@events.EventName</h5></a>
                                 </p>
-                                <p class="card-text">
-                                    <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="100%">
-                                </p>
+                                @if((Convert.ToString(events.EventPhoto)).Length > 0)
+                                {
+                                    <p class="card-text">
+                                        <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="100%">
+                                    </p>
+                                }
+                                
                             </div>
                         </div>
                     </div>
@@ -60,7 +64,7 @@
             <tr>
                 <td>
                     <!-- Rest of the editing components-->
-                    @using (Html.BeginForm("NewURL", "Videocall", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+                    @using (Html.BeginForm("NewURL", "Videocall", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  
                     {
                         <table>
                             <tr>
