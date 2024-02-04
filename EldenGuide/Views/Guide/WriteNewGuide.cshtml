@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "WriteNewGuide";
 }
-@model EldenGuide.Models.Guide          
+@model EldenGuide.Models.Guide
 
 
 <html>
@@ -17,6 +17,26 @@
         .ql-font-arial {
             font-family: Arial, sans-serif;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that float next to each other */
+        .column {
+            float: left;
+            width: 30%;
+            display: flex; /* Added */
+            flex-direction: column; /* Added */
+            /* Center horizontally */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
@@ -27,81 +47,82 @@
 
 <body>
 
-    
+    <div class="row">
+        <div class="column">
 
-
-    <table>
-        <tr>
-            <td> <!-- TOC -->
-               
-            </td>
-            <td> <!-- Rest of the editing components-->
-                @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();", enctype = "multipart/form-data" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+            @*<input type="hidden" id="jdr" asp-for="@Model.Content" />*@
+               @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();", enctype = "multipart/form-data" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
                 {
-                    <table id="TOC">
-                        <tr>
-                            <td>
-                                <input type="text" id="tb1" name="tb" value="" />
-                                <button onclick="return addTR()">
-                                    <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Button Return
-                            </td>
-                            <td>
+            <table>
+                <tr>
+                        <td style="vertical-align:top;">
+                        <table id="TOC">
+                            <tr>
+                                    <td>
+                                    <h5>
+                                        Table of Contents <button onclick="return addTR()" style="width:3rem; height:3rem;">
+                                            <h2>+</h2>
+                                        </button>
+                                    </h5>
+
+                                    <input style="width:200px;" type="text" id="tb1" name="tb" placeholder="Main Title" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            
+                            <br />
+                            <br />
+                            <p>
+                                Category :
                                 <select name="Category" id="Category">
                                     <!---Category input-->
-                                    <option value="">Select Category: </option>
+                                    <option value="All">Select Category: </option>
                                     <option value="Banking">Banking</option>
                                     <option value="Health">Health</option>
                                     <option value="Telecommunications">Telecommunications</option>
                                     <option value="Food Delivery">Food Delivery</option>
                                     <option value="Transport">Transport</option>
                                 </select>
+                            </p>
 
-                    <input type="text" name="AppName" id="AppName" />
-
-                    <label for="img">Select App Logo:</label>
-                    <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table>
-                        <!--Table OF contents-->
-                        <tr>
-                            <td>Table of Contents </td>
-
-                        </tr>
-                        <tr>
-
-                            <td>
+                            <p>App Name : <input type="text" name="AppName" id="AppName" placeholder="Name" /></p>
+                            <label for="img">Select App Logo:</label>
+                            <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />
+                            <br />
+                            <br />
+                            <br />
+                            <tr>
+                                @*<td>
                                 <input type="text" value="test" />
                                 <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
-                            </td>
+                                </td>
+                                *@
+                                <td>
+                                    <div id="description" style="width:50rem; height:30rem;">Loaded text comes here using id="description"</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+           
+               
 
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <div id="description">Loaded text comes here using id="description"</div>
-                </td>
-
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="submit"></td>
-                        </tr>
-                    </table>
+             
+                    
+                    <td colspan="2"><input style="position:fixed; top:15%; right:25%; width:10rem; height:5rem; font-size:2rem;" type="submit"></td>
                     <input type="hidden" id="jdr" asp-for="@Model.Content" />
                 }
-            </td>
-        </tr>
-    </table>
-    
-        
+        </div>
+
+
+    </div>
+
+
+
 
     <style>
         /*Adding the values from the array which has the values as data-values*/
@@ -128,20 +149,18 @@
         }
     </style>
 
-    <form id="form" asp-controller="Guide" asp-action="WriteNewGuide" onsubmit="handleSubmit()"> <!--Add inputs to model object to be submitted under a form -->
+    <form id="form" asp-controller="Guide" asp-action="WriteNewGuide" onsubmit="handleSubmit()">
+        <!--Add inputs to model object to be submitted under a form -->
 
         <input type="hidden" id="hCategory" asp-for="@Model.Category" />          <!--Set each property of model under a hidden input field to be submitted under a form to be pushed to the controller then to the DAL-->
         <input type="hidden" id="hAppName" asp-for="@Model.AppName" />
         <input type="hidden" id="hImg" asp-for="@Model.AppLogo" />
-        <input type="hidden" id="h1" asp-for="@Model.TOC" /> <!-- not working -->
-
+        <input type="hidden" id="h1" asp-for="@Model.TOC" />
         <!---Binding existing Model content here (for content update)--->
         <div id="description">
-            
+            @Html.Raw(Model.Content)
         </div>
     </form>
-
-    <label>@Html.ValidationSummary()</label>
     <script>
         // add an array of values
         const fontFamilyArr = ["Roboto Condensed", "Times New Roman", "Calibri", "Calibri Light", "Sans-Serif"];
@@ -186,9 +205,6 @@
             document.getElementById('hCategory').value = document.getElementById('Category').value;
             document.getElementById('hAppName').value = document.getElementById('AppName').value;
             document.getElementById('hImg').value = document.getElementById('AppLogo').value;
-            document.getElementById('h1').value = document.getElementById('tb1').value; //not working
-
-            
         };
 
         function addTR() {
@@ -199,11 +215,11 @@
             var element = document.createElement("input");
             element.setAttribute("type", "text");
             element.setAttribute("id", "tb" + rowCount);
-            alert(rowCount);
-            element.setAttribute("value", "");
+            element.setAttribute("placeholder", "Sub-Title");
             element.setAttribute("name", "tb");
             element.setAttribute("style", "width:200px");
 
+            //insert new row and cell into table
             var row = table.insertRow(rowCount);    //Edit here if you want to change positioning of new TOC textboxes that just got added through the plus button
             var cell = row.insertCell(0);
             cell.appendChild(element);
@@ -214,13 +230,12 @@
             hide.setAttribute("id", "h" + rowCount);
             hide.setAttribute("value", "");
             hide.setAttribute("asp-for", "&#64Model.TOC[" + rowCount + "]");
-            
+
             document.querySelector("form").appendChild(hide);
-           
+
             return false;
         }
 
     </script>
 </body>
 </html>
-
