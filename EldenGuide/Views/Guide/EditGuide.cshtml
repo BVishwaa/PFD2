@@ -18,6 +18,26 @@
             .ql-font-arial {
                 font-family: Arial, sans-serif;
             }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Create two equal columns that float next to each other */
+            .column {
+                float: left;
+                width: 30%;
+                display: flex; /* Added */
+                flex-direction: column; /* Added */
+                /* Center horizontally */
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
         </style>
         <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
@@ -28,7 +48,88 @@
 
 
     <body>
-        <table>
+
+    <div class="row">
+        <div class="column">
+            @using (Html.BeginForm("EditGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();", enctype = "multipart/form-data"}))  //push form in NewGuide controller action where data is stored later on to be pushed to database
+            {
+                <table>
+                <tr>
+                        <td style="vertical-align:top;">
+                        <table id="TOC">
+                            <tr>
+                                <td>
+                                        <h5>
+                                            Table of Contents <button onclick="return addTR()" style="width:3rem; height:3rem;">
+                                                <h2>+</h2>
+                                            </button>
+                                        </h5>
+                                        @if (Model != null && Model.TOC != null)
+                                        {
+                                            foreach (string content in Model.TOC)
+                                            {
+                                                <input type="text" id="tb1" name="tb" value=@content />
+
+                                            }
+                                        }
+                                        
+                                </td>
+                            </tr>
+                            </table>
+                            </td>
+                            <td>
+                            <br />
+                            <br />
+                            <p>
+                                <!---Category input-->
+                                @{
+                                    string[] categories = { "All", "Banking", "Health", "Telecommunications", "Food Delivery", "Transport" };
+
+                                        @Html.DropDownListFor(Model=>Model.Category, categories.Select(category => new SelectListItem()
+                            {
+                            Text = category,
+                            Value = category,
+                            Selected = category == Model.Category
+                            }))
+                                    ;
+
+                                    foreach (string category in categories)
+                                    {
+                                        if (Model.Category == category)
+                                        {
+                                            new SelectListItem { Text = category, Value = category, Selected = true };
+                                        }
+                                        else
+                                        {
+                                            new SelectListItem { Text = category, Value = category };
+                                        }
+                                    }
+                                }
+                                </p>
+                            <p>App Name : <input type="text" name="AppName" id="AppName" value="@Model.AppName" /></p>
+                            <img id="gLogo" src="@Model.AppLogo" height="100" />
+                            <label for="img">Select App Logo:</label>
+                            <input type="file" id="AppLogo" name="AppLogo" accept="image/*" />
+                            <br />
+                            <br />
+                            <br />
+                            
+                            <div id="description" style="width:50rem; height:30rem;"> @Html.Raw(Model.Content)</div>
+                            
+                            </td>
+                            </tr>
+                            </table>
+                <input style="position:fixed; top:15%; right:25%; width:10rem; height:5rem; font-size:2rem;" type="submit">
+                <input type="hidden" id="jdr" asp-for="@Model.Content" />
+                <input type="hidden" id="hId" asp-for="@Model.GuideId" />
+            }
+            <form id="gDelete" asp-controller="Guide" asp-action="DeleteGuide">
+                <input type="submit" value="Delete" style="width:10rem; height:5rem; font-size:2rem; position:" onclick=" return guideDelete()" />
+                <input type="hidden" id="hId" name="hId" asp-for="@Model.GuideId" />
+            </form>
+        </div>
+            </div>
+        @*<table>
             <tr>
                 <td>
                     <!-- Rest of the editing components-->
@@ -121,7 +222,7 @@
                 </form>
                 </td>
             </tr>
-        </table>
+    </table>*@
 
         <style>
             /*Adding the values from the array which has the values as data-values*/
@@ -242,6 +343,7 @@
                 event.stopImmediatePropagation();
                 return false;
             }
+            
         }
     </script>
 

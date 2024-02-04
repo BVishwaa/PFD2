@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up for Users</title>
 
-
+   
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -31,36 +31,56 @@
 
     <script src="scripts\script.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        .column {
+            width: 45%;
+            height: 50%;
+            padding: 10px;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
 </head>
-
-<body class="min-vh-100 row m-0 position-relative">
-    <div id="navbarContainer" class="container"></div>
-
-    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
-        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                       background="transparent"
-                       speed="1"
-                       style="width: 100%; height: auto"
-                       loop
-                       autoplay></lottie-player>
-
-        <h1 class="mt-2 mb-3">Let's go!</h1>
-        <p>
-            Sign into Elden Guide and use our detailed user guides designed to close the digital divide.
+<body>
+<div class="row">
+    <div class="column">
+        <img src="/images/hello.gif" style="width:50%" alt="Your GIF">
+        <br /><br />
+        <h1 >Hello :)</h1>
+        <p style="font-family:'Times New Roman', Times, serif;font-size:25px;">
+                Create a new account!
             <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
         </p>
-    </aside>
+    </div>
+    <div class="column">
+
+            <br /><br /><br /><br /><br />
+        <!-- Sign Up -->
+        @using (Html.BeginForm("NewUser", "Auth", FormMethod.Post, new { onsubmit = "return NewUser()" }))
+        {
+            <p>Username : <input type="text" name="Username" placeholder="Username" required /></p>
+            <p>
+                Email Ad :    <input type="email" name="Email" placeholder="Email" required />
+            </p>
+            <p>
+                Password :               <input type="password" name="Password" placeholder="Password" required />
+            </p>
+            <input type="submit" value="Sign Up" />
+        }
+
+    </div>
+</div>
 
 
-    <!-- Sign Up -->
-    @using (Html.BeginForm("NewUser", "Auth", FormMethod.Post, new { onsubmit = "return NewUser()" }))
-    {
-        <input type="text" name="Username" placeholder="Username" required />
-        <input type="email" name="Email" placeholder="Email" required />
-        <input type="password" name="Password" placeholder="Password" required />
-        <input type="submit" value="Sign Up" />
-    }
 
 
 

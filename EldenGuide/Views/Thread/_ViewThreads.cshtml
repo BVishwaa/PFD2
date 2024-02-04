@@ -28,7 +28,7 @@
                         <div class="card mb-4">
                             <div class="card-body nes-container" style="max-width:40rem; min-height:10rem; max-height:20rem; ">
                                 <a asp-controller="Event" asp-action="DetailedIndex" asp-route-eventId="@events.EventID" class="card-title "><h5>@events.EventName</h5></a>
-                                <p class="card-text">@events.EventPhoto</p>
+                                <img src="@Url.Content(events.EventPhoto)" alt="Event Photo" height="200" width="330">            
                             </div>
                         </div>
                     </div>
@@ -39,9 +39,8 @@
 
         <br />
         <br />
-        <h2>
-            Threads 
-        </h2>
+        <h2>Threads <p style="font-family:'Times New Roman', Times, serif;font-size:25px; text-align:left;"><a asp-controller="Thread" asp-action="WriteNewThread">Create a new thread</a></p>
+</h2>
         <button class="categories-button button" id="all">View all</button>
         <button class="categories-button button" id="Banking">Banking</button>
         <button class="categories-button button" id="Health">Health</button>

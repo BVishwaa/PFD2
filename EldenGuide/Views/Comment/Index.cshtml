@@ -5,26 +5,3 @@
 }
 <partial name="~/Views/Comment/_ViewComments.cshtml" model="@Model" />
 <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-
-@using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
-{
-    <table>
-        <tr>
-            <td>
-                <label for="CommentText">Comment</label>
-                <input type="text" name="CommentText" id="CommentText" />
-                <input type="submit" value="Submit" />
-            </td>
-        </tr>
-    </table>
-}
-
-
-<script>
-    function handleSubmit() {
-        console.log('handleSubmit called');
-        document.getElementById('commentText').value = document.getElementById('CommentText').value;
-        document.getElementById('threadid').value = document.getElementById('ThreadID').value;
-    };
-
-</script>

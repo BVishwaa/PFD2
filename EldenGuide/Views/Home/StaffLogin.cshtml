@@ -24,29 +24,46 @@
           rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
           crossorigin="anonymous" />
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="styles/auth.css" />
 
     <script src="scripts\script.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        .column {
+            width: 45%;
+            height: 50%;
+            padding: 10px;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 </head>
-<body class="min-vh-100 row m-0 position-relative">
-    <div id="navbarContainer" class="container"></div>
+<body>
+<div class="row">
+    <div class="column">
+        <img src="/images/cuphead.gif" style="max-width:100%;" alt="Your GIF">
 
-    <aside class="col-md-6 w-sm-auto d-flex flex-column p-5 justify-content-center">
-        <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_5i5tlydx.json"
-                       background="transparent"
-                       speed="1"
-                       style="width: 100%; height: auto"
-                       loop
-                       autoplay></lottie-player>
 
-        <h1 class="mt-2 mb-3">Let's go!</h1>
-        <p>
-            Sign up for Elden Guide and use our detailed user guides designed to close the digital divide.
-            <br> Learn how to use the internet, connect with friends and family, and get the most out of your devices!
-        </p>
-    </aside>
+        <h1>For Secret Members:></h1>
+        <p style="font-family:'Times New Roman', Times, serif;font-size:25px;">
+            If this page is not intended for you, please head back to the <a  asp-area="" asp-controller="Home" asp-action="Index">Home Page!</a></p>
+    </div>
+    <div class="column">
+
+    </div>
+</div>
+
+
+
 
     <h3>Staff Login</h3>
     @using (Html.BeginForm("StaffLogin", "Home", FormMethod.Post, new { onsubmit = "return StaffLogin()" }))

@@ -94,14 +94,14 @@ namespace EldenGuide.Controllers
             return View(vc);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult> NewURL(IFormCollection form)
         {
             Videocall vc = new Videocall();
             VideocallDAL videocallDAL = new VideocallDAL();
 
             vc.Title = form["Title"];
-            vc.URL = form["URL"];      //Call out the form in the WriteNewGuide View page to instantiate the properties in the model object created
+            vc.URL = form["URL"];     
             vc.DateCreated = Convert.ToString(DateTime.Now);
 
             await videocallDAL.InsertURL(vc);
@@ -109,6 +109,30 @@ namespace EldenGuide.Controllers
 
             Debug.WriteLine("Debug statement: Something happened!");
             return View();
+        }*/
+
+        [HttpPost]
+        public async Task<ActionResult> NewURL(IFormCollection form)
+        {
+            Videocall vc = new Videocall();
+            VideocallDAL videocallDAL = new VideocallDAL();
+
+            vc.Title = form["Title"];
+            vc.URL = form["URL"];
+            vc.DateCreated = Convert.ToString(DateTime.Now);
+
+            // Manual URL validation
+            if (!Uri.TryCreate(vc.URL, UriKind.Absolute, out var uriResult)
+                || (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            {
+                return RedirectToAction("Index","Event");
+            }
+
+            await videocallDAL.InsertURL(vc);
+
+            Debug.WriteLine("Debug statement: URL added!");
+            return RedirectToAction("Index", "Event");
         }
+
     }
 }

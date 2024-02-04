@@ -5,16 +5,24 @@
 <head>
     <link rel="stylesheet" href="~/css/Navbar.css">
     <link rel="stylesheet" href="~/css/bttBtn.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/bttBtn.css">
+    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <title>
         <!--add in app name from firebase-->
     </title>
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
 </head>
 <body>
+
+    <div class="gif-container">
+        <div class="gif-text" style="width:10rem;">Use me to translate!</div>
+        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
+    </div>
     <div id="google_translate_element"></div>
 
     <button onclick="topFunction()" id="bttBtn" title="Go to top">Back to top</button>
@@ -39,12 +47,17 @@
     </div>
     <a asp-controller="Home" asp-action="Index"><button type="button" style="margin: 1%; font-size: 28px; padding: 10px 10px;">← Return</button></a>
     
-
+    <form method="post" action="#" id="printJS-form">
     <section>
 
         @Html.Raw(Model.Content);
 
-    </section>
+        </section>
+        
+    </form>
+    <button type="button" style="margin-left: 50%; font-size: 28px; padding: 10px 10px;" onclick="printJS({ printable: 'printJS-form', type: 'html', header: '@Model.AppName'})">
+        Download Guide
+    </button>
     <script type="module">
         import { redirectToAuthPage } from './scripts/auth.js';
 

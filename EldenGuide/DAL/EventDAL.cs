@@ -38,9 +38,10 @@ namespace EldenGuide.DAL
 
                 Dictionary<string, object> newEvent = new Dictionary<string, object>
                 {
+                    {"EventID" , numberOfDocuments + 1 },
                     {"EventName", events.EventName},
                     {"Details", events.Details },
-                    {"EventPhoto", "/images/EventImg/" + events.EventPhoto }
+                    {"EventPhoto",  events.EventPhoto }
                 };
 
                 await docRef.SetAsync(newEvent);
@@ -97,6 +98,48 @@ namespace EldenGuide.DAL
             QuerySnapshot snapshot = await collectionRef.GetSnapshotAsync();
             int total = snapshot.Documents.Count;
             return total;
+        }
+
+        public async Task<Event> ExtractEventByID(string eid)
+        {
+            CollectionReference eventRef = db.Collection("Events");
+            QuerySnapshot snapshot = await eventRef.GetSnapshotAsync(); //Once connected to the database, this calls out specifally for the documents inside the Events collection
+            Event @event = new Event();
+
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Id == eid)
+                {
+                    int eventId;
+                    if (int.TryParse(document.Id, out eventId))
+                    {
+                        @event.EventID = eventId;
+
+                    }
+
+                    Dictionary<string, dynamic> documentDictionary = document.ToDictionary();
+
+                    @event.EventName = documentDictionary["EventName"].ToString();
+                    @event.Details = documentDictionary["Details"].ToString();
+                    @event.EventPhoto = documentDictionary["EventPhoto"].ToString();
+
+                }
+
+                /*if (document.Id == gid)
+                {
+                    guide.GuideId = document.Id;
+                    guide.TOC = document.GetValue<string[]>("TOC");
+                }*/
+            }
+            return @event;
+        }
+        public async Task<Boolean> DeleteEvent(string EventID)
+        {
+            DocumentReference docRef = db.Collection("Events").Document(EventID);
+
+            await docRef.DeleteAsync();
+
+            return true;
         }
 
 

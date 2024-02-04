@@ -93,6 +93,7 @@ namespace EldenGuide.Controllers
         public async Task<ActionResult> Index(int eventId)
         {
             TempData["EventID"] = eventId;
+            TempData.Keep("EventID");
             dynamic mymodel = new ExpandoObject();
             mymodel.Videocall = await videocallContext.GetURLs();
             mymodel.Event = await eventContext.GetEvents();
@@ -125,24 +126,28 @@ namespace EldenGuide.Controllers
         }
 
         //newthread
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult> NewEvent(IFormCollection form, IFormFile Photo)
         {
             Event events = new Event();
             EventDAL eventDAL = new EventDAL();
-            
+
 
             events.EventName = form["Name"];
             events.Details = form["Details"];
+            //events.EventPhoto = Photo.FileName;
+
             events.EventPhoto = Photo.FileName;
             await saveImage(Photo);
 
             await eventDAL.InsertEvent(events);
 
+            await saveImage(Photo);
 
-            Console.WriteLine("event added");
-            return View("AddEvent");
+            Console.WriteLine("Event added");
+            return View("AddEvent"); 
         }
+
 
         public async Task<Boolean> saveImage(IFormFile image)
         {
@@ -157,6 +162,28 @@ namespace EldenGuide.Controllers
 
             }
             return true;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteEvent(IFormCollection form)
+        {
+            EventDAL eventDAL = new EventDAL();
+            Event EventToDelete = new Event();
+
+            int eventId;
+            if (int.TryParse(form["hId"], out eventId))
+            {
+                EventToDelete.EventID = eventId;
+                await eventDAL.DeleteEvent(EventToDelete.EventID.ToString());
+                return RedirectToAction("Index", "Event");
+            }
+            else
+            {
+                // Handle invalid ID here (e.g., return an error message)
+                Console.WriteLine(form["hId"]);
+                return BadRequest("Invalid event ID");
+                
+            }
         }
     }
 }
