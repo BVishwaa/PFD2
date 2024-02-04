@@ -33,8 +33,8 @@
     </div>
     <div id="google_translate_element"></div><br /><br />
     <h2>List of Events</h2>
-    <div class="column left side">
-        <div class="container">
+    <div class="column left side" style="height:100%; overflow:hidden;">
+        <div class="container" style="height:700px; overflow-y:auto;">
             <div class="row">
                 @foreach (Event events in Model.Event)
                 {
@@ -54,6 +54,7 @@
             </div>
         </div>
     </div>
+
     <div class= "column right side">
         <table>
             <tr>
@@ -79,24 +80,24 @@
                 </td>
             </tr>
         </table>
+        <br /><br />
+        <h4>Recent Meetings</h4>
         @{
             //get todays date
             DateTime currentDate = DateTime.Today;
         }
         <div class="container">
-            <div class="col">
+            <div class="col" style="width:30rem; height:500px; overflow-y:auto;">
                 @foreach (Videocall vc in Model.Videocall)
                 {
                     //will only display urls that were created today
                     var newDate = Convert.ToDateTime(@vc.DateCreated).AddDays(1);
-                    if(newDate > currentDate)
+                    if (newDate > currentDate)
                     {
-                        <div class="col-md-10">
-                            <div class="card mb-20">
+                        <div class="col">
+                            <div class="card">
                                 <div class="card-body">
-                                    <p class="card-title">
                                     <p class="card-title"><h5>@vc.Title</h5></p>
-                                    </p>
                                     <p class="card-text">
                                         <a href="@vc.URL" target="_blank">@vc.URL</a>
                                     </p>
@@ -107,6 +108,7 @@
                 }
             </div>
         </div>
+
     </div>
     
 </body>
