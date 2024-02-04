@@ -121,12 +121,12 @@ namespace EldenGuide.Controllers
             }
             else
             {
-                return RedirectToAction("StaffLogin","Home");
+                return RedirectToAction("StaffLogin", "Home");
             }
         }
 
         //newthread
-        /*[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> NewEvent(IFormCollection form, IFormFile Photo)
         {
             Event events = new Event();
@@ -184,6 +184,6 @@ namespace EldenGuide.Controllers
                 return BadRequest("Invalid event ID");
                 
             }
-        } */
+        }
     }
 }
