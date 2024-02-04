@@ -50,7 +50,6 @@
     <div class="row">
         <div class="column">
 
-            @*<input type="hidden" id="jdr" asp-for="@Model.Content" />*@
                @using (Html.BeginForm("WriteNewGuide", "Guide", FormMethod.Post, new { onsubmit = "return handleSubmit();", enctype = "multipart/form-data" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
                 {
             <table>
@@ -96,6 +95,7 @@
                             <br />
                             <tr>
                                 @*<td>
+                                  
                                 <input type="text" value="test" />
                                 <img src="../images/blue-3d-button-plus-sign-vector-22903099.jpg" height="100px" />
                                 </td>
@@ -113,7 +113,7 @@
 
              
                     
-                    <td colspan="2"><input style="position:fixed; top:15%; right:25%; width:10rem; height:5rem; font-size:2rem;" type="submit"></td>
+                    <input style="position:fixed; top:15%; right:25%; width:10rem; height:5rem; font-size:2rem;" type="submit">
                     <input type="hidden" id="jdr" asp-for="@Model.Content" />
                 }
         </div>
