@@ -3,11 +3,26 @@
 @{
     ViewData["Title"] = "WriteNewThread";
 }
+<head>
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/bttBtn.css">
+    <link rel="stylesheet" href="/css/pingu.css">
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
 <html>
 
 <body>
-
+    <div class="gif-container">
+        <div class="gif-text">Use me to translate!</div>
+        <img src="/images/penguin.gif" style="max-width:50%; object-fit:contain; height: 10em;" alt="Your GIF">
+    </div>
+    <div id="google_translate_element"></div>
+    <br />
+    <br />
+    <br />
+    <br />
     @using (Html.BeginForm("NewThread", "Thread", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))  //push form in NewGuide controller action where data is stored later on to be pushed to database
     {
         <div class="row mb-3">
@@ -21,7 +36,7 @@
             <label asp-for="Category"
                    class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9 col-md-5">
-                <select name="Category" id="Category">
+                <select name="Category" id="Category" style="font-family:'Times New Roman', Times, serif; font-size:2rem;">
                     <!---Category input-->
                     <option value="All">Select Category: </option>
                     <option value="Banking">Banking</option>
