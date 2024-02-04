@@ -5,17 +5,18 @@
 </head>
 <body>
     <div id="chatRoomContainer">
+        <div id="flex"><input type="button" id="leaveChatButton" value="Leave Chat" onclick="leaveChat()"></div>
         <div id="header">Chat Room</div>
         <div>
+            <div id="message">
+                Connecting you to our friendly staff...
+            </div>
             <ul id="messagesList">
             </ul>
         </div>
-        <div>User</div>
-        <div><input type="text" id="userInput" placeholder="Enter your name"></div>
         <div>Message</div>
         <div><input type="text" id="messageInput" placeholder="Type your message"></div>
         <input type="button" id="sendButton" value="Send Message">
-
     </div>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>

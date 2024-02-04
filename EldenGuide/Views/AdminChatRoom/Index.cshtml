@@ -10,15 +10,14 @@
 </head>
 <body>
     <div id="chatRoomContainer" style="display: flex;">
-        <aside id="roomList" style="width: 30%; padding: 20px; overflow-y: auto;">
-            <!-- Active rooms will be listed here -->
-        </aside>
+        <div class="chatList">
+            <h4>Pending Chats</h4>
+            <aside id="roomList"></aside>
+        </div>
         <section style="width: 70%; padding: 20px;">
             <div id="header">Admin Chat Room</div>
             <ul id="messagesList">
-                <!-- Messages will be displayed here -->
             </ul>
-            <input type="text" id="userInput" placeholder="Enter your name">
             <div>Message</div>
             <input type="text" id="messageInput" placeholder="Type your message">
             <button id="sendButton">Send Message</button>

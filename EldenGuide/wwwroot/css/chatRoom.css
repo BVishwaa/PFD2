@@ -32,6 +32,17 @@ input[type="text"] {
     border: 1px solid #ccc;
 }
 
+.chatList {
+    width: 30%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#flex{
+    display: flex;
+    flex-direction:row-reverse;
+}
+
 #sendButton {
     background-color: #007BFF;
     color: white;
@@ -41,6 +52,21 @@ input[type="text"] {
 
     #sendButton:hover {
         background-color: #0056b3;
+    }
+
+#leaveChatButton {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    top: 10px;
+    right: 10px;
+}
+
+    #leaveChatButton:hover {
+        background-color: darkred;
     }
 
 #messagesList {
@@ -67,16 +93,16 @@ input[type="text"] {
 }
 
 .user-message {
-    background-color: #dcf8c6; /* Light green background for user messages */
-    margin-left: auto; /* Aligns the message to the right */
+    background-color: #dcf8c6; 
+    margin-left: auto; 
     text-align: left;
-    border-bottom-right-radius: 0px; /* Creates the distinctive "bubble" look on the right for user messages */
+    border-bottom-right-radius: 0px; 
 }
 
 .other-message {
-    background-color: #f0f0f0; /* Light grey background for other messages */
+    background-color: #f0f0f0; 
     text-align: left;
-    border-bottom-left-radius: 0px; /* Creates the distinctive "bubble" look on the left for other messages */
+    border-bottom-left-radius: 0px;
     margin-right: auto;
 }
 
@@ -94,6 +120,12 @@ input[type="text"] {
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
+#message {
+    display: flex;
+    justify-content: center;
+    padding: 10px
+}
+
 .chat-item {
     padding: 10px 15px;
     border-bottom: 1px solid #f0f0f0;
@@ -103,3 +135,18 @@ input[type="text"] {
     .chat-item:hover {
         background-color: #f5f5f5;
     }
+
+
+.room-item {
+    width: 100%;
+    padding: 6px;
+    background-color: red; 
+    color: white; 
+    border-radius: 5px;
+    cursor: pointer; 
+    margin: 5px;
+}
+
+.room-item:hover {
+    background-color: darkred;
+}

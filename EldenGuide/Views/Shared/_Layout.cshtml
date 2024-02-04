@@ -24,7 +24,7 @@
                             <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" , Times, serif" asp-area="" asp-controller="Thread" asp-action="Index">Forum</a>
+                            <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Thread" asp-action="Index">Forum</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
@@ -41,9 +41,12 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LogOut">Log Out</a>
+                                <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="ChatRoom" asp-action="Index">Support</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Auth" asp-action="LogOut">Log Out</a>
+                            </li>
+                            
                         </ul>
                     }
 
@@ -52,11 +55,13 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Guide" asp-action="StaffGuideList">Customize Guides</a>
+                                <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Guide" asp-action="StaffGuideList">Customize Guides</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="StaffLogOut">Log Out</a>
+                                <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="AdminChatRoom" asp-action="Index">Support</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" style="font-family:'Times New Roman', Times, serif;font-size:25px;" asp-area="" asp-controller="Auth" asp-action="StaffLogOut">Log Out</a>
                             </li>
 
                         </ul>   

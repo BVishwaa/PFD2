@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using EldenGuide.Models;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Google.Cloud.Firestore.V1.StructuredAggregationQuery.Types.Aggregation.Types;
 
 namespace EldenGuide.Hubs
 {
@@ -10,55 +12,41 @@ namespace EldenGuide.Hubs
     {
         private static List<RoomInfo> activeRooms = new List<RoomInfo>();
 
-        // Define a class to hold room information
         public class RoomInfo
         {
             public string RoomName { get; set; }
             public bool IsAdminJoined { get; set; }
+            public string user { get; set; }
         }
 
-        // Method for users to create a room
-        public void CreateRoom()
-        {
-            // Generate a unique group name (e.g., a GUID)
-            string groupName = Guid.NewGuid().ToString();
 
-            // Add the room to the list of available rooms
+
+        public void CreateRoom(string groupName, string creator)
+        {
             activeRooms.Add(new RoomInfo
             {
                 RoomName = groupName,
-                IsAdminJoined = false // Initially, no admin has joined
+                IsAdminJoined = false,
+                user = creator
             });
 
-            // Create the group
             Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
-            // Send updates to admin clients
             UpdateAdminsAboutAvailableRooms();
 
             Console.WriteLine("Created");
             Console.WriteLine(string.Join(", ", activeRooms));
         }
 
-        // Method for admins to get the list of available rooms
-        public IEnumerable<RoomInfo> GetAvailableRooms()
-        {
-            return activeRooms;
-        }
 
-        // Method for admins to join a room
         public void AdminJoinRoom(string roomName)
-        {
-            // Find the room and mark it as joined by admin
+        {            
             var room = activeRooms.FirstOrDefault(r => r.RoomName == roomName);
             if (room != null)
             {
                 room.IsAdminJoined = true;
-
-                // Add admin to the group for the room
                 Groups.AddToGroupAsync(Context.ConnectionId, roomName);
 
-                // Send updates to admin clients
                 UpdateAdminsAboutAvailableRooms();
             }
         }
@@ -68,16 +56,33 @@ namespace EldenGuide.Hubs
             Groups.AddToGroupAsync(Context.ConnectionId, "Admins");
         }
 
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string sender, string message, string selectedRoom)
         {
-            Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(selectedRoom).SendAsync("ReceiveMessage", sender, message);
             Console.WriteLine("test");
         }
 
-        // Helper method to send available rooms to admin clients
         private void UpdateAdminsAboutAvailableRooms()
         {
             Clients.Group("Admins").SendAsync("AvailableRooms", activeRooms);
+        }
+
+
+        public void LeaveChat(string currentUser)
+        {
+            Console.WriteLine($"{currentUser}");
+            var room = activeRooms.LastOrDefault(r => r.user == currentUser);
+            if (room != null)
+            {
+                Console.WriteLine("Success");
+                activeRooms.Remove(room);
+                UpdateAdminsAboutAvailableRooms();
+            }
+        }
+
+        public void GetRooms()
+        {
+            UpdateAdminsAboutAvailableRooms();
         }
     }
 }
