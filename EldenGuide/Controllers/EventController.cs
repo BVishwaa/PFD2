@@ -184,6 +184,6 @@ namespace EldenGuide.Controllers
                 return BadRequest("Invalid event ID");
                 
             }
-        }
+        } */
     }
 }
