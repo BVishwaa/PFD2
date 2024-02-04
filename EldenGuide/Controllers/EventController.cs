@@ -130,14 +130,15 @@ namespace EldenGuide.Controllers
         {
             Event events = new Event();
             EventDAL eventDAL = new EventDAL();
+            
 
             events.EventName = form["Name"];
             events.Details = form["Details"];
             events.EventPhoto = Photo.FileName;
+            await saveImage(Photo);
 
             await eventDAL.InsertEvent(events);
 
-            await saveImage(Photo);
 
             Console.WriteLine("event added");
             return View("AddEvent");

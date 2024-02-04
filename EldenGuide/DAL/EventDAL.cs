@@ -40,7 +40,7 @@ namespace EldenGuide.DAL
                 {
                     {"EventName", events.EventName},
                     {"Details", events.Details },
-                    {"EventPhoto", "/images/EvenImg/" + events.EventPhoto }
+                    {"EventPhoto", "/images/EventImg/" + events.EventPhoto }
                 };
 
                 await docRef.SetAsync(newEvent);
@@ -71,12 +71,12 @@ namespace EldenGuide.DAL
                     Event data = documentSnapshot.ConvertTo<Event>();
 
                     eventList.Add(new Event
-                    {
-                        EventID = data.EventID,
-                        EventName = data.EventName,
-                        Details = data.Details,
-                        EventPhoto = Path.Combine("~/images/EventImg/", data.EventPhoto)
-                    });
+                        {
+                            EventID = data.EventID,
+                            EventName = data.EventName,
+                            Details = data.Details,
+                            EventPhoto = Path.Combine("~/images/EventImg/", data.EventPhoto)
+                        });
                 }
                 else
                 {
