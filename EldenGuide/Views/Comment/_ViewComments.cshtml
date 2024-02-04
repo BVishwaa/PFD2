@@ -1,38 +1,99 @@
 ﻿@model EldenGuide.Models.CommentViewModel
 
+<head>
+    <style>
+        .column {
+            width: 45%;
+            height: 50%;
+            padding: 10px;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+</style>
+
+</head>
 <html>
 
 <body>
-    <div class="container">
-        <div class="col">
-            @foreach (var thread in Model.Threads)
-            {
-                @if (Convert.ToInt32(@TempData["ThreadID"]) == thread.ThreadID)
-                {
-                    <div class="col-md-4" style="font-family:'Times New Roman', Times, serif;font-size:30px;">
-                        <div class="col mb-4">
-                            <p><b>@thread.Description</b> on @thread.Username</p>
-                            <p>@thread.DatePosted</p>
-                        </div>
-                    </div>
-                }
-            }
-            
-        </div>
-    </div>
-    <div class="container">
-        <div class="col">
-            @foreach (var comment in Model.Comments)
-            {
-                <div class="col-md-4" style="font-family:'Times New Roman', Times, serif;font-size:30px;">
-                    <div class="col mb-4 nes-container with-title">
-                        <p class="title" style="font-size:2rem;"><b>@comment.Username</b> on @comment.DateCommented</p>
-                        <p>@comment.CommentText</p>
-                    </div>
+    <div class="row">
+        <div class="column">
+            <div class="col">
+                <div class="col ">
+                    @foreach (var thread in Model.Threads)
+                    {
+                        @if (Convert.ToInt32(@TempData["ThreadID"]) == thread.ThreadID)
+                        {
+                            <div class="col" style="font-family:'Times New Roman', Times, serif;font-size:30px;">
+                                <div class="col">
+                                    <p><b>@thread.Username</b> on @thread.DatePosted</p>
+                                    <p>@thread.Description </p>
+                                    <br />
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
-            }
+            </div>
+            <div class="col nes-container" style="max-height:500px; overflow-y:auto;">
+                <div class="col ">
+                    <h3>Comments:</h3><br />
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="col" style="font-family:'Times New Roman', Times, serif;font-size:30px;">
+                            <div class="col ">
+                                <p class="title" style="font-size:2rem;"><b>@comment.Username</b> on @comment.DateCommented</p>
+                                <p>@comment.CommentText</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="column">
+            <br /><br /><br /><br /><br /><br /><br />
+            <h2>Comment Here :</h2>
+            <div class="nes-container">
+                @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { onsubmit = "return handleSubmit();" }))
+                {
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="CommentText">Comment</label>
+                                <input type="text" name="CommentText" id="CommentText" />
+                                <input type="submit" value="Submit" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+            </div>
+
         </div>
     </div>
+    
+
+
+
+<script>
+    function handleSubmit() {
+        console.log('handleSubmit called');
+        document.getElementById('commentText').value = document.getElementById('CommentText').value;
+        document.getElementById('threadid').value = document.getElementById('ThreadID').value;
+    };
+
+</script>
+
+
+
 
 </body>
 </html>
