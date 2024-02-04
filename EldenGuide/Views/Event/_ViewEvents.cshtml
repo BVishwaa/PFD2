@@ -93,7 +93,7 @@
                 {
                     //will only display urls that were created today
                     var newDate = Convert.ToDateTime(@vc.DateCreated).AddDays(1);
-                    if (newDate < currentDate)
+                    if (newDate > currentDate)
                     {
                         <div class="col">
                             <div class="card">
